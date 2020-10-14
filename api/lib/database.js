@@ -35,7 +35,7 @@ con.connect(function(err) {
     
     let createUserQuery =
 		"DROP TABLE if exists user; CREATE TABLE user(id int NOT NULL AUTO_INCREMENT, user_name varchar(155) NOT NULL, email varchar(100) NOT NULL, password varchar(155) NOT NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id));";
-	con.query(createCompanyQuery, function (err, result) {
+	con.query(createUserQuery, function (err, result) {
 		if (err) throw err;
 		console.log("Table creation `companies` was successful!");
 
@@ -44,7 +44,7 @@ con.connect(function(err) {
     
     let createSharesQuery =
 		"DROP TABLE if exists shares; CREATE TABLE shares(id int NOT NULL AUTO_INCREMENT, user_id INT NOT NULL, body varchar(255) NOT NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id));";
-	con.query(createCompanyQuery, function (err, result) {
+	con.query(createSharesQuery, function (err, result) {
 		if (err) throw err;
 		console.log("Table creation `shares` was successful!");
 
@@ -53,7 +53,7 @@ con.connect(function(err) {
     
     let createRelationshipsQuery =
 		"DROP TABLE if exists relationships; CREATE TABLE relationships(id int NOT NULL AUTO_INCREMENT, followerId INT NOT NULL, followedId INT NOT NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id));";
-	con.query(createCompanyQuery, function (err, result) {
+	con.query(createRelationshipsQuery, function (err, result) {
 		if (err) throw err;
 		console.log("Table creation `relationships` was successful!");
 
@@ -62,9 +62,9 @@ con.connect(function(err) {
     
     let addForeignKeysQuery =
         "ALTER TABLE shares ADD CONSTRAINT shares_fk0 FOREIGN KEY (user_id) REFERENCES user(id);  ALTER TABLE relationships ADD CONSTRAINT relationships_fk0 FOREIGN KEY (followerId) REFERENCES user(id); ALTER TABLE relationships ADD CONSTRAINT relationships_fk1 FOREIGN KEY (followedId) REFERENCES user(id);"
-    con.query(createCandidateSkillsQuery, function (err, result) {
+    con.query(addForeignKeysQuery, function (err, result) {
         if (err) throw err;
-        console.log("Adding foreign keys was successful!");
+        console.log("Added foreign keys successfuly!");
     
         console.log("Closing...");
     });
