@@ -19,6 +19,6 @@
   "scripts": {
     "dev:server": "nodemon ./api/app.js",
     "dev:client": "cd ./client && yarn start",
-    "start": "npm-run-all -l -p dev:server dev:client --parallel"
+    "start": "npm-run-all -l -p dev:server dev:client"
   }
 }
