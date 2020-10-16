@@ -12,7 +12,7 @@ const supersecret = process.env.SUPER_SECRET
 
 //sign in
 routes.post("/register", (req, res) => {
-    const { user_name, email, password, password2 } = req.body;
+    let { user_name, email, password, password2 } = req.body;
     let errors = []
 
     //check required inputs
@@ -29,19 +29,24 @@ routes.post("/register", (req, res) => {
     }
 
     if(errors.length>0) {
-
+        console.log(errors);
     } else {
         if(email) {
             db(`SELECT * FROM user WHERE email = "${email}"`)
             .then((results) => {
-                if(results.length>0){
+                if(results.data.length>0){
                     res.send("Email exists")
                 } else {
-                    res.send("Registration successful")
                     bcrypt.hash(password, saltRounds, (err, hash) => {
-                        if(err)throw err;
-                        req.body.password = hash
-                        db(`INSERT INTO user (user_name, email, password) VALUES ("${user_name}", "${email}", "${password}")`)
+                    password = hash
+                    db(`INSERT INTO user (user_name, email, password) VALUES ("${user_name}", "${email}", "${password}")`)
+                        .then((results) => {
+                            res.send("Registration successful")
+                            if(err)throw err;
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
                     })
                 }
             })
@@ -56,18 +61,19 @@ routes.post("/register", (req, res) => {
 
 //log in
 routes.post("/login", function (req, res, next) {
-    const { user_name, password } = req.body;
-    db(`SELECT * FROM user WHERE user_name = "${user_name}" AND password = "${password}";`)
+    const { user_name, password } = req.body
+
+    db(`SELECT * FROM user WHERE user_name ="${user_name}" AND password = "${password}";`)
         .then((results) => {
             if(results.data.length) {
-                var token = jwt.sign({ userId: results.data[0].id }, supersecret)
-
-                res.send({message: "User OK, here is your token", token})
+                var token = jwt.sign({ userId: results.data[0].id}, supersecret)
+                res.send({ message: "User OK, here is your token!", token })
             } else {
-                res.status(404).send({message: "User not found!"})
+                res.status(404).send({ message: "User not found!" })
             }
         })
 })
+
 
 //protected endpoint
 routes.get("/profile", userShouldBeLoggedIn, function (req, res, next) {
