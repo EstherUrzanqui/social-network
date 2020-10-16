@@ -2,11 +2,57 @@ const express = require('express')
 const routes = express.Router()
 const jwt = require("jsonwebtoken")
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn")
+const bcrypt = require("bcrypt")
+const saltRounds = 10;
 
 const db = require('./lib/helper')
 require("dotenv").config()
 
 const supersecret = process.env.SUPER_SECRET
+
+//sign in
+routes.post("/register", (req, res) => {
+    const { user_name, email, password, password2 } = req.body;
+    let errors = []
+
+    //check required inputs
+    if(!user_name || !email || !password || !password2){
+        errors.push({message: "Please fill all required fields"})
+        res.send({message: "Please fill all required fields"})   
+    }
+
+    //check passwords
+    if(password != password2) {
+        console.log("Passwords do not match")
+        errors.push({message: "Passwords do not match"})
+        res.send({message: "Passwords do not match"})
+    }
+
+    if(errors.length>0) {
+
+    } else {
+        if(email) {
+            db(`SELECT * FROM user WHERE email = "${email}"`)
+            .then((results) => {
+                if(results.length>0){
+                    res.send("Email exists")
+                } else {
+                    res.send("Registration successful")
+                    bcrypt.hash(password, saltRounds, (err, hash) => {
+                        if(err)throw err;
+                        req.body.password = hash
+                        db(`INSERT INTO user (user_name, email, password) VALUES ("${user_name}", "${email}", "${password}")`)
+                    })
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        } else {
+            res.send("Enter email")
+        }
+    }
+})
 
 //log in
 routes.post("/login", function (req, res, next) {
