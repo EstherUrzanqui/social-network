@@ -1,6 +1,7 @@
 import React from "react"
 import axios from "axios"
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
+import "../css/Login.css"
 
 class Login extends React.Component {
     constructor (props) {
@@ -57,6 +58,7 @@ class Login extends React.Component {
                             name="user_name"
                             type="text"
                             className="form-control mb-2"
+                            placeholder="Username"
                         />
                     </FormGroup>
                     <FormGroup>
@@ -66,9 +68,10 @@ class Login extends React.Component {
                             name="password"
                             type="password"
                             className="form-control mb-2"
+                            placeholder="password"
                         />
                     </FormGroup>
-                    <Button color="info" className="button-login" disabled={!user_name || !password}>
+                    <Button className="button-login" disabled={!user_name || !password}>
                         Log in
                     </Button>
                 </Form>
