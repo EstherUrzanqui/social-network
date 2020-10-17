@@ -1,12 +1,15 @@
 import React from "react"
 import axios from "axios"
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 
 class Login extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            user_name: "test",
-            password: "test"
+            user_name: "",
+            password: "", 
+            error: false,
+            loggedIn: false,
         }
     }
 
@@ -16,7 +19,8 @@ class Login extends React.Component {
         })
     }
 
-    login = () => {
+    login = (event) => {
+        event.preventDefault()
         const { user_name, password } = this.state
         axios("http://localhost:7001/api/login", {
             method: "POST",
@@ -27,57 +31,48 @@ class Login extends React.Component {
         })
         .then((response) => {
             localStorage.setItem("token", response.data.token)
+            this.setState({ loggedIn: true })
             console.log(response.data)
         })
         .catch((error) => {
             console.log(error)
+        })
+        this.setState({
+            user_name: "",
+            password: "",
+            error: false,
         })
     }
 
-    requestData = () => {
-        axios("http://localhost:7001/api/profile", {
-            headers: {
-                "x-access-token": localStorage.getItem("token")
-            }
-        })
-        .then((response) => {
-            console.log(response.data)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    }
 
     render() {
+        const { user_name, password, error, loggedIn } = this.state
         return (
-            <div>
-                <div>
-                    <input
-                        value={this.state.user_name}
-                        onChange={this.handleChange}
-                        name="username"
-                        type="text"
-                        className="form-control mb-2"
-                    />
-                    <input
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        name="password"
-                        type="password"
-                        className="form-control mb-2"
-                    />
-                    <button className="btn btn-primary" onClick={this.login}>
+            <div className="login">
+                <Form className="login-container" onSubmit={this.login}>
+                    <FormGroup>
+                        <Input
+                            value={this.state.user_name}
+                            onChange={this.handleChange}
+                            name="user_name"
+                            type="text"
+                            className="form-control mb-2"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Input
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            name="password"
+                            type="password"
+                            className="form-control mb-2"
+                        />
+                    </FormGroup>
+                    <Button color="info" className="button-login" disabled={!user_name || !password}>
                         Log in
-                    </button>
-                </div>
-                <div className="text-center p-4">
-                    <button
-                        className=" btn btn-outline-primary"
-                        onClick={this.requestData}
-                    >
-                        Request protected data
-                    </button>
-                </div>
+                    </Button>
+                </Form>
+                
             </div>
         )
     }
