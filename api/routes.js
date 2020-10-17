@@ -63,15 +63,22 @@ routes.post("/register", (req, res) => {
 routes.post("/login", function (req, res, next) {
     const { user_name, password } = req.body
 
-    db(`SELECT * FROM user WHERE user_name ="${user_name}" AND password = "${password}";`)
+        db(`SELECT * FROM user WHERE user_name ="${user_name}";`)
         .then((results) => {
-            if(results.data.length) {
-                var token = jwt.sign({ userId: results.data[0].id}, supersecret)
-                res.send({ message: "User OK, here is your token!", token })
+            if(results.data.length > 0) {
+                console.log(results)
+                console.log(results.data[0].password)
+                const comparision = bcrypt.compare(password, results.data[0].password)
+                    if(comparision) {
+                        var token = jwt.sign({ userId: results.data[0].id}, supersecret)
+                        res.send({ message: "User OK, here is your token!", token })
+                    }   
             } else {
                 res.status(404).send({ message: "User not found!" })
             }
         })
+
+    
 })
 
 
