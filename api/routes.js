@@ -24,6 +24,8 @@ routes.post("/register", (req, res) => {
     //check passwords
     if(password != password2) {
         console.log("Passwords do not match")
+        console.log(password)
+        console.log(password2)
         errors.push({message: "Passwords do not match"})
         res.send({message: "Passwords do not match"})
     }
