@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-//import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { Button } from "reactstrap"
 import Login from "./components/Login"
 import Signin from "./components/Signin"
 
 
-class App extends React.Component {
-  render() {
+const App = () => {
+  const [isLoggedIn, setLoggedIn] = useState(false)
+
+  const handleLogin = token => {
+    if (!token) return
+    localStorage.setItem('token', token)
+
+    setLoggedIn(true)
+  }
+
+  const handleLogout = () => () => {
+    setLoggedIn(false)
+    localStorage.clear()
+  }
+  
     return (
-      <div className="App container p-5">
+      <div className="App">
         <Login />
-        <Signin />
-        {/*<Router>
-          <Switch>
-            <Route exact path="/signin" component={Signin}>Sing in</Route>
-            <Route exact path="/login" component={Login}>Login</Route>
-          </Switch>
-        </Router>*/}
+        
       </div>
     )
-  }
+  
 }
 
 export default App;

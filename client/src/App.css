@@ -4,11 +4,12 @@ html, body {
 }
 
 .App {
-  text-align: center;
-  background-color: #7bb062; 
+  text-align: center; 
+  text-emphasis-color: white;
   background-size: auto;
   background-position: center center;
   background-attachment: fixed;
+  color: white;
   
 }
 

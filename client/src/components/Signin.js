@@ -1,6 +1,6 @@
 import React from "react"
 import axios from "axios"
-import { Button, Form, FromGroup, Label, Input, Alert, FormGroup } from "reactstrap"
+import { Button, Form, Label, Input, Alert, FormGroup } from "reactstrap"
 
 class Singin extends React.Component {
     state = {
@@ -42,6 +42,8 @@ class Singin extends React.Component {
             })
         }
     }
+
+    
 
     render() {
         const { user_name, email, password, password2, loggedIn } = this.state

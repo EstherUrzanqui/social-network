@@ -2,6 +2,8 @@ import React from "react"
 import axios from "axios"
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import "../css/Login.css"
+import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Singin from "./Signin"
 
 class Login extends React.Component {
     constructor (props) {
@@ -31,8 +33,9 @@ class Login extends React.Component {
             }
         })
         .then((response) => {
-            localStorage.setItem("token", response.data.token)
+            this.props.onLogin(response.data.token)
             this.setState({ loggedIn: true })
+            this.feedRedirect()
             console.log(response.data)
         })
         .catch((error) => {
@@ -43,6 +46,10 @@ class Login extends React.Component {
             password: "",
             error: false,
         })
+    }
+
+    feedRedirect = () => {
+
     }
 
 
@@ -74,6 +81,15 @@ class Login extends React.Component {
                     <Button className="button-login" disabled={!user_name || !password}>
                         Log in
                     </Button>
+                    <hr />
+                    <Router>
+                        <Switch>
+                            <Route exact path="/Signin">
+                                Sing in
+                                <Singin />
+                            </Route>
+                        </Switch>
+                    </Router>
                 </Form>
                 
             </div>
