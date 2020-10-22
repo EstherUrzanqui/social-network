@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
-import { Button } from "reactstrap"
 import Login from "./components/Login"
-import Signin from "./components/Signin"
-import Singin from './components/Signin';
+
 
 
 const App = () => {

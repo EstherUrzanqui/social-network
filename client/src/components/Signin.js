@@ -1,6 +1,6 @@
 import React from "react"
 import axios from "axios"
-import { Button, Form, Label, Input, Alert, FormGroup } from "reactstrap"
+import { Button, Form, Input, FormGroup } from "reactstrap"
 
 class Singin extends React.Component {
     state = {
@@ -67,7 +67,7 @@ class Singin extends React.Component {
                             value={email}
                             onChange={this.handleChange}
                             name="email"
-                            placeholder="email"
+                            placeholder="Email"
                             type="text"
                             required
                         >   
@@ -78,7 +78,7 @@ class Singin extends React.Component {
                             value={password}
                             onChange={this.handleChange}
                             name="password"
-                            placeholder="password"
+                            placeholder="Password"
                             type="password"
                             required
                         >   
@@ -89,14 +89,14 @@ class Singin extends React.Component {
                             value={password2}
                             onChange={this.handleChange}
                             name="password2"
-                            placeholder="confirm password"
+                            placeholder="Confirm Password"
                             type="password"
                             required
                         >
                             
                         </Input>
                     </FormGroup>
-                    <Button className="button-signin">
+                    <Button className="button-login">
                         Sign in
                     </Button>
                 </Form>

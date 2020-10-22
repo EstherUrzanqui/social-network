@@ -1,6 +1,6 @@
 import React from "react"
 import axios from "axios"
-import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
+import { Button, Form, FormGroup, Input } from 'reactstrap'
 import "../css/Login.css"
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Signin from "./Signin"
@@ -75,7 +75,7 @@ class Login extends React.Component {
                             name="password"
                             type="password"
                             className="form-control mb-2"
-                            placeholder="password"
+                            placeholder="Password"
                         />
                     </FormGroup>
                     <Button className="button-login" disabled={!user_name || !password}>
