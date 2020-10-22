@@ -83,10 +83,10 @@ class Login extends React.Component {
                     </Button>
                     <hr />
                     <Router>
-                        <Link to="/Signin"> Don't have an account? Sign up here</Link>
+                        <Link to="/signin"> Don't have an account? Sign up here</Link>
                     <Switch>
-                        <Route path="/Signin"> 
-                        <Signin /> 
+                        <Route path="/signin" component={Signin}> 
+                        
                         </Route>
                     </Switch>
                     </Router>

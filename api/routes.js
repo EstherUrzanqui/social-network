@@ -10,6 +10,38 @@ require("dotenv").config()
 
 const supersecret = process.env.SUPER_SECRET
 
+//post a share
+routes.post("/share", (req, res) => {
+    let { user_id, body, createdAt, updatedAt } = req.body;
+
+    db(`INSERT INTO shares (user_id, body, createdAt, updatedAt) VALUES ('${user_id}', '${body}', '${createdAt}', '${updatedAt}');`)
+        .then(results => {
+            if(!results.error) {
+                res.status(201).send({})
+            }
+            res.send(results)
+        })
+        .catch(err => res.status(500).send(err))
+})
+
+//get all shares
+routes.get("/shares", (req, res) => {
+
+    db(`SELECT shares.body, 
+        shares.createdAt, 
+        user.user_name 
+        FROM shares 
+        INNER JOIN user 
+        ON user.id = shares.user_id`)
+        .then(results => {
+            if (results.error) {
+                res.status(400).send({ message: "There was an error" });
+            }
+    
+            res.send(results.data);
+        });
+})
+
 //sign in
 routes.post("/register", (req, res) => {
     let { user_name, email, password, password2 } = req.body;
