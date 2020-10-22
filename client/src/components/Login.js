@@ -3,7 +3,7 @@ import axios from "axios"
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import "../css/Login.css"
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Singin from "./Signin"
+import Signin from "./Signin"
 
 class Login extends React.Component {
     constructor (props) {
@@ -83,12 +83,12 @@ class Login extends React.Component {
                     </Button>
                     <hr />
                     <Router>
-                        <Switch>
-                            <Route exact path="/Signin">
-                                Sing in
-                                <Singin />
-                            </Route>
-                        </Switch>
+                        <Link to="/Signin"> Don't have an account? Sign up here</Link>
+                    <Switch>
+                        <Route path="/Signin"> 
+                        <Signin /> 
+                        </Route>
+                    </Switch>
                     </Router>
                 </Form>
                 
