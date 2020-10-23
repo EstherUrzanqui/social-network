@@ -2,7 +2,7 @@ import React from "react"
 import axios from "axios"
 import { Button, Form, Input, FormGroup } from "reactstrap"
 
-class Singin extends React.Component {
+class Signin extends React.Component {
     state = {
         user_name: "",
         password: "",
@@ -107,4 +107,4 @@ class Singin extends React.Component {
 
 }
 
-export default Singin;
+export default Signin;
