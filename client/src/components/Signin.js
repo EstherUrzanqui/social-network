@@ -1,6 +1,7 @@
 import React from "react"
 import axios from "axios"
 import { Button, Form, Input, FormGroup } from "reactstrap"
+import "../css/Signin.css"
 
 class Signin extends React.Component {
     state = {
@@ -49,8 +50,8 @@ class Signin extends React.Component {
         const { user_name, email, password, password2, loggedIn } = this.state
         
         return (
-            <div className="singin">
-                <Form className ="singin-form" onSubmit={this.handleSubmit}>
+            <div className="signin">
+                <Form className ="signin-form" onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Input
                             value={user_name}
