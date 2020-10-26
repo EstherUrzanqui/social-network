@@ -10,9 +10,23 @@ class Feed extends React.Component {
             body: "",
             createdAt: null, 
             updatedAt: null,
+            feed: [],
             error: false,
             loggedIn: false,
         }
+    }
+
+    componentDidMount = () => {
+      this.getFeed()
+    }
+
+    getFeed = () => {
+      axios("http://localhost:7001/api/profile/shares", {
+        method: "GET",
+        data: {
+          
+        }
+      })
     }
 
     handleChange = e => {

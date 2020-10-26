@@ -26,7 +26,8 @@ const App = () => {
       <Router>
         <Switch>
           <Route path='/login'component={Login}></Route>
-          <Route path="/signin" component={Signin}></Route>         
+          <Route path="/signin" component={Signin}></Route> 
+          <Route path="/feed" component={Feed}></Route>        
         </Switch>
       </Router>
     </div>
