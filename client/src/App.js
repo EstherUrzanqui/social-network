@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import './App.css';
 import Login from "./components/Login"
-
+import Signin from "./components/Signin"
+import Feed from "./components/Feed"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 
 const App = () => {
@@ -19,12 +21,16 @@ const App = () => {
     localStorage.clear()
   }
   
-    return (
-      <div className="App">
-        <Login />
-      </div>
-    )
-  
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route path='/login'component={Login}></Route>
+          <Route path="/signin" component={Signin}></Route>         
+        </Switch>
+      </Router>
+    </div>
+  ) 
 }
 
 export default App;

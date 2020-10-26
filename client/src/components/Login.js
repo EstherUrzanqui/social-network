@@ -2,7 +2,6 @@ import React from "react"
 import axios from "axios"
 import { Button, Form, FormGroup, Input } from 'reactstrap'
 import "../css/Login.css"
-import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Signin from "./Signin"
 
 class Login extends React.Component {
@@ -33,7 +32,7 @@ class Login extends React.Component {
             }
         })
         .then((response) => {
-            this.props.onLogin(response.data.token)
+            //this.props.onLogin(response.data.token)
             this.setState({ loggedIn: true })
             this.feedRedirect()
             console.log(response.data)
@@ -47,11 +46,7 @@ class Login extends React.Component {
             error: false,
         })
     }
-
-    feedRedirect = () => {
-
-    }
-
+    //redirect to feed when logged in
 
     render() {
         const { user_name, password, error, loggedIn } = this.state
@@ -81,15 +76,6 @@ class Login extends React.Component {
                     <Button className="button-login" disabled={!user_name || !password}>
                         Log in
                     </Button>
-                    <hr />
-                    <Router>
-                        <Link to="/signin"> Don't have an account? Sign up here</Link>
-                    <Switch>
-                        <Route path="/signin" component={Signin}> 
-                        
-                        </Route>
-                    </Switch>
-                    </Router>
                 </Form>
                 
             </div>
