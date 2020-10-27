@@ -35,4 +35,4 @@ const withUser = (Component, options = { renderNull: true }) => props => {
   return <Component {...props} user={userData} />
 }
 
-export default withUser
+export default UserLogged
