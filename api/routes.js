@@ -11,7 +11,7 @@ require("dotenv").config()
 const supersecret = process.env.SUPER_SECRET
 
 //post a share
-routes.post("/profile/share", userShouldBeLoggedIn, (req, res) => {
+routes.post("/profile/share", (req, res) => {
     let { body, createdAt, updatedAt } = req.body;
 
     db(`INSERT INTO shares (user_id, body, createdAt, updatedAt) 
@@ -27,7 +27,7 @@ routes.post("/profile/share", userShouldBeLoggedIn, (req, res) => {
 })
 
 //get all shares
-routes.get("/profile/shares", userShouldBeLoggedIn, (req, res) => {
+routes.get("/profile/shares", (req, res) => {
 
     db(`SELECT shares.body, 
         shares.createdAt, 
@@ -42,6 +42,16 @@ routes.get("/profile/shares", userShouldBeLoggedIn, (req, res) => {
     
             res.send(results.data);
         });
+})
+
+//user by id
+routes.get("/users/:id", (req, res) => {
+    const { id } = req.params
+    db(`SELECT * FROM user WHERE id='${id}'`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
 })
 
 //sign in
