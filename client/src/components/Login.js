@@ -2,7 +2,7 @@ import React from "react"
 import axios from "axios"
 import { Button, Form, FormGroup, Input } from 'reactstrap'
 import "../css/Login.css"
-import Signin from "./Signin"
+
 
 class Login extends React.Component {
     constructor (props) {
@@ -47,6 +47,9 @@ class Login extends React.Component {
         })
     }
     //redirect to feed when logged in
+    feedRedirect = () => {
+        this.props.history.push("/feed")
+    }
 
     render() {
         const { user_name, password, error, loggedIn } = this.state
