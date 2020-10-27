@@ -1,0 +1,36 @@
+.feedform {
+    position: center;
+    background-color: rgb(228, 88, 121);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.feed-container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background: rgb(228, 88, 121);
+    padding: 300px;
+    border-radius: 8px;
+    height: auto;
+    min-height: 40vh;
+    width: 30%;
+    font-weight: 600;
+    opacity: .85;
+  }
+
+  .button-feed {
+    background-color: white !important;
+    color: rgb(228, 88, 121) !important;
+    border: #600eb1 !important;
+    padding: 10px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 20px !important;
+    border-radius: 0.5em;
+  }
