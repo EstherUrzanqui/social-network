@@ -47,7 +47,7 @@ class Signin extends React.Component {
     
 
     render() {
-        const { user_name, email, password, password2, loggedIn } = this.state
+        const { user_name, email, password, password2 } = this.state
         
         return (
             <div className="signin">

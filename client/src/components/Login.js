@@ -32,7 +32,7 @@ class Login extends React.Component {
             }
         })
         .then((response) => {
-            //this.props.onLogin(response.data.token)
+            localStorage.setItem("token", response.data.token)
             this.setState({ loggedIn: true })
             this.feedRedirect()
             console.log(response.data)
@@ -52,7 +52,7 @@ class Login extends React.Component {
     }
 
     render() {
-        const { user_name, password, error, loggedIn } = this.state
+        const { user_name, password } = this.state
         return (
             <div className="login">
                 <Form className="login-container" onSubmit={this.login}>

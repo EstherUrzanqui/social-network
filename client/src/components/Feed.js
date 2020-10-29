@@ -1,18 +1,18 @@
 import React from "react"
 import axios from "axios"
-
-import { Button, Form, FormGroup, Input } from 'reactstrap'
+import "../css/Feed.css"
+import { Button, Form, FormGroup, Input, Card, CardText, Row, Col } from 'reactstrap'
+import withUser from "./Withuser"
 
 class Feed extends React.Component {
     constructor (props) {
         super(props)
+        console.log(props)
         this.state = {
-            body: "",
-            createdAt: null, 
-            updatedAt: null,
             feed: [],
-            error: false,
-            loggedIn: false,
+            body: "",
+            createdAt: null,
+            updatedAt: null
         }
     }
 
@@ -20,66 +20,65 @@ class Feed extends React.Component {
       this.getFeed()
     }
 
-    getFeed = () => {
-      axios("http://localhost:7001/api/profile/shares", {
-        method: "GET",
-        data: {
-          
-        }
-      })
-    }
-
     handleChange = e => {
-        this.setState({
-          [e.target.name]: e.target.value,
+      this.setState({
+        [e.target.name]: e.target.value,
+      })
+  }
+
+    getFeed = () => {
+      axios("http://localhost:7001/api/profile/shares")
+        .then(response => {
+          this.setState({ feed: response.data})
+          //console.log(this.state.feed)
+        })
+        .catch(error => {
+          this.setState({ error: true })
         })
     }
 
     handleSubmit = event => {
-        event.preventDefault()
-        const { body, createdAt, updatedAt } = this.state
-        
-          axios('/profile/share', {
-            method: 'POST',
+      event.preventDefault()
+      const { userId } = this.props.user
+      const { body, user_id, createdAt, updatedAt } = this.state
+          axios.post("http://localhost:7001/api/profile/share", {
             data: {
+              user_id: userId,
               body,
               createdAt,
-              updatedAt,
-              loggedIn: true,
-            },
+              updatedAt
+            }
+          }) 
+          .then(response => {
+            console.log(response.data)
+            this.setState(state => ({
+              loggedIn: !state.loggedIn,
+            }))
           })
-    
-            .then(response => {
-              console.log(response.data)
-              this.setState(state => ({
-                loggedIn: !state.loggedIn,
-              }))
-            })
-            .catch(error => {
-              console.log(error)
-            })
+          .catch(error => {
+            console.log(error)
+          })
     }
 
     render() {
-        const { body, createdAt, updatedAt } = this.state
-
+        const { body, feed } = this.state
         return (
             <div className="feedform">
-                <Form onSubmit={this.handleSubmit}>
+                <Form className="feed-container" onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Input 
-                            value={body}
-                            onChange={this.handleChange}
-                            name="share"
-                            placeholder="Enter your post here"
-                            type="textarea"
+                          value={body}
+                          onChange={this.handleChange}
+                          name="body"
+                          placeholder="Enter your thoughts here"
+                          type="textarea"
                         />
                     </FormGroup>
-                    <Button>Post</Button>
+                    <Button className="button-feed">Post</Button>
                 </Form>
-            </div>
+            </div> 
         )
     }
 }
 
-export default Feed
+export default withUser(Feed)
