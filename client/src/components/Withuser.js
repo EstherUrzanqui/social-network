@@ -15,7 +15,7 @@ const withUser = (Component, options = { renderNull: true }) => props => {
       },
     })
       .then(response => {
-        const id = response.data.userId
+        const id = response.data.id
         setUserId(id)
       })
       .catch(error => {
@@ -25,8 +25,9 @@ const withUser = (Component, options = { renderNull: true }) => props => {
   }, [])
 
   useEffect(() => {
-    axios(`http://localhost:7001/api/users/${userId}`).then(response => {
-      //console.log(response.data)
+    axios(`http://localhost:7001/api/users/${userId}`)
+      .then(response => {
+      
       setUserData(response.data)
     })
   }, [userId])
