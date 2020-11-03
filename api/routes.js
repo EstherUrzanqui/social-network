@@ -131,7 +131,7 @@ routes.post("/login", function (req, res, next) {
 //protected endpoint
 routes.get("/profile", userShouldBeLoggedIn, function (req, res, next) {
     
-    res.send({ message: `Here is the private data for user ${req.userId}!` })
+    res.send({ message: `Here is the private data for user ${req.userId}!`, id: req.userId })
 
 })
 
