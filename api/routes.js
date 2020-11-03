@@ -12,10 +12,10 @@ const supersecret = process.env.SUPER_SECRET
 
 //post a share
 routes.post("/profile/share", (req, res) => {
-    let { body, createdAt, updatedAt } = req.body;
-
+    let { user_id, body, createdAt, updatedAt } = req.body;
+    
     db(`INSERT INTO shares (user_id, body, createdAt, updatedAt) 
-        VALUES ('${req.userId}', '${body}', '${createdAt}', '${updatedAt}'); 
+        VALUES ('${user_id}', '${body}', '${createdAt}', '${updatedAt}'); 
         `)
         .then(results => {
             if(!results.error) {
