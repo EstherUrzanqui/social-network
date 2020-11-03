@@ -10,8 +10,6 @@ class Feed extends React.Component {
       this.state = {
         feed: [],
         body: "",
-        createdAt: null,
-        updatedAt: null
       }
     }
         
@@ -40,7 +38,7 @@ class Feed extends React.Component {
     handleSubmit = event => {
       event.preventDefault()
       const user_id  = this.props.user[0].id
-      const { body, createdAt, updatedAt } = this.state
+      const { body } = this.state
           axios.post("http://localhost:7001/api/profile/share", {
               user_id,
               body,
