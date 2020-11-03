@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import './App.css';
 import Login from "./components/Login"
 import Signin from "./components/Signin"
 import Feed from "./components/Feed"
+import Withuser from "./components/Withuser"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 
 const App = () => {
-  const [isLoggedIn, setLoggedIn] = useState(false)
-
-  const handleLogin = token => {
-    if (!token) return
-    localStorage.setItem('token', token)
-
-    setLoggedIn(true)
-  }
-
-  const handleLogout = () => () => {
-    setLoggedIn(false)
-    localStorage.clear()
-  }
   
   return (
     <div className="App">
@@ -27,7 +15,8 @@ const App = () => {
         <Switch>
           <Route path='/login'component={Login}></Route>
           <Route path="/signin" component={Signin}></Route> 
-          <Route path="/feed" component={Feed}></Route>        
+          <Route path="/feed" component={Feed}></Route> 
+          <Route path="/withuser" component={Withuser}></Route>       
         </Switch>
       </Router>
     </div>
