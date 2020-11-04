@@ -1,7 +1,7 @@
 import React from "react"
 import axios from "axios"
 import "../css/Feed.css"
-import { Button, Form, FormGroup, Input, Card, CardText, Row, Col } from 'reactstrap'
+import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardSubtitle, CardText, Row, Col } from 'reactstrap'
 import Withuser from "./Withuser"
 
 class Feed extends React.Component {
@@ -57,28 +57,16 @@ class Feed extends React.Component {
     }
 
     render() {
-        const { userId, body, createdAt, updatedAt, feed } = this.state
-        const { user } = this.props
-
-        if (!user) {
-          return (
-            <div className='login'>
-              <div>
-                <br />
-                <h1>You need to log in first</h1>
-                <Button color='success' onClick={this.loginRedirect}>
-                  Login
-                </Button>
-              </div>
-            </div>
-          )
-        }
+        const { body, feed } = this.state
 
         return (
             <div className="feedform">
                 <Form className="feed-container" onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Input 
+                          id= "textarea"
+                          cols="60"
+                          rows="4"
                           value={body}
                           onChange={this.handleChange}
                           name="body"
@@ -88,6 +76,19 @@ class Feed extends React.Component {
                     </FormGroup>
                     <Button className="button-feed">Post</Button>
                 </Form>
+                <h2>Your Feed</h2>
+                  <ul>
+                    {feed.map((feeds, index) => {
+                      return (
+                        <Card className='thoughts' key={index}>
+                          <CardBody>
+                            <CardTitle>{feeds.user_name} posted at {feeds.createdAt}</CardTitle>
+                            <CardText>{feeds.body}</CardText>
+                          </CardBody>
+                        </Card>
+                      )
+                    })}
+                  </ul>
             </div> 
         )
     }
