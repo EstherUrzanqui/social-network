@@ -7,30 +7,39 @@
     width: 100vw;
     height: 100vh;
     text-align: center;
+    display: inherit;
 }
 
 .feed-container {
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex-direction: column;
     text-align: center;
     background: rgb(228, 88, 121);
-    padding: 300px;
+    padding: 220px;
+    padding-bottom: 0.7em;
     border-radius: 8px;
     height: auto;
     min-height: 40vh;
     width: 30%;
     font-weight: 600;
     opacity: .85;
+    display: inline-flex;
   }
 
   .button-feed {
     background-color: white !important;
     color: rgb(228, 88, 121) !important;
     border: #600eb1 !important;
-    padding: 10px !important;
+    padding: 9px !important;
     text-decoration: none !important;
     display: inline-block !important;
     font-size: 20px !important;
     border-radius: 0.5em;
+  }
+
+  #textarea {
+    outline: none;
+    resize: none;
+
   }
