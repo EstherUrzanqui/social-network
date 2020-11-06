@@ -57,7 +57,7 @@ class Login extends React.Component {
         return (
             <div className="login">
                 <Form className="login-container" onSubmit={this.login}>
-                    <FormGroup>
+                    <FormGroup className="group">
                         <Input
                             value={this.state.user_name}
                             onChange={this.handleChange}

@@ -2,16 +2,14 @@ html, body {
   margin: 0;
   height: 0;
   margin-top: -100px;
-  background-color: rgb(228, 88, 121) ;
+  background-color: rgb(52, 51, 60) ;
 }
 
 .login {
-    background-color: rgb(228, 88, 121);
-    background-position: center center;
+    background-color: rgb(52, 51, 60);
+    background-position: right;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
     text-align: center;
 
 }
@@ -21,10 +19,9 @@ html, body {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    margin-top: 200px;
+    margin-top: 100px;
     margin-left: 500px;
-    background: rgb(228, 88, 121);
-    padding: 300px;
+    background: rgb(247, 71, 100);
     border-radius: 8px;
     height: auto;
     min-height: 40vh;
@@ -34,9 +31,8 @@ html, body {
   }
   
   .button-login {
-    background-color: white !important;
-    color: rgb(228, 88, 121) !important;
-    border: #600eb1 !important;
+    color: white !important;
+    border: rgb(247, 71, 100) !important;
     padding: 10px !important;
     text-decoration: none !important;
     display: inline-block !important;
@@ -46,7 +42,12 @@ html, body {
     border-radius: 0.5em;
   }
 
+  .group{
+    padding-top: 100px;
+  }
+
   .form-control {
+    color: white;
     margin: 0.5em;
     border-radius: 0.5em;
     padding: 11px 30px;
