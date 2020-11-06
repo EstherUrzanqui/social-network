@@ -9,7 +9,15 @@ const TheNavbar = (props) => {
         <div className="navbar">
             <Navbar>
                 <Nav>
-                    <NavLink tag={Link} exact to="/">Home</NavLink> <NavLink tag={Link} exact to="/login">Login</NavLink> <NavLink tag={Link} exact to="/signin">Signin</NavLink>
+                    <NavLink tag={Link} exact to="/">
+                        <img src="/img/logounax.png" alt="image" style={{ width: 200 }} />
+                    </NavLink> 
+                    <NavLink tag={Link} exact to="/">
+                        Login
+                    </NavLink> 
+                    <NavLink tag={Link} exact to="/signin">
+                        Signin
+                    </NavLink>
                 </Nav>
             </Navbar>
         </div>
