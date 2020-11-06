@@ -1,44 +1,19 @@
-import React from "react";
-import { Navbar, Nav, NavLink } from 'reactstrap';
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/Navbar.css"
+import { Navbar, Nav, NavLink } from "reactstrap";
 
-const TheNavbar = props => {
+
+const TheNavbar = (props) => {
     return (
-      <div>
-        <Navbar>
-          <Nav style={{display:"flex", flexDirection:"row"}}>
-            {props.isLoggedIn ? (
-              <Nav>
-                <NavLink className='link-green' tag={Link} exact to='/dashboard'>
-                  Profile
-                </NavLink>
-                <NavLink
-                  className='link-green'
-                  tag={Link}
-                  exact
-                  to='/'
-                  onClick={props.logout()}>
-                  Logout
-                </NavLink>
-              </Nav>
-            ) : (
-              <Nav>
-                <NavLink className='link-green' tag={Link} exact to='/signup'>
-                  Signup
-                </NavLink>
-                <NavLink className='link-green' tag={Link} exact to='/login'>
-                  Login
-                </NavLink>
-              </Nav>
-            )}
-          </Nav>
-          <NavLink className='link-green' tag={Link} to='/about'>
-            About
-          </NavLink>
-        </Navbar>
-      </div>
+        <div className="navbar">
+            <Navbar>
+                <Nav>
+                    <NavLink tag={Link} exact to="/">Home</NavLink> <NavLink tag={Link} exact to="/login">Login</NavLink> <NavLink tag={Link} exact to="/signin">Signin</NavLink>
+                </Nav>
+            </Navbar>
+        </div>
     )
-  }
+}
 
 export default TheNavbar;
