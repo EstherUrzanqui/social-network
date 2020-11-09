@@ -9,10 +9,15 @@
   top: 0;
   left: 0;
   right: 50;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 .link-pink{
   color: rgb(247, 71, 100) !important;
   font-size: 20px !important;
   font-weight: 500;
+  margin-left: 20px;
+  margin-right: 20px;;
+  float: right;
 }
