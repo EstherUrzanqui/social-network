@@ -34,6 +34,7 @@ class Login extends React.Component {
         })
         .then((response) => {
             localStorage.setItem("token", response.data.token)
+            this.props.onLogin(localStorage.getItem("token"))
             this.setState({ loggedIn: true })
             this.feedRedirect()
             console.log(response.data)

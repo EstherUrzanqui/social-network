@@ -41,8 +41,7 @@ const App = () => {
               <Login {...props} onLogin={handleLogin} />
             )}></Route>
           <Route exact path="/signin" component={Signin}></Route> 
-          <Route exact path="/feed" component={Feed}></Route> 
-          <Route exact path="/withuser" component={Withuser}></Route>      
+          <Route exact path="/feed" component={Feed}></Route>       
         </Switch>
       </Router>
     </div>
