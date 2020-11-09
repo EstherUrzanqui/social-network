@@ -10,6 +10,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 const App = () => {
     const [isLoggedIn, setLoggedIn] = useState(false)
+    console.log(isLoggedIn)
+
+    useEffect(() => {
+      if (localStorage.getItem("token")) {
+        setLoggedIn(true);
+      }
+    }, []);
   
     const handleLogin = token => {
       if (!token) return
@@ -33,10 +40,9 @@ const App = () => {
             component={props => (
               <Login {...props} onLogin={handleLogin} />
             )}></Route>
-          <Route path="/signin" component={Signin}></Route> 
-          <Route path="/feed" component={Feed}></Route> 
-          <Route path="/withuser" component={Withuser}></Route>  
-          <Route path="/navbar" component={Navbar}></Route>     
+          <Route exact path="/signin" component={Signin}></Route> 
+          <Route exact path="/feed" component={Feed}></Route> 
+          <Route exact path="/withuser" component={Withuser}></Route>      
         </Switch>
       </Router>
     </div>
