@@ -43,11 +43,12 @@ html, body {
   }
 
   .group{
+    margin-top: 100px;
     padding-top: 100px;
   }
 
   .form-control {
-    color: white;
+    color: black;
     margin: 0.5em;
     border-radius: 0.5em;
     padding: 11px 30px;
