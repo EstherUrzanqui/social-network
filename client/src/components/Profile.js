@@ -37,6 +37,7 @@ class Profile extends React.Component {
     const { thoughts } = this.state
     return(
     <div>
+      <h1>Your posts</h1>
       <ul>
         {thoughts.map((thought, index) => {
           return (
