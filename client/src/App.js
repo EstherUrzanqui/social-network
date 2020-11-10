@@ -3,8 +3,8 @@ import './App.css';
 import Login from "./components/Login"
 import Signin from "./components/Signin"
 import Feed from "./components/Feed"
-import Withuser from "./components/Withuser"
 import Navbar from "./components/Navbar"
+import Profile from "./components/Profile"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 
@@ -41,7 +41,8 @@ const App = () => {
               <Login {...props} onLogin={handleLogin} />
             )}></Route>
           <Route exact path="/signin" component={Signin}></Route> 
-          <Route exact path="/feed" component={Feed}></Route>       
+          <Route exact path="/feed" component={Feed}></Route> 
+          <Route exact path="/profile" component={Profile}></Route>      
         </Switch>
       </Router>
     </div>

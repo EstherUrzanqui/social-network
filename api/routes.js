@@ -44,6 +44,16 @@ routes.get("/profile/shares", (req, res) => {
         });
 })
 
+//get shares by user id
+routes.get("/profile/shares/:user_id", (req, res) => {
+    const {user_id} = req.params
+    db(`SELECT * FROM shares WHERE user_id='${user_id}'`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //user by id
 routes.get("/users/:id", (req, res) => {
     const { id } = req.params

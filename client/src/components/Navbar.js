@@ -17,7 +17,7 @@ const TheNavbar = (props) => {
                 <Nav>
                   {props.isLoggedIn ? (
                     <Nav>
-                        <NavLink className="link-pink" tag={Link} exact to="/feed">
+                        <NavLink className="link-pink" tag={Link} exact to="/profile">
                         Profile
                         </NavLink>
                         <NavLink
