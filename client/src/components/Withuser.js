@@ -1,39 +1,51 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const withUser = (Component, options = { renderNull: true }) => props => {
-  const [userData, setUserData] = useState(null)
-  const [userId, setUserId] = useState(null)
-  const [error, setError] = useState(false)
+const fetchProfile = async () => {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    throw new Error('Missing Token');
+  }
+
+  const response = await axios('http://localhost:7001/api/profile', {
+    headers: {
+      'x-access-token': token,
+    },
+  });
+
+  const profile = response.data;
+
+  return profile;
+};
+
+const fetchUsers = async (userId) => {
+  const response = await axios(`http://localhost:7001/api/users/${userId}`);
+  const users = response.data;
+  return users;
+};
+
+const withUser = (Component, options = { renderNull: true }) => (props) => {
+  const [userData, setUserData] = useState();
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (!token) return
-    axios('http://localhost:7001/api/profile', {
-      headers: {
-        'x-access-token': token,
-      },
-    })
-      .then(response => {
-        const id = response.data.id
-        setUserId(id)
-      })
-      .catch(error => {
-        setError(true)
-        console.log(error)
-      })
-  }, [])
+    async function loadUser() {
+      try {
+        const profile = await fetchProfile();
+        const users = await fetchUsers(profile.id);
+        setUserData(users);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    loadUser();
+  }, []);
 
-  useEffect(() => {
-    axios(`http://localhost:7001/api/users/${userId}`)
-      .then(response => {
-      
-      setUserData(response.data)
-    })
-  }, [userId])
+  if (userData === undefined && options.renderNull === true) {
+    return null;
+  }
 
-  if (!userData && options.renderNull) return null
-  return <Component {...props} user={userData} />
-}
+  return <Component {...props} user={userData} />;
+};
 
-export default withUser
+export default withUser;

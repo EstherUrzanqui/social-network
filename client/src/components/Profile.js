@@ -6,8 +6,11 @@ import Withuser from "./Withuser"
 class Profile extends React.Component {
   constructor(props) {
     super(props)
+    console.log(props)
     this.state = {
-      thoughts: []
+      error: false,
+      loggedIn: undefined,
+      thoughts: [],
     }
   }
 
@@ -15,26 +18,28 @@ class Profile extends React.Component {
     this.getShares()
   }
 
-  getShares = () => {
-    const user_id = this.props.user[0].id
+  getShares = async () => {
     console.log(this.props.user[0].id)
+    const userId= this.props.user[0].id
 
-    axios(`http://localhost:7001/api/profile/shares/${user_id}`)
-
-    .then(res => {
-      console.log(res.data)
-      this.setState(state => ({
-        thoughts: res.data,
+    try {
+      const response = await axios(`http://localhost:7001/api/profile/shares/${userId}`)
+      this.setState((state) => ({
+        thoughts: response.data,
         loggedIn: !state.loggedIn
       }))
-    })
-    .catch(error => {
+    } catch(error) {
       this.setState({ error: true })
-    })
+    }
   }
 
   render() {
     const { thoughts } = this.state
+    
+    if(!(thoughts.length > 0)) {
+      return null;
+    }
+
     return(
     <div>
       <h1>Your posts</h1>
@@ -51,9 +56,9 @@ class Profile extends React.Component {
         })}
       </ul>
     </div>
-    )
+    ) 
   }
 }
 
 
-export default Withuser(Profile, { renderNull: true });
+export default Withuser(Profile);
