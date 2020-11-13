@@ -10,30 +10,33 @@ const TheNavbar = (props) => {
         <div className="navbar">
             <Navbar>
                 <NavbarBrand>
-                    <NavLink id="logo" tag={Link} exact to="/">
+                    <NavLink id="logo" tag={Link} to ="/">
                         <img src="/img/logounax.png" alt="image" style={{ width: 150 }} />
                     </NavLink> 
                 </NavbarBrand>
                 <Nav>
                   {props.isLoggedIn ? (
                     <Nav>
-                        <NavLink className="link-pink" tag={Link} exact to="/profile">
+                        <NavLink className="link-pink" tag={Link} to="/profile">
                         Profile
+                        </NavLink>
+                        <NavLink className="link-pink" tag={Link} to="/feed">
+                        Feed
                         </NavLink>
                         <NavLink
                         className="link-pink"
                         tag={Link}
-                        exact to="/"
+                        to="/"
                         onClick={props.logout()}>
                         Logout
                         </NavLink>
                     </Nav>
                   ) : (
                     <Nav>
-                        <NavLink className="link-pink" tag={Link} exact to="/">
+                        <NavLink className="link-pink" tag={Link} to="/">
                         Login
                         </NavLink> 
-                        <NavLink className="link-pink" tag={Link} exact to="/signin">
+                        <NavLink className="link-pink" tag={Link} to="/signin">
                         Signin
                         </NavLink>
                     </Nav>
