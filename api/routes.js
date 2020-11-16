@@ -65,6 +65,21 @@ routes.get("/users/:id", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+//follow user
+routes.post("/users/:id/follow/:followId", (req, res) => {
+    const { id, followId } = req.params
+    const { createdAt, updatedAt } = req.body
+    db(`INSERT INTO relationships (followerId, followedId, createdAt, updatedAt)
+        VALUES ('${id}', '${followId}', '${createdAt}', '${updatedAt}')`)
+        .then(results => {
+            if(!results.error) {
+                res.status(201).send({})
+            }
+            res.send(results)
+        })
+        .catch(err => res.status(500).send(err))
+})
+
 //sign in
 routes.post("/register", (req, res) => {
     let { user_name, email, password, password2 } = req.body;
