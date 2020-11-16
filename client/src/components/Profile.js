@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Card, CardBody, CardTitle, CardText} from "reactstrap";
 import Withuser from "./Withuser"
+import moment from "moment"
 
 class Profile extends React.Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class Profile extends React.Component {
           return (
             <Card className='thoughts' key={index}>
               <CardBody>
-                <CardTitle>{thought.user_name} posted at {thought.createdAt}</CardTitle>
+                <CardTitle>{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
                 <CardText>{thought.body}</CardText>
               </CardBody>
             </Card>

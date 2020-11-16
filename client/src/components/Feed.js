@@ -3,6 +3,7 @@ import axios from "axios"
 import "../css/Feed.css"
 import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardSubtitle, CardText, Row, Col } from 'reactstrap'
 import Withuser from "./Withuser"
+import moment from "moment"
 
 
 class Feed extends React.Component {
@@ -40,21 +41,22 @@ class Feed extends React.Component {
       event.preventDefault()
       const user_id  = this.props.user[0].id
       const { body } = this.state
-          axios.post("http://localhost:7001/api/profile/share", {
-              user_id,
-              body,
-              createdAt: new Date().toISOString().slice(0,10),
-              updatedAt: new Date().toISOString().slice(0,10)
-          }) 
-          .then(response => {
-            console.log(response.data)
-            this.setState(state => ({
-              loggedIn: !state.loggedIn,
-            }))
-          })
-          .catch(error => {
-            console.log(error)
-          })
+
+      axios.post("http://localhost:7001/api/profile/share", {
+          user_id,
+          body,
+          createdAt: new Date().toISOString().slice(0,10),
+          updatedAt: new Date().toISOString().slice(0,10)
+      }) 
+      .then(response => {
+        console.log(response.data)
+        this.setState(state => ({
+          loggedIn: !state.loggedIn,
+        }))
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
 
     render() {
@@ -83,7 +85,7 @@ class Feed extends React.Component {
                       return (
                         <Card className='thoughts' key={index}>
                           <CardBody>
-                            <CardTitle>{feeds.user_name} posted at {feeds.createdAt}</CardTitle>
+                            <CardTitle>{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                             <CardText>{feeds.body}</CardText>
                           </CardBody>
                         </Card>

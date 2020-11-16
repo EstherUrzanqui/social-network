@@ -34,7 +34,8 @@ routes.get("/profile/shares", (req, res) => {
         user.user_name 
         FROM shares 
         INNER JOIN user 
-        ON user.id = shares.user_id`)
+        ON user.id = shares.user_id
+        ORDER BY createdAt DESC`)
         .then(results => {
             if (results.error) {
                 res.status(400).send({ message: "There was an error" });
@@ -47,7 +48,7 @@ routes.get("/profile/shares", (req, res) => {
 //get shares by user id
 routes.get("/profile/shares/:user_id", (req, res) => {
     const {user_id} = req.params
-    db(`SELECT * FROM shares WHERE user_id='${user_id}'`)
+    db(`SELECT * FROM shares WHERE user_id='${user_id}' ORDER BY createdAt DESC`)
     .then(results => {
         res.send(results.data)
     })
