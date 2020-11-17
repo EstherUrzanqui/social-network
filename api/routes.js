@@ -55,6 +55,15 @@ routes.get("/profile/shares/:user_id", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+//all users
+routes.get("/users", (req, res) => {
+    db(`SELECT * FROM user`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //user by id
 routes.get("/users/:id", (req, res) => {
     const { id } = req.params
