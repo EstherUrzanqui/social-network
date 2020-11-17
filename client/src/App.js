@@ -6,6 +6,7 @@ import Feed from "./components/Feed"
 import Navbar from "./components/Navbar"
 import Profile from "./components/Profile"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import Followers from "./components/Followers";
 
 
 const App = () => {
@@ -42,7 +43,8 @@ const App = () => {
             )}></Route>
           <Route exact path="/signin" component={Signin}></Route> 
           <Route exact path="/feed" component={Feed}></Route> 
-          <Route exact path="/profile" component={Profile}></Route>      
+          <Route exact path="/profile" component={Profile}></Route>
+          <Route exact path="/followers" component={Followers}></Route>      
         </Switch>
       </Router>
     </div>
