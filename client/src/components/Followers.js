@@ -54,19 +54,22 @@ class Followers extends React.Component {
 
   render() {
     const { users } = this.state
+    const userId = this.props.user[0].id
+
     return (
       <div>
         <h2>Users in Unax</h2>
         <ul>
           {users.map((user, index) => {
-            return (
+           if(user.id !== userId) {
+             return (
               <Card className="users" key= {index}>
                 <CardBody>
                   <CardTitle>{user.user_name}</CardTitle>
                   <Button id="btn" value={user.id} onClick={this.followUser}>Follow</Button>
                 </CardBody>
               </Card>
-            )
+             )}  
           })}
         </ul>
       </div>

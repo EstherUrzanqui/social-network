@@ -60,40 +60,40 @@ class Feed extends React.Component {
     }
 
     render() {
-        const { body, feed } = this.state
+      const { body, feed } = this.state
 
-        return (
-            <div className="feedform">
-                <Form className="feed-container" onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                        <Input 
-                          id= "textarea"
-                          cols="60"
-                          rows="4"
-                          value={body}
-                          onChange={this.handleChange}
-                          name="body"
-                          placeholder="Enter your thoughts here"
-                          type="textarea"
-                        />
-                    </FormGroup>
-                    <Button className="button-feed">Post</Button>
-                </Form>
-                <h2>Your Feed</h2>
-                  <ul>
-                    {feed.map((feeds, index) => {
-                      return (
-                        <Card className='thoughts' key={index}>
-                          <CardBody>
-                            <CardTitle>{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
-                            <CardText>{feeds.body}</CardText>
-                          </CardBody>
-                        </Card>
-                      )
-                    })}
-                  </ul>
-            </div> 
-        )
+      return (
+        <div className="feedform">
+          <Form className="feed-container" onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Input 
+                id= "textarea"
+                cols="60"
+                rows="4"
+                value={body}
+                onChange={this.handleChange}
+                name="body"
+                placeholder="Enter your thoughts here"
+                type="textarea"
+              />
+            </FormGroup>
+            <Button className="button-feed">Post</Button>
+          </Form>
+          <h2>Your Feed</h2>
+            <ul>
+              {feed.map((feeds, index) => {
+                return (
+                  <Card className='thoughts' key={index}>
+                    <CardBody>
+                      <CardTitle>{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
+                      <CardText>{feeds.body}</CardText>
+                    </CardBody>
+                  </Card>
+                )
+              })}
+            </ul>
+        </div> 
+      )
     }
 }
 
