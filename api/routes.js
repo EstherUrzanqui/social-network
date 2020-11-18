@@ -96,6 +96,20 @@ routes.post("/users/:id/follow/:followId", (req, res) => {
     }
 })
 
+//unfollow user
+routes.delete("/users/:id/unfollow/:followId", (req, res) => {
+    const { id, followId } = req.params
+    
+    db(`DELETE FROM relationships WHERE followerId = ${id} AND followedId = ${followId}`)
+    .then(results => {
+        if(!results.error) {
+            res.status(201).send({ message: unfollowed })
+        }
+        res.send(results)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //sign in
 routes.post("/register", (req, res) => {
     let { user_name, email, password, password2 } = req.body;
