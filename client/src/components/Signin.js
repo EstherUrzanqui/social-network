@@ -3,12 +3,16 @@ import axios from "axios"
 import { Button, Form, Input, FormGroup } from "reactstrap"
 import "../css/Signin.css"
 
+
 class Signin extends React.Component {
-    state = {
-        user_name: "",
-        password: "",
-        password2: "",
-        email: ""
+    constructor(props){
+        super(props)
+        this.state = {
+            user_name: "",
+            password: "",
+            password2: "",
+            email: ""
+        }
     }
 
     handleChange = e => {
@@ -37,6 +41,7 @@ class Signin extends React.Component {
                 this.setState(state => ({
                     loggedIn: !state.loggedIn
                 }))
+                this.feedRedirect()
             })
             .catch(error => {
                 console.log(error)
@@ -44,6 +49,9 @@ class Signin extends React.Component {
         }
     }
 
+    feedRedirect = () => {
+        this.props.history.push("/")
+    }
     
 
     render() {
