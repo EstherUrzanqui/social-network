@@ -77,15 +77,10 @@ routes.get("/users/:id", (req, res) => {
 //follow user
 routes.post("/users/:id/follow/:followId", (req, res) => {
     const { id, followId } = req.params
-    const { createdAt, updatedAt } = req.body
-    let errors = []
+    const { followed, createdAt, updatedAt } = req.body
 
-    if(id === followId) {
-        errors.push({message: "You cannot follow yourself"})
-        res.send({message:"please check other users"})
-    } else {
-    db(`INSERT INTO relationships (followerId, followedId, createdAt, updatedAt)
-        VALUES ('${id}', '${followId}', '${createdAt}', '${updatedAt}')`)
+    db(`INSERT INTO relationships (followerId, followedId, followed, createdAt, updatedAt)
+        VALUES ('${id}', '${followId}', '${followed}', '${createdAt}', '${updatedAt}')`)
         .then(results => {
             if(!results.error) {
                 res.status(201).send({})
@@ -93,7 +88,6 @@ routes.post("/users/:id/follow/:followId", (req, res) => {
             res.send(results)
         })
         .catch(err => res.status(500).send(err))
-    }
 })
 
 //unfollow user
