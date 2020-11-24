@@ -104,6 +104,17 @@ routes.delete("/users/:id/unfollow/:followId", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+//get following users
+routes.get("/users/:id/following", (req, res) => {
+    const { id } = req.params
+
+    db(`SELECT * FROM relationships WHERE followerId = ${id}`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //sign in
 routes.post("/register", (req, res) => {
     let { user_name, email, password, password2 } = req.body;
