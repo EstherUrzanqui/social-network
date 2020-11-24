@@ -16,6 +16,7 @@ class Followers extends React.Component {
 
   componentDidMount = () => {
     this.getUsers()
+    this.getFollowing()
   }
 
   getUsers = () => {
@@ -29,32 +30,68 @@ class Followers extends React.Component {
       })
   }
 
+  getFollowing = () => {
+    const userId = this.props.user[0].id
+
+    axios(`http://localhost:7001/api/users/${userId}/following`)
+    .then(response => {
+      this.setState({ following: response.data})
+      console.log(response.data)
+    })
+    .catch(error => {
+      this.setState({ error: true})
+    })
+  }
+
   followUser = (e) => {
     e.preventDefault();
-    const userId= this.props.user[0].id
+    const userId = this.props.user[0].id
     const followedId = e.target.value
     
     axios.post(`http://localhost:7001/api/users/${userId}/follow/${followedId}`, {
       userId,
       followedId,
+      followed: 1,
       createdAt: new Date().toISOString().slice(0, 10),
       updatedAt: new Date().toISOString().slice(0, 10)
     })
     .then(response => {
       console.log(response.data)
-      this.setState(state => ({
-        loggedIn: !state.loggedIn
-      }))
+        this.setState(state => ({
+          loggedIn: !state.loggedIn,
+          followed: true,
+        }))  
     })
     .catch(error => {
       console.log(error)
     })
   }
 
+  unfollowUser = (e) => {
+    e.preventDefault();
+    const userId = this.props.user[0].id
+    const followedId = e.target.value
+
+    axios.delete(`http://localhost:7001/api/users/${userId}/unfollow/${followedId}`)
+    .then(response => {
+      console.log(response)
+      this.setState({ followed: false })
+    })
+    .catch(error => {
+      this.setState({ error: true })
+    })
+  }
+
 
   render() {
-    const { users } = this.state
+    const { users, following } = this.state
     const userId = this.props.user[0].id
+    const followingUsers = this.state.following.map((follow, index) => {
+      return (
+        follow.followedId
+      )
+    })
+    console.log(followingUsers)
 
     return (
       <div>
@@ -66,12 +103,29 @@ class Followers extends React.Component {
               <Card className="users" key= {index}>
                 <CardBody>
                   <CardTitle>{user.user_name}</CardTitle>
-                  <Button id="btn" value={user.id} onClick={this.followUser}>Follow</Button>
+                  {followingUsers.includes(user.id) ? (
+                    <Button id="btn-1" value={user.id} onClick={this.unfollowUser}>Unfollow</Button>
+                   ) : (
+                    <Button id="btn" value={user.id} onClick={this.followUser}>follow</Button>
+                   )}
                 </CardBody>
               </Card>
              )}  
           })}
         </ul>
+        <div>
+          <h2>Following</h2>
+            <ul>
+              {following.map((follow, index) => {
+                return (
+                  <Card key= {index}>
+                    <CardBody>
+                      <CardTitle>{follow.followedId}</CardTitle>
+                    </CardBody>
+                  </Card>)
+              })}
+            </ul>
+        </div>
       </div>
     )
   }
