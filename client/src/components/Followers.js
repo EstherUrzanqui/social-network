@@ -9,90 +9,118 @@ class Followers extends React.Component {
     super(props)
     this.state = {
       users: [],
-      follower: [],
-      following: []
+      //follower: [],
+      following: [], 
+      followingUsers: []
     }
   }
 
   componentDidMount = () => {
     this.getUsers()
     this.getFollowing()
+    
   }
 
-  getUsers = () => {
-    axios(`http://localhost:7001/api/users`)
-      .then(response => {
-        this.setState({ users: response.data})
-        console.log(response.data)
-      })
-      .catch(error => {
-        this.setState({ error: true })
-      })
+  getUsers = async () => {
+
+    try {
+      const response = await axios(`http://localhost:7001/api/users`)
+      this.setState({ users: response.data})
+    } catch {
+      this.setState({ error: true })
+    }
   }
 
-  getFollowing = () => {
+  getFollowing = async () => {
     const userId = this.props.user[0].id
 
-    axios(`http://localhost:7001/api/users/${userId}/following`)
-    .then(response => {
-      this.setState({ following: response.data})
+    try {
+      const response = await axios(`http://localhost:7001/api/users/${userId}/following`)
+
+      const tempFollowing = response.data.map((follow, index) => {
+        return follow.followedId
+      })
+      
+      this.setState({ 
+        following: response.data,
+        followingUsers: tempFollowing
+      })
       console.log(response.data)
-    })
-    .catch(error => {
+    } catch (error) {
       this.setState({ error: true})
-    })
+    }
   }
 
-  followUser = (e) => {
-    e.preventDefault();
+  followUser = async (e) => {
+    //e.preventDefault();
     const userId = this.props.user[0].id
     const followedId = e.target.value
     
-    axios.post(`http://localhost:7001/api/users/${userId}/follow/${followedId}`, {
-      userId,
-      followedId,
-      followed: 1,
-      createdAt: new Date().toISOString().slice(0, 10),
-      updatedAt: new Date().toISOString().slice(0, 10)
-    })
-    .then(response => {
+    try {
+      const response = await axios.post(`http://localhost:7001/api/users/${userId}/follow/${followedId}`, {
+        userId,
+        followedId,
+        followed: 1,
+        createdAt: new Date().toISOString().slice(0, 10),
+        updatedAt: new Date().toISOString().slice(0, 10)
+      })
+      
       console.log(response.data)
-        this.setState(state => ({
-          loggedIn: !state.loggedIn,
-          followed: true,
-        }))  
-    })
-    .catch(error => {
+      this.setState(state => ({
+        loggedIn: !state.loggedIn,
+      })) 
+    } catch(error) {
       console.log(error)
-    })
+    }
   }
 
-  unfollowUser = (e) => {
-    e.preventDefault();
-    const userId = this.props.user[0].id
-    const followedId = e.target.value
+  unfollowUser = async (e) => {
+    //e.preventDefault();
+    const userId = this.props.user[0].id;
+    const followedId = e.target.value;
+ 
+    try {
+      const response = await axios.delete(
+        `http://localhost:7001/api/users/${userId}/unfollow/${followedId}`
+      );
+      console.log(response);
+      let array = [...this.state.following];
+      let index = array.indexOf(followedId);
+      if (index !== -1) {
+        array.splice(index, 1);
+ 
+        const tempFollowing = array.map((follow, index) => {
+          return follow.followedId;
+        });
+ 
+        this.setState({
+          following: array,
+          followingUsers: tempFollowing,
+        });
+ 
+      }
+    } catch (error) {
+      this.setState({ error: true });
+    }
+  };
 
-    axios.delete(`http://localhost:7001/api/users/${userId}/unfollow/${followedId}`)
-    .then(response => {
-      console.log(response)
-      this.setState({ followed: false })
-    })
-    .catch(error => {
-      this.setState({ error: true })
-    })
+  onFollow = (e) => {    
+    this.getFollowing();
+    this.followUser(e);
+  }
+
+  onUnfollow = (e) => {
+    this.getFollowing()
+    this.unfollowUser(e)
   }
 
 
   render() {
-    const { users, following } = this.state
+    const { users, following, followingUsers } = this.state
     const userId = this.props.user[0].id
-    const followingUsers = this.state.following.map((follow, index) => {
-      return (
-        follow.followedId
-      )
-    })
     console.log(followingUsers)
-
+    console.log(following)
+    
     return (
       <div>
         <h2>Users in Unax</h2>
@@ -104,9 +132,9 @@ class Followers extends React.Component {
                 <CardBody>
                   <CardTitle>{user.user_name}</CardTitle>
                   {followingUsers.includes(user.id) ? (
-                    <Button id="btn-1" value={user.id} onClick={this.unfollowUser}>Unfollow</Button>
+                    <Button id="btn-1" value={user.id} onClick={this.onUnfollow}>Unfollow</Button>
                    ) : (
-                    <Button id="btn" value={user.id} onClick={this.followUser}>follow</Button>
+                    <Button id="btn" value={user.id} onClick={this.onFollow}>follow</Button>
                    )}
                 </CardBody>
               </Card>
