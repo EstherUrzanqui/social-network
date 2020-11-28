@@ -21,7 +21,7 @@ html, body {
     text-align: center;
     margin-top: 100px;
     margin-left: 500px;
-    background: rgb(247, 71, 100);
+    background: rgb(52, 51, 60);
     border-radius: 8px;
     height: auto;
     min-height: 40vh;
@@ -33,6 +33,7 @@ html, body {
   .button-login {
     color: white !important;
     border: rgb(247, 71, 100) !important;
+    background-color: rgb(247, 71, 100);
     padding: 10px !important;
     text-decoration: none !important;
     display: inline-block !important;
@@ -54,4 +55,7 @@ html, body {
     padding: 11px 30px;
   }
 
+  .link{
+  color:white;
+  }
   
