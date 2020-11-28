@@ -1,6 +1,7 @@
 import React from "react"
 import axios from "axios"
-import { Button, Form, FormGroup, Input } from 'reactstrap'
+import { Button, Form, FormGroup, Input} from 'reactstrap'
+import { Link } from "react-router-dom"
 import "../css/Login.css"
 
 
@@ -57,6 +58,7 @@ class Login extends React.Component {
         const { user_name, password } = this.state
         return (
             <div className="login">
+                
                 <Form className="login-container" onSubmit={this.login}>
                     <FormGroup className="group">
                         <Input
@@ -81,6 +83,10 @@ class Login extends React.Component {
                     <Button className="button-login" disabled={!user_name || !password}>
                         Log in
                     </Button>
+                    <br></br>
+                    <Link className="link" to="/signin">
+                        Don't you have an account? Sing up
+                    </Link>
                 </Form>
                 
             </div>
