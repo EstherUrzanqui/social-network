@@ -129,7 +129,7 @@ input::-moz-focus-inner {
   width: 100px;
 }
 .submit:hover {
-  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+  box-shadow: 1px 1px 25px 10px white;
 }
 .submit:before {
   content: "";
@@ -141,7 +141,7 @@ input::-moz-focus-inner {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(146, 148, 248, 0.4),
+    white,
     transparent
   );
   transition: all 650ms;

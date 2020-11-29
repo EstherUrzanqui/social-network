@@ -73,13 +73,13 @@ class Feed extends React.Component {
                 value={body}
                 onChange={this.handleChange}
                 name="body"
-                placeholder="Enter your thoughts here"
+                placeholder="What are you thinking?"
                 type="textarea"
               />
             </FormGroup>
-            <Button className="button-feed">Post</Button>
+            <Button className="submit">Post</Button>
           </Form>
-          <h2>Your Feed</h2>
+          <div className="login">Your Feed</div>
             <ul>
               {feed.map((feeds, index) => {
                 return (
