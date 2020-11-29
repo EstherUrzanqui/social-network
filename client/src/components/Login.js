@@ -64,9 +64,6 @@ class Login extends React.Component {
                         <div className="eula">By logging in you agree to the terms and conditions</div>
                     </div>
                     <div className="right">
-                        <svg viewBox="0 0 320 300">
-                            
-                        </svg>
                         <div className="form">
                         <Form className="login-container" onSubmit={this.login}>
                             <FormGroup className="group">
@@ -93,9 +90,11 @@ class Login extends React.Component {
                                 Log in
                             </Button>
                             <br></br>
-                            <Link className="link" to="/signin">
-                                Don't you have an account? Sing up
-                            </Link>
+                            <div className="link-div">
+                                <Link className="link" to="/signin">
+                                    Don't you have an account? Sing up
+                                </Link>
+                            </div>
                         </Form>
                         </div>
                     </div>

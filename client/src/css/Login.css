@@ -16,6 +16,7 @@ body {
 }
 .page {
   background: rgb(52, 51, 60);
+  margin-top: -40px;
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
@@ -85,19 +86,13 @@ body {
     max-height: 350px;
   }
 }
-svg {
-  position: absolute;
-  width: 320px;
-}
-path {
-  fill: none;
-  stroke: url(#linearGradient);;
-  stroke-width: 4;
-  stroke-dasharray: 240 1386;
-}
 .form {
   margin: 40px;
   position: absolute;
+}
+.group{
+  margin-top: -60px;
+  padding-top: 100px;
 }
 label {
   color:  #c2c2c5;
@@ -112,27 +107,62 @@ input {
   border: 0;
   color: #f2f2f2;
   font-size: 20px;
-  height: 30px;
+  height: 40px;
   line-height: 30px;
   outline: none !important;
   width: 100%;
+  padding: 8px;
 }
 input::-moz-focus-inner { 
   border: 0; 
 }
-#submit {
-  color: #707075;
-  margin-top: 40px;
+.submit {
+  color: white;
+  background-color: rgb(247, 71, 100);
+  margin-top: 20px;
   transition: color 300ms;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  width: 100px;
 }
-#submit:focus {
-  color: #f2f2f2;
+.submit:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
 }
-#submit:active {
-  color: #d0d0d2;
+.submit:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(146, 148, 248, 0.4),
+    transparent
+  );
+  transition: all 650ms;
+}
+
+.submit:hover:before {
+  left: 100%;
+}
+
+.submit:focus {
+  color: rgb(247, 71, 100);
+}
+.submit:active {
+  color: rgb(247, 71, 100);
+}
+.link-div{
+  padding-top: 40px;
 }
 
 .link{
-  color:white;
+  color:#999;
+  font-size: 14px;
+  line-height: 1.5;
   }
   
