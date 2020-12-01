@@ -108,7 +108,10 @@ routes.delete("/users/:id/unfollow/:followId", (req, res) => {
 routes.get("/users/:id/following", (req, res) => {
     const { id } = req.params
 
-    db(`SELECT * FROM relationships WHERE followerId = ${id}`)
+    db(`SELECT user_name FROM user AS u 
+        INNER JOIN relationships AS r 
+        ON u.id = r.followedId 
+        AND r.followerId = ${id}`)
     .then(results => {
         res.send(results.data)
     })
