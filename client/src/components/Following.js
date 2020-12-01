@@ -11,6 +11,10 @@ class Following extends React.Component{
     }
   }
 
+  componentDidMount() {
+    this.getFollowing()
+  }
+
   getFollowing = async () => {
     const userId = this.props.user[0].id
 
