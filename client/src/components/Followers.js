@@ -38,9 +38,8 @@ class Followers extends React.Component {
       const response = await axios(`http://localhost:7001/api/users/${userId}/following`)
 
       const tempFollowing = response.data.map((follow, index) => {
-        return follow.followedId
+        return follow.user_name
       })
-      
       this.setState({ 
         following: response.data,
         followingUsers: tempFollowing
@@ -52,7 +51,7 @@ class Followers extends React.Component {
   }
 
   followUser = async (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     const userId = this.props.user[0].id
     const followedId = e.target.value
     
@@ -131,7 +130,7 @@ class Followers extends React.Component {
               <Card className="users" key= {index}>
                 <CardBody>
                   <CardTitle>{user.user_name}</CardTitle>
-                  {followingUsers.includes(user.id) ? (
+                  {followingUsers.includes(user.user_name) ? (
                     <Button id="btn-1" value={user.id} onClick={this.onUnfollow}>Unfollow</Button>
                    ) : (
                     <Button id="btn" value={user.id} onClick={this.onFollow}>follow</Button>
@@ -141,19 +140,6 @@ class Followers extends React.Component {
              )}  
           })}
         </ul>
-        <div>
-          <h2>Following</h2>
-            <ul>
-              {following.map((follow, index) => {
-                return (
-                  <Card key= {index}>
-                    <CardBody>
-                      <CardTitle>{follow.followedId}</CardTitle>
-                    </CardBody>
-                  </Card>)
-              })}
-            </ul>
-        </div>
       </div>
     )
   }
