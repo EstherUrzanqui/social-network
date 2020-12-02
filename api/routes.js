@@ -118,6 +118,42 @@ routes.get("/users/:id/following", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+//get count following users
+routes.get("/users/:id/following/count", (req, res) => {
+    const { id } = req.params
+
+    db(`SELECT COUNT(*) FROM relationships where followerId = ${id}`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
+//get followers users
+routes.get("/users/:id/followers", (req, res) => {
+    const { id } = req.params
+
+    db(`SELECT user_name FROM user AS u
+        INNER JOIN relatinships AS r
+        ON u.id = r.followerId
+        AND r.followedId = ${id}`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
+//get count followers users
+routes.get("/users/:id/followers/count", (req, res) => {
+    const { id } = req.params
+
+    db(`SELECT COUNT(*) FROM relationships where followedId = ${id}`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //sign in
 routes.post("/register", (req, res) => {
     let { user_name, email, password, password2 } = req.body;
