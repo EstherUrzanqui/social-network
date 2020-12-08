@@ -34,7 +34,7 @@ con.connect(function(err) {
     });
     
     let createUserQuery =
-		"DROP TABLE if exists user; CREATE TABLE user(id int NOT NULL AUTO_INCREMENT, user_name varchar(155) NOT NULL, email varchar(100) NOT NULL, password varchar(155) NOT NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id));";
+		"DROP TABLE if exists user; CREATE TABLE user(id int NOT NULL AUTO_INCREMENT, user_name varchar(155) NOT NULL, email varchar(100) NOT NULL, password varchar(155) NOT NULL, image text NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id));";
 	con.query(createUserQuery, function (err, result) {
 		if (err) throw err;
 		console.log("Table creation `companies` was successful!");
