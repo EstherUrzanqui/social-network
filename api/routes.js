@@ -4,11 +4,42 @@ const jwt = require("jsonwebtoken")
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn")
 const bcrypt = require("bcrypt")
 const saltRounds = 10;
+const multer = require("multer")
 
 const db = require('./lib/helper')
 require("dotenv").config()
 
 const supersecret = process.env.SUPER_SECRET
+
+//upload profile picture
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './client/public/img')
+    },
+    filename: function (req, file, cb) {
+      if(file.mimetype == "image/jpeg" || file.mimetype == "image/png") {
+        cb(null, file.originalname);
+      } else {
+       cb(new MulterError('LIMIT_UNEXPECTED_FILE', file.originalname));
+      }
+    }
+});
+   
+  const upload = multer({ storage: storage });
+
+routes.post("/profile/:id/upload", upload.single("image"), (req, res, next) => {
+    let { id } = req.params
+
+    db(`UPDATE user SET image = '/img/${req.file.filename}' WHERE id = ${id}`)
+    .then(results => {
+        if(!results.error) {
+            res.status(201).send({ message: 'file uploaded'})
+            return
+        }
+        res.send(results)
+    })
+    .catch(err => res.status(500).send(err))
+})
 
 //post a share
 routes.post("/profile/share", (req, res) => {
@@ -154,8 +185,8 @@ routes.get("/users/:id/followers/count", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//sign in
-routes.post("/register", (req, res) => {
+//sign up
+routes.post("/register", (req, res, next) => {
     let { user_name, email, password, password2 } = req.body;
     let errors = []
 
@@ -167,9 +198,6 @@ routes.post("/register", (req, res) => {
 
     //check passwords
     if(password != password2) {
-        console.log("Passwords do not match")
-        console.log(password)
-        console.log(password2)
         errors.push({message: "Passwords do not match"})
         res.send({message: "Passwords do not match"})
     }
@@ -178,14 +206,14 @@ routes.post("/register", (req, res) => {
         console.log(errors);
     } else {
         if(email) {
-            db(`SELECT * FROM user WHERE email = "${email}"`)
+            db(`SELECT * FROM user WHERE email = ${email}`)
             .then((results) => {
                 if(results.data.length>0){
                     res.send("Email exists")
                 } else {
                     bcrypt.hash(password, saltRounds, (err, hash) => {
                     password = hash
-                    db(`INSERT INTO user (user_name, email, password) VALUES ("${user_name}", "${email}", "${password}")`)
+                    db(`INSERT INTO user (user_name, email, password) VALUES (${user_name}, ${email}, ${password})`)
                         .then((results) => {
                             res.send("Registration successful")
                             if(err)throw err;
@@ -204,6 +232,8 @@ routes.post("/register", (req, res) => {
         }
     }
 })
+
+
 
 //log in
 routes.post("/login", function (req, res, next) {
