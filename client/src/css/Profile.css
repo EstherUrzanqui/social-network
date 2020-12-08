@@ -8,9 +8,24 @@ html, body {
   display:flex;
   flex-direction: column;
   min-height:100%;
+  position: relative;
+}
+.activity {
+  color: rgb(247, 71, 100);
+  font-size: 50px;
+  font-weight: 900;
+  margin: 50px 40px 40px;
+  margin-top: -90px;
 }
 .details {
-  flex:1;
+  width: 160px;
+  height: 100%;
+  flex-grow:1;
   display:flex;
   margin: 2%;
+}
+
+.following {
+  margin-top: 60px;
+  margin-left: -80px;
 }
