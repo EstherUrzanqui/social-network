@@ -29,3 +29,12 @@ html, body {
   margin-top: 60px;
   margin-left: -80px;
 }
+
+.image {
+  margin-right: auto;
+}
+
+.profilepic {
+  width: 70px;
+  height: 70px;
+}
