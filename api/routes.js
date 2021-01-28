@@ -193,30 +193,34 @@ routes.post("/register", (req, res, next) => {
     //check required inputs
     if(!user_name || !email || !password || !password2){
         errors.push({message: "Please fill all required fields"})
-        res.send({message: "Please fill all required fields"})   
+        res.send({message: "Please fill all required fields"})  
+ 
     }
 
     //check passwords
     if(password != password2) {
         errors.push({message: "Passwords do not match"})
         res.send({message: "Passwords do not match"})
+
     }
 
     if(errors.length>0) {
         console.log(errors);
     } else {
         if(email) {
-            db(`SELECT * FROM user WHERE email = ${email}`)
+            db(`SELECT * FROM user WHERE email = '${email}'`)
             .then((results) => {
                 if(results.data.length>0){
                     res.send("Email exists")
+            
                 } else {
                     bcrypt.hash(password, saltRounds, (err, hash) => {
                     password = hash
-                    db(`INSERT INTO user (user_name, email, password) VALUES (${user_name}, ${email}, ${password})`)
+                    db(`INSERT INTO user (user_name, email, password) VALUES ('${user_name}', '${email}', '${password}')`)
                         .then((results) => {
                             res.send("Registration successful")
                             if(err)throw err;
+                    
                         })
                         .catch((error) => {
                             console.log(error)
