@@ -216,7 +216,7 @@ routes.post("/register", (req, res, next) => {
                 } else {
                     bcrypt.hash(password, saltRounds, (err, hash) => {
                     password = hash
-                    db(`INSERT INTO user (user_name, email, password) VALUES ('${user_name}', '${email}', '${password}')`)
+                    db(`INSERT INTO user (user_name, email, password, image) VALUES ('${user_name}', '${email}', '${password}','/img/default-user-icon-4.jpg')`)
                         .then((results) => {
                             res.send("Registration successful")
                             if(err)throw err;
