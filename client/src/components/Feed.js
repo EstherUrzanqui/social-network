@@ -1,7 +1,7 @@
 import React from "react"
 import axios from "axios"
 import "../css/Feed.css"
-import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardSubtitle, CardText, Row, Col } from 'reactstrap'
+import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText } from 'reactstrap'
 import Withuser from "./Withuser"
 import moment from "moment"
 

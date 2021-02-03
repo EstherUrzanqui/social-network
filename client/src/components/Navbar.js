@@ -11,7 +11,7 @@ const TheNavbar = (props) => {
             <Navbar>
                 <NavbarBrand>
                     <NavLink id="logo" tag={Link} to ="/">
-                        <img src="/img/logounax.png" alt="image" style={{ width: 150 }} />
+                        <img src="/img/logounax.png" alt="logo" style={{ width: 150 }} />
                     </NavLink> 
                 </NavbarBrand>
                 <Nav>

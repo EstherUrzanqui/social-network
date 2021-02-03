@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import withUser from "./Withuser"
-import { Button, Card, CardBody, CardTitle } from 'reactstrap'
+import { Card, CardBody, CardTitle } from 'reactstrap'
 
 class Following extends React.Component{
   constructor(props) {
