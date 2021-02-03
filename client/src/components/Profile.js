@@ -15,7 +15,7 @@ class Profile extends React.Component {
       thoughts: [],
       following: [],
       followers: [], 
-      file: this.props.user[0].image
+      image: null
     }
   }
 
@@ -66,25 +66,16 @@ class Profile extends React.Component {
     }
   }
 
-  onSubmit(e) {
-    e.preventDefault()
-    this.uploadImage()
-      .then((response) => {
-        console.log(response.data)
-      })
-  }
-
   onChange = e => {
     console.log(e.target.files[0])
-    this.setState({file: e.target.files[0]})
+    this.setState({image: e.target.files[0]})
   }
   
-  uploadImage = (file) => {
-    const userId = this.props.user[0].id
+  uploadImage = () => {
     const formData = new FormData()
-    console.log(formData)
+    const userId = this.props.user[0].id
 
-    formData.set("file", file)
+    formData.append("image", this.state.image)
 
     axios.post(`http://localhost:7001/api/profile/${userId}/upload`, formData, {
       headers: {
@@ -101,17 +92,18 @@ class Profile extends React.Component {
 
 
   render() {
-    const { thoughts, following, followers, file } = this.state
+    const { thoughts, following, followers } = this.state
     const  userName  = this.props.user[0].user_name
 
     return(
     <div className="user">
       <div className="file">
-        <img className="profilepic" alt="profile" src={file} />
-        <form onSubmit={this.onSubmit}>
-          <input type="file" onChange={this.onChange} />
-          <button type="submit">Upload</button>
-        </form>
+        
+          <form onSubmit={this.uploadImage}>
+            <input type="file" className="form-control" name="upload_file" onChange={this.onChange} />
+            <button type="submit" className="btn btn-dark">Save</button>
+          </form>
+          <img className="profilepic" alt="profile" src={this.props.user[0].image} />
           <br />
           Hello {userName}
           <br />

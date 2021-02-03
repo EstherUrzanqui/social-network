@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
 routes.post("/profile/:id/upload", upload.single("image"), (req, res, next) => {
     let { id } = req.params
 
-    db(`UPDATE user SET image = '/img/${req.file.filename}' WHERE id = ${id}`)
+    db(`UPDATE user SET image = '/img/${req.file.filename}' WHERE id = '${id}'`)
     .then(results => {
         if(!results.error) {
             res.status(201).send({ message: 'file uploaded'})
