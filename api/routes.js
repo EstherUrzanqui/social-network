@@ -41,6 +41,61 @@ routes.post("/profile/:id/upload", upload.single("image"), (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
+//edit user details
+routes.post("/profile/:id/edit/user_name", (req, res) => {
+    let { id } = req.params
+    let { user_name } = req.body;
+
+    db(`UPDATE user SET user_name = '${user_name}' WHERE id = '${id}'`)
+    .then((results) => {
+        console.log(results)
+        res.send("Your details have been updated successfuly")
+    
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+})
+
+routes.post("/profile/:id/edit/email", (req, res) => {
+    let { id } = req.params
+    let { email } = req.body;
+
+    db(`UPDATE user SET email = '${email}' WHERE id = '${id}'`)
+    .then((results) => {
+        console.log(results)
+        res.send("Your details have been updated successfuly")
+    
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+})
+
+routes.post("/profile/:id/edit/password", (req, res) => {
+    let { id } = req.params
+    let { password, password2 } = req.body;
+    let errors = [];
+
+    if(password != password2) {
+        errors.push({message: "Passwords do not match"})
+        res.send({message: "Passwords do not match"})
+
+    }
+
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+        password = hash
+        db(`UPDATE user SET password = '${password}' WHERE id = ${id}`)
+            .then((results) => {
+                res.send("Password updated successfuly")
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    })
+    
+})
+
 //post a share
 routes.post("/profile/share", (req, res) => {
     let { user_id, body, createdAt, updatedAt } = req.body;
