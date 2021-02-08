@@ -9,7 +9,10 @@ class Editprofile extends React.Component {
     super(props)
     this.state = {
       image: null,
-      user_name: ""
+      user_name: "", 
+      email: "",
+      password: "",
+      password2: ""
     }
   }
 
@@ -56,8 +59,38 @@ class Editprofile extends React.Component {
     })
   }
 
+  handleUserEmail = () => {
+    const userId = this.props.user[0].id
+    const user = { email: this.state.email}
+
+    axios.post(`http://localhost:7001/api/profile/${userId}/edit/email`, { ...user })
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  handleUserPassword = () => {
+    const userId = this.props.user[0].id
+    const user = { 
+      password: this.state.password,
+      password2: this.state.password2
+    }
+
+    axios.post(`http://localhost:7001/api/profile/${userId}/edit/password`, { ...user })
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+
   render() {
-    
+    //Modal to image
     return(
       <div className="user-edit">
         <Form onSubmit={this.uploadImage}>
@@ -74,10 +107,19 @@ class Editprofile extends React.Component {
             <Button type="submit">Save</Button>
           </FormGroup>
         </Form>
-        <Form>
+        <Form onSubmit={this.handleUserEmail}>
           <FormGroup>
-            <Label for="examplePassword">Password</Label>
-            <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+            <Label>Email</Label>
+            <Input type="text" name="email" placeholder="Edit Email" onChange={this.onUserChange} />
+            <Button type="submit">Save</Button>
+          </FormGroup>
+        </Form>
+        <Form onSubmit={this.handleUserPassword}>
+          <FormGroup>
+            <Label>Password</Label>
+            <Input type="text" name="password" placeholder="Enter your new Password" onChange={this.onUserChange} />
+            <Input type="text" name="password2" placeholder="Repeat Password" onChange={this.onUserChange} />
+            <Button type="submit">Save</Button>
           </FormGroup>
         </Form>
       </div>
