@@ -50,6 +50,16 @@
     max-width: 468px;
   }
 
+  .pic {
+    border-radius: 50%;
+    margin-right: 400px;
+  }
+
+  .details {
+    margin-top: -70px;
+    margin-right: 100px;
+  }
+
   #textarea {
     background: transparent;
     border: 0;

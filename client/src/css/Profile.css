@@ -10,6 +10,11 @@ html, body {
   min-height:100%;
   position: relative;
 }
+
+.followers {
+  margin-right: auto;
+  padding-left: 60px;
+}
 .activity {
   color: rgb(247, 71, 100);
   font-size: 50px;
@@ -44,9 +49,14 @@ html, body {
   border-radius: 50%;
   position: absolute;
   bottom: 130px;
-  left: 640px;
-  border: 1px solid #000000;
+  left: 620px;
+  border: 8px solid rgb(52, 51, 60);
   
+}
+
+.posted {
+  margin-top: -70px;
+  margin-right: 100px;
 }
 
 .backgroundpic {
