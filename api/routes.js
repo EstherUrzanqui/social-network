@@ -132,7 +132,8 @@ routes.get("/profile/shares", (req, res) => {
 
     db(`SELECT shares.body, 
         shares.createdAt, 
-        user.user_name 
+        user.user_name,
+        user.image 
         FROM shares 
         INNER JOIN user 
         ON user.id = shares.user_id

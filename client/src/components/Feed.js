@@ -1,7 +1,7 @@
 import React from "react"
 import axios from "axios"
 import "../css/Feed.css"
-import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText } from 'reactstrap'
+import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, CardImg } from 'reactstrap'
 import Withuser from "./Withuser"
 import moment from "moment"
 
@@ -11,7 +11,7 @@ class Feed extends React.Component {
       super(props)
       this.state = {
         feed: [],
-        body: "",
+        body: ""
       }
     }
         
@@ -30,15 +30,13 @@ class Feed extends React.Component {
       axios("http://localhost:7001/api/profile/shares")
         .then(response => {
           this.setState({ feed: response.data})
-          console.log(this.state.feed)
         })
         .catch(error => {
           this.setState({ error: true })
         })
     }
 
-    handleSubmit = event => {
-      event.preventDefault()
+    handleSubmit = () => {
       const user_id  = this.props.user[0].id
       const { body } = this.state
 
@@ -61,7 +59,7 @@ class Feed extends React.Component {
 
     render() {
       const { body, feed } = this.state
-
+      
       return (
         <div className="feedform">
           <Form className="feed-container" onSubmit={this.handleSubmit}>
@@ -82,9 +80,11 @@ class Feed extends React.Component {
           <div className="login">Your Feed</div>
             <ul>
               {feed.map((feeds, index) => {
+                console.log(feeds)
                 return (
                   <Card className='thoughts' key={index}>
                     <CardBody>
+                      <CardImg top width="10%" src={feeds.image} alt="profile pic" />
                       <CardTitle>{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                       <CardText>{feeds.body}</CardText>
                     </CardBody>
@@ -97,4 +97,4 @@ class Feed extends React.Component {
     }
 }
 
-export default Withuser(Feed, { renderNull: false })
+export default Withuser(Feed)
