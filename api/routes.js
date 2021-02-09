@@ -235,10 +235,13 @@ routes.get("/users/:id/following/count", (req, res) => {
 routes.get("/users/:id/followers", (req, res) => {
     const { id } = req.params
 
-    db(`SELECT user_name FROM user AS u
-        INNER JOIN relatinships AS r
-        ON u.id = r.followerId
-        AND r.followedId = ${id}`)
+    db(`SELECT user_name, image 
+        FROM 
+            user 
+        INNER JOIN 
+            relationships ON user.id = relationships.followerId
+        AND 
+            relationships.followedId = ${id}`)
     .then(results => {
         res.send(results.data)
     })
