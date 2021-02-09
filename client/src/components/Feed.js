@@ -80,7 +80,6 @@ class Feed extends React.Component {
           <div className="login">Your Feed</div>
             <ul>
               {feed.map((feeds, index) => {
-                console.log(feeds)
                 return (
                   <Card className='thoughts' key={index}>
                     <CardBody>
