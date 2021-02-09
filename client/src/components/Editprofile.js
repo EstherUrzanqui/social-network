@@ -9,6 +9,7 @@ class Editprofile extends React.Component {
     super(props)
     this.state = {
       image: null,
+      background_image: null,
       user_name: "", 
       email: "",
       password: "",
@@ -18,7 +19,10 @@ class Editprofile extends React.Component {
 
   onChange = e => {
     console.log(e.target.files[0])
-    this.setState({image: e.target.files[0]})
+    this.setState({
+      image: e.target.files[0],
+      background_image: e.target.files[0]
+    })
   }
   
   uploadImage = () => {
@@ -28,6 +32,25 @@ class Editprofile extends React.Component {
     formData.append("image", this.state.image)
 
     axios.post(`http://localhost:7001/api/profile/${userId}/upload`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    })
+    .then(response => {
+      console.log(response.data)
+    })
+    .catch(error => {
+        console.log(error)
+    })
+  }
+
+  uploadBackgroundImage = () => {
+    const formData = new FormData()
+    const userId = this.props.user[0].id
+
+    formData.append("background_image", this.state.background_image)
+
+    axios.post(`http://localhost:7001/api/profile/${userId}/uploadbackground`, formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -97,6 +120,13 @@ class Editprofile extends React.Component {
           <FormGroup>
             <Label>Edit your profile picture</Label>
             <Input type="file" name="upload_file" onChange={this.onChange} />
+            <Button type="submit">Save</Button>
+          </FormGroup>
+        </Form>
+        <Form onSubmit={this.uploadBackgroundImage}>
+          <FormGroup>
+            <Label>Edit your background picture</Label>
+            <Input type="file" name="upload_background" onChange={this.onChange} />
             <Button type="submit">Save</Button>
           </FormGroup>
         </Form>
