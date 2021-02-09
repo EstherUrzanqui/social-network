@@ -41,6 +41,21 @@ routes.post("/profile/:id/upload", upload.single("image"), (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
+//upload background image
+routes.post("/profile/:id/uploadbackground", upload.single("background_image"), (req, res, next) => {
+    let { id } = req.params
+
+    db(`UPDATE user SET background_image = '/img/${req.file.filename}' WHERE id = '${id}'`)
+    .then(results => {
+        if(!results.error) {
+            res.status(201).send({ message: 'file uploaded'})
+            return
+        }
+        res.send(results)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //edit user details
 routes.post("/profile/:id/edit/user_name", (req, res) => {
     let { id } = req.params
