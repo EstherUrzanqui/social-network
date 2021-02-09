@@ -83,8 +83,8 @@ class Feed extends React.Component {
                 return (
                   <Card className='thoughts' key={index}>
                     <CardBody>
-                      <CardImg top width="10%" src={feeds.image} alt="profile pic" />
-                      <CardTitle>{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
+                      <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
+                      <CardTitle className="details">{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                       <CardText>{feeds.body}</CardText>
                     </CardBody>
                   </Card>

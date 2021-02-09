@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Card, CardBody, CardTitle, CardText} from "reactstrap";
+import { Card, CardBody, CardTitle, CardText, CardImg} from "reactstrap";
 import Withuser from "./Withuser"
 import Editprofile from "./Editprofile"
 import moment from "moment"
@@ -68,23 +68,25 @@ class Profile extends React.Component {
 
   render() {
     const { thoughts, following, followers } = this.state
+    console.log(followers)
     const  userName  = this.props.user[0].user_name
 
     return(
     <div className="user">
       <div className="file">
-        <Editprofile />
+        <img className="backgroundpic" alt="background" src={this.props.user[0].background_image} />
         <img className="profilepic" alt="profile" src={this.props.user[0].image} />
-        <br />
-        Hello {userName}
+        <h1>{userName}</h1>
           <br />
-            <Link className="link" to="/followers">
-              Followers: {followers}
-            </Link>
-          <br />
-            <Link className="link" to="/following">
-              Following: {following}
-            </Link>
+      </div>
+      <div className="followers">
+        <Link className="link" to="/followers">
+          Followers: {followers}
+        </Link>
+      <br />
+        <Link className="link" to="/following">
+          Following: {following}
+        </Link>
       </div>
       <div>
         <div className ="activity">
@@ -95,7 +97,8 @@ class Profile extends React.Component {
           return (
             <Card className='thoughts' key={index}>
               <CardBody>
-                <CardTitle>{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
+                <CardImg className="pic" top width="15%" src={this.props.user[0].image} alt="profile pic" />
+                <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
                 <CardText>{thought.body}</CardText>
               </CardBody>
             </Card>
