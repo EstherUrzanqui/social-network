@@ -11,10 +11,28 @@ html, body {
   position: relative;
 }
 
-.followers {
-  margin-right: auto;
-  padding-left: 60px;
+.link {
+  width: 100px;
+  height: 25px;
 }
+
+.row {
+  width: 350px;
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(3, 5vw);
+  grid-template-rows: repeat(4, 5vw);
+  
+}
+
+.followerpic {
+  width: 100%;
+  height: 5vw;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+
 .activity {
   color: rgb(247, 71, 100);
   font-size: 50px;

@@ -108,11 +108,10 @@ class Profile extends React.Component {
         <h1>{userName}</h1>
           <br />
       </div>
-      <div className="followers">
-        <Link className="link" to="/followers">
+      <Link className="link" to="/followers">
           Followers: {followers}
-        </Link>
-        <ul>
+      </Link>
+      <div className="row">
           {myFollowers.map((fol, index) => {
             return (
               <Card>
@@ -122,12 +121,12 @@ class Profile extends React.Component {
               </Card>
             )
           })}
-        </ul>
       <br />
-        <Link className="link" to="/following">
+      </div>
+      <Link className="link" to="/following">
           Following: {following}
-        </Link>
-        <ul>
+      </Link>
+      <div className="row">
           {myFollowing.map((fol, index) => {
             return (
               <Card>
@@ -137,7 +136,6 @@ class Profile extends React.Component {
               </Card>
             )
           })}
-        </ul>
       </div>
       <div>
         <div className ="activity">
