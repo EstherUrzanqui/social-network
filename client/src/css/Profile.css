@@ -11,9 +11,24 @@ html, body {
   position: relative;
 }
 
+#underline {
+  border-bottom: 3px solid rgb(158, 155, 155);
+}
+
 .link {
   width: 100px;
   height: 25px;
+  margin-left: 40px;
+}
+
+#firstlink {
+  margin-top: 90px;
+}
+
+.profilethinking {
+  width: 800px;
+  height: 1px;
+  margin-left: 600px;
 }
 
 .row {
@@ -21,7 +36,8 @@ html, body {
   height: 150px;
   display: grid;
   grid-template-columns: repeat(3, 5vw);
-  grid-template-rows: repeat(4, 5vw);
+  grid-template-rows: repeat(2, 5vw);
+  margin-left: 45px;
   
 }
 
@@ -38,7 +54,7 @@ html, body {
   font-size: 50px;
   font-weight: 900;
   margin: 50px 40px 40px;
-  margin-top: -90px;
+  margin-top: -260px;
 }
 .details {
   width: 160px;
