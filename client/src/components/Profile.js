@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Card, CardBody, CardTitle, CardText, CardImg} from "reactstrap";
+import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button} from "reactstrap";
 import Withuser from "./Withuser"
 import Editprofile from "./Editprofile"
 import moment from "moment"
@@ -17,7 +17,8 @@ class Profile extends React.Component {
       following: [],
       followers: [],
       myFollowers: [],
-      myFollowing: []
+      myFollowing: [],
+      body: ""
     }
   }
 
@@ -96,8 +97,35 @@ class Profile extends React.Component {
       })
   }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+}
+
+  handleSubmit = () => {
+    const user_id  = this.props.user[0].id
+    const { body } = this.state
+
+    axios.post("http://localhost:7001/api/profile/share", {
+        user_id,
+        body,
+        createdAt: new Date().toISOString().slice(0,10),
+        updatedAt: new Date().toISOString().slice(0,10)
+    }) 
+    .then(response => {
+      console.log(response.data)
+      this.setState(state => ({
+        loggedIn: !state.loggedIn,
+      }))
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
   render() {
-    const { thoughts, following, followers, myFollowers, myFollowing } = this.state
+    const { thoughts, following, followers, myFollowers, myFollowing, body } = this.state
     const  userName  = this.props.user[0].user_name
 
     return(
@@ -105,10 +133,27 @@ class Profile extends React.Component {
       <div className="file">
         <img className="backgroundpic" alt="background" src={this.props.user[0].background_image} />
         <img className="profilepic" alt="profile" src={this.props.user[0].image} />
-        <h1>{userName}</h1>
-          <br />
+        <h1 id="underline">{userName}</h1>
+          <br/>
       </div>
-      <Link className="link" to="/followers">
+      <div>
+        <Form className="profilethinking" onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Input 
+                id= "textarea"
+                cols="60"
+                rows="4"
+                value={body}
+                onChange={this.handleChange}
+                name="body"
+                placeholder="What are you thinking?"
+                type="textarea"
+              />
+            </FormGroup>
+            <Button className="submit">Post</Button>
+          </Form>
+      </div>
+      <Link className="link" id="firstlink" to="/followers">
           Followers: {followers}
       </Link>
       <div className="row">
@@ -139,7 +184,7 @@ class Profile extends React.Component {
       </div>
       <div>
         <div className ="activity">
-          Your Activity
+          Last Posts
         </div>
       <ul>
         {thoughts.map((thought, index) => {
