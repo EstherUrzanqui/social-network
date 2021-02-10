@@ -179,10 +179,10 @@ routes.get("/users/:id", (req, res) => {
 //follow user
 routes.post("/users/:id/follow/:followId", (req, res) => {
     const { id, followId } = req.params
-    const { followed, createdAt, updatedAt } = req.body
+    const { createdAt, updatedAt } = req.body
 
-    db(`INSERT INTO relationships (followerId, followedId, followed, createdAt, updatedAt)
-        VALUES ('${id}', '${followId}', '${followed}', '${createdAt}', '${updatedAt}')`)
+    db(`INSERT INTO relationships (followerId, followedId, createdAt, updatedAt)
+        VALUES ('${id}', '${followId}', '${createdAt}', '${updatedAt}')`)
         .then(results => {
             if(!results.error) {
                 res.status(201).send({})

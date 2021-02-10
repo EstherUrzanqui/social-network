@@ -59,7 +59,6 @@ class Followers extends React.Component {
       const response = await axios.post(`http://localhost:7001/api/users/${userId}/follow/${followedId}`, {
         userId,
         followedId,
-        followed: 1,
         createdAt: new Date().toISOString().slice(0, 10),
         updatedAt: new Date().toISOString().slice(0, 10)
       })
