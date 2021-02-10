@@ -15,14 +15,18 @@ class Profile extends React.Component {
       loggedIn: undefined,
       thoughts: [],
       following: [],
-      followers: []
+      followers: [],
+      myFollowers: [],
+      myFollowing: []
     }
   }
 
   componentDidMount = () => {
     this.getShares()
-    this.getFollowing()
+    this.getFollowingCount()
+    this.getFollowersCount()
     this.getFollowers()
+    this.getFollowing()
   }
 
   getShares = async () => {
@@ -39,7 +43,7 @@ class Profile extends React.Component {
     }
   }
 
-  getFollowing = async () => {
+  getFollowingCount = async () => {
     const userId = this.props.user[0].id
 
     try {
@@ -52,7 +56,7 @@ class Profile extends React.Component {
     }
   }
 
-  getFollowers = async () => {
+  getFollowersCount = async () => {
     const userId = this.props.user[0].id
 
     try {
@@ -65,10 +69,35 @@ class Profile extends React.Component {
       this.setState({ error: true })
     }
   }
+  
+  getFollowers = () => {
+    const userId = this.props.user[0].id
+
+    axios(`http://localhost:7001/api/users/${userId}/followers`)
+      .then(response => {
+        console.log(response.data)
+        this.setState({ myFollowers: response.data })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  getFollowing = () => {
+    const userId = this.props.user[0].id
+
+    axios(`http://localhost:7001/api/users/${userId}/following`)
+      .then(response => {
+        console.log(response.data)
+        this.setState({ myFollowing: response.data })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 
   render() {
-    const { thoughts, following, followers } = this.state
-    console.log(followers)
+    const { thoughts, following, followers, myFollowers, myFollowing } = this.state
     const  userName  = this.props.user[0].user_name
 
     return(
@@ -83,10 +112,32 @@ class Profile extends React.Component {
         <Link className="link" to="/followers">
           Followers: {followers}
         </Link>
+        <ul>
+          {myFollowers.map((fol, index) => {
+            return (
+              <Card>
+                <CardBody>
+                  <CardImg className="followerpic" top width="15%" src={fol.image} />
+                </CardBody>
+              </Card>
+            )
+          })}
+        </ul>
       <br />
         <Link className="link" to="/following">
           Following: {following}
         </Link>
+        <ul>
+          {myFollowing.map((fol, index) => {
+            return (
+              <Card>
+                <CardBody>
+                  <CardImg className="followerpic" top width="15%" src={fol.image} />
+                </CardBody>
+              </Card>
+            )
+          })}
+        </ul>
       </div>
       <div>
         <div className ="activity">
