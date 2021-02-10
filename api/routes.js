@@ -235,7 +235,8 @@ routes.get("/users/:id/following/count", (req, res) => {
 routes.get("/users/:id/followers", (req, res) => {
     const { id } = req.params
 
-    db(`SELECT user_name, image 
+    db(`SELECT 
+            user_name, image 
         FROM 
             user 
         INNER JOIN 
@@ -290,7 +291,7 @@ routes.post("/register", (req, res, next) => {
                 } else {
                     bcrypt.hash(password, saltRounds, (err, hash) => {
                     password = hash
-                    db(`INSERT INTO user (user_name, email, password, image) VALUES ('${user_name}', '${email}', '${password}','/img/default-user-icon-4.jpg')`)
+                    db(`INSERT INTO user (user_name, email, password, image, background_image) VALUES ('${user_name}', '${email}', '${password}','/img/default-user-icon-4.jpg', '/img/background default.jpg')`)
                         .then((results) => {
                             res.send("Registration successful")
                             if(err)throw err;
