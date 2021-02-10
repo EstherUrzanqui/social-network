@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import withUser from "./Withuser"
-import { Button, Card, CardBody, CardTitle } from 'reactstrap'
+import { Button, Card, CardBody, CardTitle, CardImg } from 'reactstrap'
 
 
 class Followers extends React.Component {
@@ -35,7 +35,7 @@ class Followers extends React.Component {
     const userId = this.props.user[0].id
 
     try {
-      const response = await axios(`http://localhost:7001/api/users/${userId}/following`)
+      const response = await axios(`http://localhost:7001/api/users/${userId}/followers`)
 
       const tempFollowing = response.data.map((follow, index) => {
         return follow.user_name
@@ -115,10 +115,8 @@ class Followers extends React.Component {
 
 
   render() {
-    const { users, following, followingUsers } = this.state
+    const { users, followingUsers } = this.state
     const userId = this.props.user[0].id
-    console.log(followingUsers)
-    console.log(following)
     
     return (
       <div>
@@ -129,6 +127,7 @@ class Followers extends React.Component {
              return (
               <Card className="users" key= {index}>
                 <CardBody>
+                  <CardImg top width="9%" src={user.image} />
                   <CardTitle>{user.user_name}</CardTitle>
                   {followingUsers.includes(user.user_name) ? (
                     <Button id="btn-1" value={user.id} onClick={this.onUnfollow}>Unfollow</Button>
