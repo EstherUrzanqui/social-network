@@ -120,7 +120,7 @@ class Followers extends React.Component {
     
     return (
       <div>
-        <h2>Users in Unax</h2>
+        <h2>Suggestions</h2>
         <ul>
           {users.map((user, index) => {
            if(user.id !== userId) {

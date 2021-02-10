@@ -6,6 +6,7 @@ import Editprofile from "./Editprofile"
 import moment from "moment"
 import "../css/Profile.css" 
 import { Link } from "react-router-dom"
+import Followers from "./Followers";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -167,6 +168,9 @@ class Profile extends React.Component {
             )
           })}
       <br />
+      <div className="usersinplat">
+        <Followers />
+      </div>
       </div>
       <Link className="link" to="/following">
           Following: {following}

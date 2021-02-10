@@ -31,6 +31,12 @@ html, body {
   margin-left: 600px;
 }
 
+.usersinplat {
+  position: absolute;
+  right: -900px;
+  top: 580px;
+}
+
 .row {
   width: 350px;
   height: 150px;
