@@ -16,7 +16,7 @@ body {
 }
 .page {
   background: rgb(52, 51, 60);
-  margin-top: -40px;
+  margin-top: -20px;
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
@@ -48,7 +48,7 @@ body {
 .left {
   background: white;
   height: calc(100% - 40px);
-  top: 20px;
+  top: 25px;
   position: relative;
   width: 50%;
 }
@@ -78,6 +78,7 @@ body {
   color: #F1F1F2;
   position: relative;
   width: 50%;
+  
 }
 @media (max-width: 767px) {
   .right {
@@ -88,7 +89,7 @@ body {
   }
 }
 .form {
-  margin: 40px;
+  margin: 20px;
   position: absolute;
 }
 .group{
