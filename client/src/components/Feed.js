@@ -4,6 +4,8 @@ import "../css/Feed.css"
 import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, CardImg } from 'reactstrap'
 import Withuser from "./Withuser"
 import moment from "moment"
+import Followers from "./Followers";
+
 
 
 class Feed extends React.Component {
@@ -84,13 +86,16 @@ class Feed extends React.Component {
                   <Card className='thoughts' key={index}>
                     <CardBody>
                       <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
-                      <CardTitle className="details">{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
+                      <CardTitle className="userdetails">{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                       <CardText>{feeds.body}</CardText>
                     </CardBody>
                   </Card>
                 )
               })}
             </ul>
+            <div className="suggestions">
+              <Followers />
+            </div>
         </div> 
       )
     }

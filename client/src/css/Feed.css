@@ -23,7 +23,7 @@
     border-radius: 8px;
     height: auto;
     min-height: 40vh;
-    width: 30%;
+    width: 40%;
     font-weight: 600;
     opacity: .85;
     display: inline-flex;
@@ -55,7 +55,7 @@
     margin-right: 400px;
   }
 
-  .details {
+  .userdetails {
     margin-top: -70px;
     margin-right: 100px;
   }
@@ -73,4 +73,10 @@
     outline: none;
     resize: none;
 
+  }
+
+  .suggestions {
+    position: absolute;
+    right: -900px;
+    top: 380px;
   }
