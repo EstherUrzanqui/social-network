@@ -1,12 +1,14 @@
 import React from "react";
 import axios from "axios";
-import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button} from "reactstrap";
+import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button, Modal} from "reactstrap";
 import Withuser from "./Withuser"
 import Editprofile from "./Editprofile"
 import moment from "moment"
 import "../css/Profile.css" 
 import { Link } from "react-router-dom"
 import Followers from "./Followers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -133,7 +135,9 @@ class Profile extends React.Component {
     <div className="user">
       <div className="file">
         <img className="backgroundpic" alt="background" src={this.props.user[0].background_image} />
+        <FontAwesomeIcon className="editicon" icon={ faEdit } size="2x" color="grey" />
         <img className="profilepic" alt="profile" src={this.props.user[0].image} />
+        <FontAwesomeIcon className="editprofilepic" icon={ faEdit } size="1x" color="grey" />
         <h1 id="underline">{userName}</h1>
           <br/>
       </div>
@@ -197,7 +201,7 @@ class Profile extends React.Component {
               <CardBody>
                 <CardImg className="pic" top width="15%" src={this.props.user[0].image} alt="profile pic" />
                 <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
-                <CardText>{thought.body}</CardText>
+                <CardText className="ownpost">{thought.body}</CardText>
               </CardBody>
             </Card>
           )

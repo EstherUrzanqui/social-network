@@ -84,6 +84,21 @@ html, body {
   
 }
 
+.backgroundpic {
+  height: 450px;
+  width: 1500px;
+  border-radius: 3%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.editicon {
+  position: absolute;
+  right: 10px;
+  bottom: 120px;
+}
+
 .profilepic {
   width: 230px;
   height: 230px;
@@ -92,20 +107,29 @@ html, body {
   bottom: 130px;
   left: 620px;
   border: 8px solid rgb(52, 51, 60);
+}
+
+.editprofilepic {
+  position: absolute;
+  left: 800px;
+  bottom: 170px;
   
 }
 
 .posted {
-  margin-top: -70px;
-  margin-right: 100px;
+  margin-top: -80px;
+  text-align: right;
 }
 
-.backgroundpic {
-  height: 450px;
-  width: 1500px;
-  border-radius: 3%;
-  position: relative;
-  top: 0;
-  left: 0;
+.ownpost {
+  color: #f2f2f2;
+  font-size: 15px;
+  text-align: left;
+  text-indent: 80px;
+  line-height: 30px;
   
 }
+
+
+
+
