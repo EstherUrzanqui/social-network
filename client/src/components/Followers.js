@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import withUser from "./Withuser"
 import { Button, Card, CardBody, CardTitle, CardImg } from 'reactstrap'
+import "../css/Followers.css"
 
 
 class Followers extends React.Component {
@@ -126,7 +127,7 @@ class Followers extends React.Component {
              return (
               <Card className="users" key= {index}>
                 <CardBody>
-                  <CardImg top width="9%" src={user.image} />
+                  <CardImg className="picfollowers" top width="9%" src={user.image} />
                   <CardTitle>{user.user_name}</CardTitle>
                   {followingUsers.includes(user.user_name) ? (
                     <Button id="btn-1" value={user.id} onClick={this.onUnfollow}>Unfollow</Button>
