@@ -53,11 +53,15 @@
   .pic {
     border-radius: 50%;
     margin-right: 400px;
+    margin-bottom: 3%;
+    width: 15%;
+    height: 5vw;
+    max-height: 10%;
   }
 
   .userdetails {
-    margin-top: -70px;
-    margin-right: 100px;
+    margin-top: -80px;
+    text-align: right;
   }
 
   #textarea {
@@ -79,4 +83,13 @@
     position: absolute;
     right: -900px;
     top: 380px;
+  }
+
+  .userpost {
+    color: #f2f2f2;
+    font-size: 15px;
+    text-align: left;
+    text-indent: 80px;
+    line-height: 30px;
+    
   }
