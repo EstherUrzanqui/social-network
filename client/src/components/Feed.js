@@ -61,6 +61,7 @@ class Feed extends React.Component {
 
     render() {
       const { body, feed } = this.state
+      console.log(feed)
       
       return (
         <div className="feedform">
@@ -86,8 +87,8 @@ class Feed extends React.Component {
                   <Card className='thoughts' key={index}>
                     <CardBody>
                       <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
-                      <CardTitle className="userdetails">{feeds.user_name} posted at {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
-                      <CardText>{feeds.body}</CardText>
+                      <CardTitle className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
+                      <CardText className="userpost">{feeds.body}</CardText>
                     </CardBody>
                   </Card>
                 )
