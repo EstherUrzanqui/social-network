@@ -81,8 +81,8 @@
 
   .suggestions {
     position: absolute;
-    right: -900px;
-    top: 380px;
+    padding-left: 1100px;
+    top: 300px;
   }
 
   .userpost {

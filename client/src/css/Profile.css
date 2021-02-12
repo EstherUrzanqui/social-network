@@ -9,6 +9,7 @@ html, body {
   flex-direction: column;
   min-height:100%;
   position: relative;
+  width: calc(100% - 40px);
 }
 
 #underline {
@@ -34,8 +35,9 @@ html, body {
 
 .usersinplat {
   position: absolute;
-  right: -900px;
+  padding-left: 1000px;
   top: 580px;
+  
 }
 
 .row {
