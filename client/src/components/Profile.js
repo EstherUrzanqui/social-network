@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button, Modal} from "reactstrap";
+import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button, Modal, ModalBody} from "reactstrap";
 import Withuser from "./Withuser"
 import Editprofile from "./Editprofile"
 import moment from "moment"
@@ -9,6 +9,12 @@ import { Link } from "react-router-dom"
 import Followers from "./Followers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import Editbackimage from "./Editbackimage";
+import ModalHeader from "reactstrap/lib/ModalHeader";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Editprofilepic from "./Editprofilepic";
+
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -21,7 +27,10 @@ class Profile extends React.Component {
       followers: [],
       myFollowers: [],
       myFollowing: [],
-      body: ""
+      body: "",
+      isOpen: false,
+      isOpenPic: false
+      
     }
   }
 
@@ -127,17 +136,44 @@ class Profile extends React.Component {
     })
   }
 
+  toggle = () => {
+    const { isOpen } = this.state
+    this.setState({
+      isOpen: !isOpen
+    })
+  }
+
+  togglePic = () => {
+    const { isOpenPic } = this.state
+    this.setState({
+      isOpenPic: !isOpenPic
+    })
+  }
+
+
   render() {
-    const { thoughts, following, followers, myFollowers, myFollowing, body } = this.state
+    const { thoughts, following, followers, myFollowers, myFollowing, body, isOpen, isOpenPic } = this.state
     const  userName  = this.props.user[0].user_name
 
     return(
     <div className="user">
       <div className="file">
         <img className="backgroundpic" alt="background" src={this.props.user[0].background_image} />
-        <FontAwesomeIcon className="editicon" icon={ faEdit } size="2x" color="grey" />
+        <FontAwesomeIcon onClick={this.toggle} className="editicon" icon={ faEdit } size="2x" color="grey" />
+        <Modal isOpen={isOpen} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalBody>
+            <Editbackimage />
+          </ModalBody>
+        </Modal>
         <img className="profilepic" alt="profile" src={this.props.user[0].image} />
-        <FontAwesomeIcon className="editprofilepic" icon={ faEdit } size="1x" color="grey" />
+        <FontAwesomeIcon onClick={this.togglePic} className="editprofilepic" icon={ faEdit } size="1x" color="grey" />
+        <Modal isOpen={isOpenPic} toggle={this.togglePic}>
+          <ModalHeader toggle={this.togglePic}>Modal title</ModalHeader>
+          <ModalBody>
+            <Editprofilepic />
+          </ModalBody>
+        </Modal>
         <h1 id="underline">{userName}</h1>
           <br/>
       </div>
@@ -192,7 +228,7 @@ class Profile extends React.Component {
       </div>
       <div>
         <div className ="activity">
-          Last Posts
+          Latest Posts
         </div>
       <ul>
         {thoughts.map((thought, index) => {

@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Followers from "./components/Followers";
 import Following from "./components/Following";
 import Editprofile from "./components/Editprofile";
+import EditBackImage from "./components/Editbackimage"
 
 
 const App = () => {
@@ -48,7 +49,8 @@ const App = () => {
           <Route exact path="/profile" component={Profile}></Route>
           <Route exact path="/followers" component={Followers}></Route> 
           <Route exact path="/following" component={Following}></Route>  
-          <Route exact path="/edit" component={Editprofile}></Route>     
+          <Route exact path="/edit" component={Editprofile}></Route> 
+          <Route exact path="/editback" component={EditBackImage}></Route>    
         </Switch>
       </Router>
     </div>
