@@ -1,47 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../css/Navbar.css"
-import { Navbar, Nav, NavLink, NavbarBrand } from "reactstrap";
+import React, { useState } from "react";
+import { Collapse, Navbar, NavbarToggler, Nav, NavLink, NavbarBrand, NavItem } from "reactstrap";
 
 
 const TheNavbar = (props) => {
-    console.log(props)
+    const [collapsed, setCollapsed] = useState(true)
+
+    const toggleNavbar = () => setCollapsed(!collapsed)
+
     return (
-        <div className="navbar">
-            <Navbar>
-                <NavbarBrand>
-                    <NavLink id="logo" tag={Link} to ="/">
-                        <img src="/img/logounax.png" alt="logo" style={{ width: 150 }} />
-                    </NavLink> 
-                </NavbarBrand>
-                <Nav>
-                  {props.isLoggedIn ? (
+        <div>
+            <Navbar color="faded" light>
+                <NavbarBrand href="/" className="mr-auto">Unax</NavbarBrand>
+                <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+                <Collapse isOpen={!collapsed} navbar>
                     <Nav>
-                        <NavLink className="link-pink" tag={Link} to="/profile">
-                        Profile
-                        </NavLink>
-                        <NavLink className="link-pink" tag={Link} to="/feed">
-                        Feed
-                        </NavLink>
-                        <NavLink
-                        className="link-pink"
-                        tag={Link}
-                        to="/"
-                        onClick={props.logout()}>
-                        Logout
-                        </NavLink>
+                        {props.isLoggedIn ? (
+                        <Nav navbar className="ml-auto">
+                            <NavItem>
+                                <NavLink href="./Profile">Profile</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/feed">Feed</NavLink>
+                            </NavItem>
+                            <NavItem>
+                            <NavLink href="/" onClick={props.logout()}>Logout</NavLink>
+                            </NavItem>   
+                        </Nav>
+                        ) : (
+                        <Nav navbar className="ml-auto" >
+                            <NavItem>
+                                <NavLink className="link-pink" href="/">Login</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="link-pink" href="/signin">Sign up</NavLink>
+                            </NavItem>   
+                        </Nav>
+                        )}   
                     </Nav>
-                  ) : (
-                    <Nav>
-                        <NavLink className="link-pink" tag={Link} to="/">
-                        Login
-                        </NavLink> 
-                        <NavLink className="link-pink" tag={Link} to="/signin">
-                        Sign up
-                        </NavLink>
-                    </Nav>
-                  )}   
-                </Nav>
+                </Collapse>
             </Navbar>
         </div>
     )
