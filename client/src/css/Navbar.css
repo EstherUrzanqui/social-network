@@ -1,27 +1,7 @@
-.navbar{
-  margin-top: 20px;
-  margin-bottom: 5px;
-  height: 150px;
-  
-}
-
-#logo{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 50;
-  margin-left: 20px;
-  margin-top: 10px;
-}
-
-.link-pink{
-  color: rgb(247, 71, 100) !important;
-  font-size: 20px !important;
-  font-weight: 500;
-  margin-left: 20px;
-  margin-right: 20px;
-  text-align: right;
-  float: right;
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+#logo {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 50px;
 }
 
 
