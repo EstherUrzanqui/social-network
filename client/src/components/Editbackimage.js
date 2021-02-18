@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
-import Withuser from "./Withuser";
+import React from "react";
 import axios from "axios";
-import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input } from 'reactstrap';
+import Withuser from "./Withuser"
+import { Button, Form, Input, FormGroup } from "reactstrap"
 
-const EditBackImage = (props) => {
-  const {
-    buttonLable,
-    className
-  } = props;
-
-  const [modal, setModal] = useState(false);
-  const [background_image, setBackground_image] = useState(null);
-
-  const toggle = () => setModal(!modal);
-
-  const onChange = (e) => {
-    console.log(e.target.files[0])
-    setBackground_image(e.target.files[0])
+class Editbackimage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      background_image: null,
+    }
   }
 
-  const upoloadBackgroundImage = () => {
+  onChange = e => {
+    console.log(e.target.files[0])
+    this.setState({
+      background_image: e.target.files[0]
+    })
+  }
+
+  uploadBackgroundImage = () => {
     const formData = new FormData()
     const userId = this.props.user[0].id
 
-    formData.append("background_image", background_image)
+    formData.append("background_image", this.state.background_image)
 
     axios.post(`http://localhost:7001/api/profile/${userId}/uploadbackground`, formData, {
       headers: {
@@ -34,26 +33,24 @@ const EditBackImage = (props) => {
       console.log(response.data)
     })
     .catch(error => {
-      console.log(error)
+        console.log(error)
     })
   }
 
-  return (
-    <div>
-      <Button color="danger" onClick={toggle}>{buttonLable}</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-        <ModalBody>
-          <Form onSubmit={upoloadBackgroundImage}>
-            <FormGroup>
-              <Input type="file" name="upload_background" onChange={onChange} />
-              <Button type="submit">Save</Button>
-            </FormGroup>
-          </Form>
-        </ModalBody>
-      </Modal>
-    </div>
-  )
+  render() {
+  
+    return(
+      <div>
+        <Form onSubmit={this.uploadBackgroundImage}>
+          <FormGroup>
+            <Input type="file" name="upload_background" onChange={this.onChange} />
+            <Button type="submit">Save</Button>
+          </FormGroup>
+        </Form>
+      </div>
+    )
+  }
+
 }
 
-export default Withuser(EditBackImage);
+export default Withuser(Editbackimage)
