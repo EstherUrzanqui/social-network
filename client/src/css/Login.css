@@ -1,21 +1,21 @@
 @import url('https://rsms.me/inter/inter-ui.css');
 ::selection {
-  background: rgb(52, 51, 60);
+  background: white;
 }
 ::-webkit-selection {
-  background: rgb(52, 51, 60);
+  background: white;
 }
 ::-moz-selection {
-  background: rgb(52, 51, 60);
+  background: white;
 }
 body {
-  background: rgb(52, 51, 60);
+  background: white;
   font-family: 'Inter UI', sans-serif;
   margin: 0;
   padding: 20px;
 }
 .page {
-  background: rgb(52, 51, 60);
+  background-color: white;
   margin-top: -20px;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@ body {
   }
 }
 .left {
-  background: white;
+  background: rgba(94, 89, 93, 0.397);
   height: calc(100% - 40px);
   top: 25px;
   position: relative;
@@ -60,7 +60,9 @@ body {
     max-height: 270px;
   }
 }
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 .login {
+  font-family: 'Amatic SC', cursive;
   color: rgb(247, 71, 100);
   font-size: 50px;
   font-weight: 900;
@@ -73,7 +75,7 @@ body {
   margin: 40px;
 }
 .right {
-  background: #474A59;
+  background: #565658e3;
   box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
   color: #F1F1F2;
   position: relative;
@@ -96,31 +98,11 @@ body {
   margin-top: -60px;
   padding-top: 100px;
 }
-label {
-  color:  #c2c2c5;
-  display: block;
-  font-size: 14px;
-  height: 16px;
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-input {
-  background: transparent;
-  border: 0;
-  color: #f2f2f2;
-  font-size: 20px;
-  height: 40px;
-  line-height: 30px;
-  outline: none !important;
-  width: 100%;
-  padding: 8px;
-}
-input::-moz-focus-inner { 
-  border: 0; 
-}
+
 .submit {
   color: white;
-  background-color: rgb(247, 71, 100);
+  font-family: 'Amatic SC', cursive;
+  background-color: rgb(247, 71, 100) !important;
   margin-top: 20px;
   transition: color 300ms;
   text-decoration: none;
@@ -129,37 +111,10 @@ input::-moz-focus-inner {
   height: 40px;
   width: 100px;
 }
-.submit:hover {
-  box-shadow: 1px 1px 25px 10px white;
-}
-.submit:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    white,
-    transparent
-  );
-  transition: all 650ms;
-}
 
-.submit:hover:before {
-  left: 100%;
-}
-
-.submit:focus {
-  color: rgb(247, 71, 100);
-}
-.submit:active {
-  color: rgb(247, 71, 100);
-}
 .link-div{
   padding-top: 40px;
+  padding-right: 28px;
 }
 
 .link{
