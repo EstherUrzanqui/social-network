@@ -88,7 +88,7 @@ class Feed extends React.Component {
                     <CardBody>
                       <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
                       <CardTitle className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
-                      <CardText className="userpost">{feeds.body}</CardText>
+                      <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                     </CardBody>
                   </Card>
                 )

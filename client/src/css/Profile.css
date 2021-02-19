@@ -4,6 +4,10 @@ html, body {
   padding:0;
 }
 
+h1 {
+  color: black;
+}
+
 .user {
   display:flex;
   flex-direction: column;
@@ -30,7 +34,8 @@ html, body {
 .profilethinking {
   width: 800px;
   height: 1px;
-  margin-left: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .usersinplat {
@@ -47,23 +52,17 @@ html, body {
   grid-template-columns: repeat(3, 5vw);
   grid-template-rows: repeat(2, 5vw);
   margin-left: 45px;
-  
+  padding-left: 50px;
+  margin-bottom: 90px;;
 }
-
-.followerpic {
-  width: 100%;
-  height: 5vw;
-  max-height: 100%;
-  object-fit: cover;
-}
-
 
 .activity {
+  font-family: 'Amatic SC', cursive;
   color: rgb(247, 71, 100);
   font-size: 50px;
   font-weight: 900;
   margin: 50px 40px 40px;
-  margin-top: -260px;
+  margin-top: -490px;
 }
 .details {
   width: 160px;
@@ -123,14 +122,6 @@ html, body {
   text-align: right;
 }
 
-.ownpost {
-  color: #f2f2f2;
-  font-size: 15px;
-  text-align: left;
-  text-indent: 80px;
-  line-height: 30px;
-  
-}
 
 
 

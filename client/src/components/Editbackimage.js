@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Withuser from "./Withuser"
 import { Button, Form, Input, FormGroup } from "reactstrap"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Editbackimage extends React.Component {
   constructor(props) {

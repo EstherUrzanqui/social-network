@@ -1,6 +1,28 @@
-.picfollowers {
-  width: 30%;
-  height: 9vw;
-  max-height: 20%;
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 
+h2 {
+  font-family: 'Amatic SC', cursive;
+  color: rgb(247, 71, 100);
+  margin-left: auto;
+}
+
+.users {
+  padding-left: auto;
+}
+
+.picfollowers {
+  width: 5vw !important;
+  height: 5vw;
+}
+
+.card-title {
+  margin-bottom: .75rem;
+  color: black;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  color: white;
+  font-family: 'Amatic SC', cursive;
+  background-color: rgb(247, 71, 100) !important;
 }

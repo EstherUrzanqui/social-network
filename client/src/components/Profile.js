@@ -202,7 +202,7 @@ class Profile extends React.Component {
             return (
               <Card>
                 <CardBody>
-                  <CardImg className="followerpic" top width="15%" src={fol.image} />
+                  <CardImg className="picfollowers" top width="15%" src={fol.image} />
                 </CardBody>
               </Card>
             )
@@ -220,7 +220,7 @@ class Profile extends React.Component {
             return (
               <Card>
                 <CardBody>
-                  <CardImg className="followerpic" top width="15%" src={fol.image} />
+                  <CardImg className="picfollowers" src={fol.image} />
                 </CardBody>
               </Card>
             )
@@ -237,7 +237,7 @@ class Profile extends React.Component {
               <CardBody>
                 <CardImg className="pic" top width="15%" src={this.props.user[0].image} alt="profile pic" />
                 <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
-                <CardText className="ownpost">{thought.body}</CardText>
+                <CardText className="userpost">{thought.body}</CardText>
               </CardBody>
             </Card>
           )

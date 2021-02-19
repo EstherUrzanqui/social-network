@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Collapse, Navbar, NavbarToggler, Nav, NavLink, NavbarBrand, NavItem } from "reactstrap";
-
+import "../css/Navbar.css"
 
 const TheNavbar = (props) => {
     const [collapsed, setCollapsed] = useState(true)
@@ -10,7 +10,7 @@ const TheNavbar = (props) => {
     return (
         <div>
             <Navbar color="faded" light>
-                <NavbarBrand href="/" className="mr-auto">Unax</NavbarBrand>
+                <NavbarBrand href="/" className="mr-auto" id="logo">Unax</NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar>
                     <Nav>
