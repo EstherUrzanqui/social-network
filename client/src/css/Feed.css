@@ -1,23 +1,10 @@
-.feedform {
-    position: center;
-    background-color: rgb(52, 51, 60);
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
-    text-align: center;
-    display: inherit;
-}
 
 .feed-container {
     justify-content: center;
     align-items: flex-end;
     flex-direction: column;
     text-align: center;
-    background: rgb(52, 51, 60);
     padding: 20px;
-    margin-top: -100px;
     padding-left: 10px;
     padding-bottom: 0.7em;
     border-radius: 8px;
@@ -29,39 +16,35 @@
     display: inline-flex;
   }
 
+  #textarea {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+
   .thoughts{
-    display: block;
-    flex-direction: column;
-    justify-content: center;
     font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
     font-size: 15px;
     font-weight: bold;
     line-height: 20px;
-    border-color: #eee #ddd #bbb;
-    border-radius: 8px;
-    border-style: solid;
-    border-width: 1px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     margin: 10px 10px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px 16px 16px 16px;
-    width: 100vw;
     max-width: 468px;
   }
 
   .pic {
-    border-radius: 50%;
-    margin-right: 400px;
-    margin-bottom: 3%;
-    width: 15%;
-    height: 5vw;
+    margin-right: 85%;
+    width: 19% !important;
+    height: 5vw !important;
     max-height: 10%;
   }
 
   .userdetails {
     margin-top: -80px;
     text-align: right;
+    color: black;
   }
 
   #textarea {
@@ -76,7 +59,6 @@
     padding: 8px;
     outline: none;
     resize: none;
-
   }
 
   .suggestions {
@@ -86,10 +68,10 @@
   }
 
   .userpost {
-    color: #f2f2f2;
+    color: rgb(83, 82, 82);
     font-size: 15px;
     text-align: left;
-    text-indent: 80px;
     line-height: 30px;
+    padding-left: 90px;
     
   }
