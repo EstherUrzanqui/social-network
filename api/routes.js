@@ -176,6 +176,33 @@ routes.get("/users/:id", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+//get suggestion to follow
+routes.get("/users/:id/suggestions", (req, res) => {
+    const { id } = req.params
+
+    db(`SELECT 
+            * 
+        FROM 
+            user 
+        WHERE 
+            NOT EXISTS
+            (
+            SELECT 
+                *
+            FROM 
+                relationships
+            WHERE
+                relationships.followerId = ${id}
+            AND
+                relationships.followedId = user.id
+            )`
+    )
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //follow user
 routes.post("/users/:id/follow/:followId", (req, res) => {
     const { id, followId } = req.params
