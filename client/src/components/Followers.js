@@ -23,9 +23,10 @@ class Followers extends React.Component {
   }
 
   getUsers = async () => {
+    const userId = this.props.user[0].id
 
     try {
-      const response = await axios(`http://localhost:7001/api/users`)
+      const response = await axios(`http://localhost:7001/api/users/${userId}/suggestions`)
       this.setState({ users: response.data})
     } catch {
       this.setState({ error: true })
@@ -52,7 +53,7 @@ class Followers extends React.Component {
   }
 
   followUser = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     const userId = this.props.user[0].id
     const followedId = e.target.value
     
