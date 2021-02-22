@@ -226,7 +226,7 @@ routes.delete("/users/:id/unfollow/:followId", (req, res) => {
     db(`DELETE FROM relationships WHERE followerId = ${id} AND followedId = ${followId}`)
     .then(results => {
         if(!results.error) {
-            res.status(201).send({ message: unfollowed })
+            res.status(201).send({ message: "unfollowed" })
         }
         res.send(results)
     })
