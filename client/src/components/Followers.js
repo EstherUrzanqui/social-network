@@ -46,7 +46,6 @@ class Followers extends React.Component {
         following: response.data,
         followingUsers: tempFollowing
       })
-      console.log(response.data)
     } catch (error) {
       this.setState({ error: true})
     }
@@ -116,7 +115,7 @@ class Followers extends React.Component {
 
 
   render() {
-    const { users, followingUsers } = this.state
+    const { users } = this.state
     const userId = this.props.user[0].id
     
     return (
@@ -130,11 +129,7 @@ class Followers extends React.Component {
                 <CardBody>
                   <CardImg className="picfollowers" top width="9%" src={user.image} />
                   <CardTitle>{user.user_name}</CardTitle>
-                  {followingUsers.includes(user.user_name) ? (
-                    <Button id="btn-1" value={user.id} onClick={this.onUnfollow}>Unfollow</Button>
-                   ) : (
                     <Button id="btn" value={user.id} onClick={this.onFollow}>follow</Button>
-                   )}
                 </CardBody>
               </Card>
              )}  
