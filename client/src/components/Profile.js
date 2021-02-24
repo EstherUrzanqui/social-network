@@ -201,16 +201,10 @@ class Profile extends React.Component {
           {myFollowers.map((fol, index) => {
             return (
               <Card>
-                <CardBody>
-                  <CardImg className="picfollowers" top width="15%" src={fol.image} />
-                </CardBody>
+                <CardImg className="picfollowers" src={fol.image} />
               </Card>
             )
           })}
-      <br />
-      <div className="usersinplat">
-        <Followers />
-      </div>
       </div>
       <Link className="link" to="/following">
           Following: {following}
@@ -219,12 +213,13 @@ class Profile extends React.Component {
           {myFollowing.map((fol, index) => {
             return (
               <Card>
-                <CardBody>
-                  <CardImg className="picfollowers" src={fol.image} />
-                </CardBody>
+                <CardImg className="picfollowers" src={fol.image} />
               </Card>
             )
           })}
+      </div>
+      <div className="usersinplat">
+        <Followers />
       </div>
       <div>
         <div className ="activity">
