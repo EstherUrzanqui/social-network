@@ -16,76 +16,11 @@ h1 {
   width: calc(100% - 40px);
 }
 
-#underline {
-  border-bottom: 3px solid rgb(158, 155, 155);
-}
-
-.link {
-  width: 100px;
-  height: 25px;
-  margin-left: 40px;
-  margin-top: 30px;
-}
-
-#firstlink {
-  margin-top: 90px;
-}
-
-.profilethinking {
-  width: 800px;
-  height: 1px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.usersinplat {
-  position: absolute;
-  padding-left: 1000px;
-  top: 580px;
-  
-}
-.card {
-  height: fit-content;
-}
-
-.row {
-  width: 350px;
-  height: 150px;
-  display: grid;
-  grid-template-columns: repeat(3, 5vw);
-  grid-template-rows: repeat(2, 5vw);
-  margin-left: 45px;
-  padding-left: 50px;
-  margin-bottom: 90px;;
-}
-
-.activity {
-  font-family: 'Amatic SC', cursive;
-  color: rgb(247, 71, 100);
-  font-size: 50px;
-  font-weight: 900;
-  margin: 50px 40px 40px;
-  margin-top: -490px;
-}
-.details {
-  width: 160px;
-  height: 100%;
-  flex-grow:1;
-  display:flex;
-  margin: 2%;
-}
-
-.following {
-  margin-top: 60px;
-  margin-left: -80px;
-}
-
 .file {
   margin: auto;
   position: relative;
   top: 0;
   left:0
-  
 }
 
 .backgroundpic {
@@ -117,15 +52,48 @@ h1 {
   position: absolute;
   left: 800px;
   bottom: 170px;
-  
+}
+
+#underline {
+  border-bottom: 3px solid rgb(158, 155, 155);
+}
+
+.profilethinking {
+  width: 800px;
+  height: 1px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  padding-top: 400px;
+}
+
+.card {
+  height: fit-content;
+  width: fit-content;
+}
+
+.grid {
+  width: 350px;
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(3, 5vw);
+  grid-template-rows: repeat(2, 5vw);
+}
+
+.activity {
+  font-family: 'Amatic SC', cursive;
+  color: rgb(247, 71, 100);
+  font-size: 50px;
+  font-weight: 900;
+  margin: 50px 40px 40px;
 }
 
 .posted {
   margin-top: -80px;
   text-align: right;
 }
-
-
 
 
 

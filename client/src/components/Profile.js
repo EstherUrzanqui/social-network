@@ -194,51 +194,62 @@ class Profile extends React.Component {
             <Button className="submit">Post</Button>
           </Form>
       </div>
-      <Link className="link" id="firstlink" to="/followers">
-          Followers: {followers}
-      </Link>
-      <div className="row">
-          {myFollowers.map((fol, index) => {
-            return (
-              <Card>
-                <CardImg className="picfollowers" src={fol.image} />
-              </Card>
-            )
-          })}
-      </div>
-      <Link className="link" to="/following">
-          Following: {following}
-      </Link>
-      <div className="row">
-          {myFollowing.map((fol, index) => {
-            return (
-              <Card>
-                <CardImg className="picfollowers" src={fol.image} />
-              </Card>
-            )
-          })}
-      </div>
-      <div className="usersinplat">
-        <Followers />
-      </div>
-      <div>
-        <div className ="activity">
-          Latest Posts
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+            <Link className="link" id="firstlink" to="/followers">
+              Followers: {followers}
+            </Link>
+            <div className="grid">
+              {myFollowers.map((fol, index) => {
+                return (
+                <Card>
+                  <CardImg className="picfollowers" src={fol.image} />
+                </Card>
+                )
+              })}
+            </div>
+            <Link className="link" to="/following">
+              Following: {following}
+            </Link>
+            <div className="grid">
+              {myFollowing.map((fol, index) => {
+                return (
+                  <Card>
+                    <CardImg className="picfollowers" src={fol.image} />
+                  </Card>
+                )
+              })}
+            </div>
+          </div>
+          <div class="col-8">
+            <div>
+              <div className ="activity">
+                Latest Posts
+              </div>
+              <ul>
+                {thoughts.map((thought, index) => {
+                  return (
+                <Card className='thoughts' key={index}>
+                  <CardBody>
+                    <CardImg className="pic" top width="15%" src={this.props.user[0].image} alt="profile pic" />
+                    <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
+                    <CardText className="userpost">{thought.body}</CardText>
+                  </CardBody>
+                </Card>
+                )
+              })}
+              </ul>
+            </div>
+          </div>
+          <div class="col-2">
+            <div className="usersinplat">
+              <Followers />
+            </div>
+          </div>
         </div>
-      <ul>
-        {thoughts.map((thought, index) => {
-          return (
-            <Card className='thoughts' key={index}>
-              <CardBody>
-                <CardImg className="pic" top width="15%" src={this.props.user[0].image} alt="profile pic" />
-                <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
-                <CardText className="userpost">{thought.body}</CardText>
-              </CardBody>
-            </Card>
-          )
-        })}
-      </ul>
       </div>
+      
     </div>
     ) 
   }
