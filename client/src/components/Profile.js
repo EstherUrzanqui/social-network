@@ -194,7 +194,7 @@ class Profile extends React.Component {
             <Button className="submit">Post</Button>
           </Form>
       </div>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-2">
             <Link className="link" id="firstlink" to="/followers">

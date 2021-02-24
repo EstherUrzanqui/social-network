@@ -65,8 +65,8 @@ h1 {
   margin-right: auto;
 }
 
-.container {
-  padding-top: 400px;
+.container-fluid {
+  padding-top: 150px;
 }
 
 .card {
