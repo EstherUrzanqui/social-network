@@ -65,6 +65,7 @@ class Feed extends React.Component {
       
       return (
         <div className="feedform">
+          <div className="background-form">
           <Form className="feed-container" onSubmit={this.handleSubmit}>
             <FormGroup>
               <Input 
@@ -80,23 +81,36 @@ class Feed extends React.Component {
             </FormGroup>
             <Button className="submit">Post</Button>
           </Form>
-          <div className="login">Your Feed</div>
-            <ul>
-              {feed.map((feeds, index) => {
-                return (
-                  <Card className='thoughts' key={index}>
-                    <CardBody>
-                      <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
-                      <CardTitle className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
-                      <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
-                    </CardBody>
-                  </Card>
-                )
-              })}
-            </ul>
-            <div className="suggestions">
-              <Followers />
+          </div>
+          <div style={{display: 'inline-flex',  justifyContent:'center', alignItems:'center', width: "80%"}} id="underline"></div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2">
+
+              </div>
+              <div class="col-8">
+                <div className="login">Your Feed</div>
+                  <ul>
+                    {feed.map((feeds, index) => {
+                      return (
+                        <Card className='thoughts' key={index}>
+                          <CardBody>
+                            <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
+                            <CardTitle className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
+                            <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
+                          </CardBody>
+                        </Card>
+                      )
+                    })}
+                  </ul>
+              </div>
+              <div className="col-2">
+                <div className="suggestions">
+                  <Followers />
+                </div>
+              </div>
             </div>
+          </div>
         </div> 
       )
     }

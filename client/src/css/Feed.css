@@ -1,77 +1,77 @@
+.background-form {
+  background-color:  rgba(247, 71, 100, 0.562);
+  width: 90%;
+  display: inline-flex;
+  justify-content: center;
+}
 
 .feed-container {
-    justify-content: center;
-    align-items: flex-end;
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-    padding-left: 10px;
-    padding-bottom: 0.7em;
-    border-radius: 8px;
-    height: auto;
-    min-height: 40vh;
-    width: 40%;
-    font-weight: 600;
-    opacity: .85;
-    display: inline-flex;
-  }
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  padding-left: 10px;
+  padding-bottom: 0.7em;
+  border-radius: 8px;
+  height: auto;
+  min-height: 40vh;
+  width: 40%;
+  font-weight: 600;
+  opacity: .85;
+  display: inline-flex;
+}
 
-  #textarea {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-    text-align: center;
-  }
+#textarea {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  
+  border: 0;
+  color: #f2f2f273;
+  font-size: 20px;
+  height: 40px;
+  line-height: 20px;
+  outline: none !important;
+  width: 100%;
+  padding: 8px;
+  outline: none;
+  resize: none;
+}
 
-  .thoughts{
-    font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-    margin: 10px 10px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px 16px 16px 16px;
-    max-width: 468px;
-  }
+.container-fluid {
+  margin-top: -120px;
+}
 
-  .pic {
-    margin-right: 85%;
-    width: 19% !important;
-    height: 5vw !important;
-    max-height: 10%;
-  }
+.thoughts{
+  font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  margin: 10px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 16px 16px 16px;
+  max-width: 468px;
+}
 
-  .userdetails {
-    margin-top: -80px;
-    text-align: right;
-    color: black;
-  }
+.pic {
+  margin-right: 85%;
+  width: 19% !important;
+  height: 5vw !important;
+  max-height: 10%;
+}
 
-  #textarea {
-    background: transparent;
-    border: 0;
-    color: #f2f2f2;
-    font-size: 20px;
-    height: 40px;
-    line-height: 20px;
-    outline: none !important;
-    width: 100%;
-    padding: 8px;
-    outline: none;
-    resize: none;
-  }
+.userdetails {
+  margin-top: -80px;
+  text-align: right;
+  color: black;
+}
 
-  .suggestions {
-    position: absolute;
-    padding-left: 1100px;
-    top: 300px;
-  }
-
-  .userpost {
-    color: rgb(83, 82, 82);
-    font-size: 15px;
-    text-align: left;
-    line-height: 20px;
-    padding-left: 90px;
-    
-  }
+.userpost {
+  color: rgb(83, 82, 82);
+  font-size: 15px;
+  text-align: left;
+  line-height: 20px;
+  padding-left: 90px;
+}
