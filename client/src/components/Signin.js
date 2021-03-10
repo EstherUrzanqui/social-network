@@ -59,9 +59,8 @@ class Signin extends React.Component {
         
         return (
             <div className="page">
-                <div className="signin">
-                <div className="sign-up">Sign up</div>
                 <Form className ="signin-form" onSubmit={this.handleSubmit}>
+                <div className="sign-up">Sign up</div>
                     <FormGroup>
                         <Input
                             value={user_name}
@@ -111,7 +110,7 @@ class Signin extends React.Component {
                         Submit
                     </Button>
                 </Form>
-                </div>
+                
             </div>
         )
     }
