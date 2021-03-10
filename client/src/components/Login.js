@@ -59,49 +59,39 @@ class Login extends React.Component {
         return (
             <div className="page">
                 <div className="container">
-                    <div className="left">
-                        <div className="login">Login</div>
-                        <div className="eula">By logging in you agree to the terms and conditions</div>
-                    </div>
-                    <div className="right">
-                        <div className="form">
-                        <Form className="login-container" onSubmit={this.login}>
-                            <FormGroup className="group">
-                                <Input
-                                    value={this.state.user_name}
-                                    onChange={this.handleChange}
-                                    name="user_name"
-                                    type="text"
-                                    className="form-control mb-2"
-                                    placeholder="Username"
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Input
-                                    value={this.state.password}
-                                    onChange={this.handleChange}
-                                    name="password"
-                                    type="password"
-                                    className="form-control mb-2"
-                                    placeholder="Password"
-                                />
-                            </FormGroup>
-                            <Button className="submit" disabled={!user_name || !password}>
-                                Log in
-                            </Button>
-                            <br></br>
-                            <div className="link-div">
-                                <Link className="link" to="/signin">
-                                    Don't you have an account? Sing up
-                                </Link>
-                            </div>
-                        </Form>
+                    <div className="login">Login</div>
+                    <Form className="login-container" onSubmit={this.login}>
+                        <FormGroup className="group">
+                            <Input
+                                value={this.state.user_name}
+                                onChange={this.handleChange}
+                                name="user_name"
+                                type="text"
+                                className="form-control mb-2"
+                                placeholder="Username"
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                                name="password"
+                                type="password"
+                                className="form-control mb-2"
+                                placeholder="Password"
+                            />
+                        </FormGroup>
+                        <Button className="submit" disabled={!user_name || !password}>
+                            Submit
+                        </Button>
+                        <br></br>
+                        <div className="link-div">
+                            <Link className="link" to="/signin">
+                                Don't you have an account? Sing up
+                            </Link>
                         </div>
-                    </div>
+                    </Form>   
                 </div>
-                
-                
-                
             </div>
         )
     }

@@ -1,111 +1,57 @@
-@import url('https://rsms.me/inter/inter-ui.css');
-::selection {
-  background: white;
-}
-::-webkit-selection {
-  background: white;
-}
-::-moz-selection {
-  background: white;
-}
-body {
-  background: white;
-  font-family: 'Inter UI', sans-serif;
-  margin: 0;
-  padding: 20px;
-}
+
 .page {
-  background-color: white;
+  background: linear-gradient(-70deg, rgb(223, 116, 250) , rgb(119, 153, 248) 30%, rgb(240, 68, 211) );
   margin-top: -20px;
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
   position: absolute;
   place-content: center;
-  width: calc(100% - 40px);
+  width: calc(100%);
 }
-@media (max-width: 767px) {
-  .page {
-    height: auto;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-  }
-}
+
 .container {
   display: flex;
-  height: 320px;
-  margin: 0 auto;
-  width: 640px;
+  height: 500px;
   margin-top: -240px;
-}
-@media (max-width: 767px) {
-  .container {
-    flex-direction: column;
-    height: 630px;
-    width: 320px;
-  }
-}
-.left {
-  background: rgba(94, 89, 93, 0.397);
-  height: calc(100% - 40px);
-  top: 25px;
-  position: relative;
-  width: 50%;
-}
-@media (max-width: 767px) {
-  .left {
-    height: 100%;
-    left: 20px;
-    width: calc(100% - 40px);
-    max-height: 270px;
-  }
-}
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
-.login {
-  font-family: 'Amatic SC', cursive;
-  color: rgb(247, 71, 100);
-  font-size: 50px;
-  font-weight: 900;
-  margin: 50px 40px 40px;
-}
-.eula {
-  color: #999;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 40px;
-}
-.right {
-  background: #565658e3;
+  margin: 50px;
+  background: white;
   box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
   color: #F1F1F2;
-  position: relative;
-  width: 50%;
-  
+  max-width: 380px !important;
+  display: inline !important;
+  border-radius: 4%;
 }
-@media (max-width: 767px) {
-  .right {
-    flex-shrink: 0;
-    height: 100%;
-    width: 100%;
-    max-height: 350px;
-  }
+
+.login {
+  font-family: 'Amatic SC', cursive;
+  color: rgb(223, 116, 250);
+  font-size: 60px;
+  height: 80px;
+  text-align: center;
+  justify-content: center;
 }
-.form {
-  margin: 20px;
-  position: absolute;
-}
+
+
 .group{
-  margin-top: -60px;
-  padding-top: 100px;
+  margin-top: -30px;
+  padding-top: 80px;
+}
+
+.form-control {
+  width: 70% !important;
+  display: inline-block !important;
+  border: 0px !important;
+  border-bottom: 1px solid rgba(167, 164, 164, 0.842) !important;
+
 }
 
 .submit {
   color: white;
   font-family: 'Amatic SC', cursive;
-  background-color: rgb(247, 71, 100) !important;
-  margin-top: 20px;
-  transition: color 300ms;
-  text-decoration: none;
+  font-size: 20px !important;
+  background-color: rgb(240, 68, 211) !important;
+  margin-top: 60px;
   position: relative;
   overflow: hidden;
   height: 40px;
@@ -113,7 +59,7 @@ body {
 }
 
 .link-div{
-  padding-top: 40px;
+  padding-top: 80px;
   padding-right: 28px;
 }
 
