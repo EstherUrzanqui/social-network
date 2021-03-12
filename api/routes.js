@@ -11,7 +11,7 @@ require("dotenv").config()
 
 const supersecret = process.env.SUPER_SECRET
 
-//upload profile picture
+//UPLOAD PROFILE PICTURE
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './client/public/img')
@@ -41,7 +41,7 @@ routes.post("/profile/:id/upload", upload.single("image"), (req, res, next) => {
     .catch(err => res.status(500).send(err))
 })
 
-//upload background image
+//UPLOAD BACKGROUND IMAGE
 routes.post("/profile/:id/uploadbackground", upload.single("background_image"), (req, res, next) => {
     let { id } = req.params
 
@@ -56,7 +56,7 @@ routes.post("/profile/:id/uploadbackground", upload.single("background_image"), 
     .catch(err => res.status(500).send(err))
 })
 
-//edit user details
+//EDIT USER DETAILS
 routes.post("/profile/:id/edit/user_name", (req, res) => {
     let { id } = req.params
     let { user_name } = req.body;
@@ -111,7 +111,25 @@ routes.post("/profile/:id/edit/password", (req, res) => {
     
 })
 
-//post a share
+//DELETE ACCOUNT
+routes.delete("/profile/:id/edit/delete", (req, res) => {
+    let { id } = req.params
+    
+    db(`DELETE user, follow, following 
+        FROM user 
+        INNER JOIN relationships as follow 
+        ON follow.followerId = user.id
+        INNER JOIN relationships as following
+        ON following.followedId = user.id
+        WHERE user.id = ${id}
+        `)
+        .then((results) => {
+            res.send({ message: "user deleted" })
+        })
+        .catch(err => res.status(500).send(err))
+})
+
+//POST A MESSAGE
 routes.post("/profile/share", (req, res) => {
     let { user_id, body, createdAt, updatedAt } = req.body;
     
@@ -127,7 +145,7 @@ routes.post("/profile/share", (req, res) => {
         .catch(err => res.status(500).send(err))
 })
 
-//get all shares
+//GET ALL MESSAGES
 routes.get("/profile/shares", (req, res) => {
 
     db(`SELECT shares.body, 
@@ -147,7 +165,7 @@ routes.get("/profile/shares", (req, res) => {
         });
 })
 
-//get shares by user id
+//GET POST BY USER ID
 routes.get("/profile/shares/:user_id", (req, res) => {
     const {user_id} = req.params
     db(`SELECT * FROM shares WHERE user_id='${user_id}' ORDER BY createdAt DESC`)
@@ -157,7 +175,7 @@ routes.get("/profile/shares/:user_id", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//all users
+//GET ALL USERS
 routes.get("/users", (req, res) => {
     db(`SELECT * FROM user`)
     .then(results => {
@@ -166,7 +184,7 @@ routes.get("/users", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//user by id
+//USER BY ID
 routes.get("/users/:id", (req, res) => {
     const { id } = req.params
     db(`SELECT * FROM user WHERE id='${id}'`)
@@ -176,7 +194,7 @@ routes.get("/users/:id", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//get suggestion to follow
+//GET SUGGESTIONS TO FOLLOW
 routes.get("/users/:id/suggestions", (req, res) => {
     const { id } = req.params
 
@@ -203,7 +221,7 @@ routes.get("/users/:id/suggestions", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//follow user
+//FOLLOW USER
 routes.post("/users/:id/follow/:followId", (req, res) => {
     const { id, followId } = req.params
     const { createdAt, updatedAt } = req.body
@@ -219,7 +237,7 @@ routes.post("/users/:id/follow/:followId", (req, res) => {
         .catch(err => res.status(500).send(err))
 })
 
-//unfollow user
+//UNFOLLOW USER
 routes.delete("/users/:id/unfollow/:followId", (req, res) => {
     const { id, followId } = req.params
     
@@ -233,7 +251,7 @@ routes.delete("/users/:id/unfollow/:followId", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//get following users
+//GET FOLLOWING USERS
 routes.get("/users/:id/following", (req, res) => {
     const { id } = req.params
 
@@ -251,7 +269,7 @@ routes.get("/users/:id/following", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//get count following users
+//GET COUNT FOLLOWING USERS
 routes.get("/users/:id/following/count", (req, res) => {
     const { id } = req.params
 
@@ -262,7 +280,7 @@ routes.get("/users/:id/following/count", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//get followers users
+//GET FOLLOWERS
 routes.get("/users/:id/followers", (req, res) => {
     const { id } = req.params
 
@@ -280,7 +298,7 @@ routes.get("/users/:id/followers", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//get count followers users
+//GET COUNT FOLLOWERS
 routes.get("/users/:id/followers/count", (req, res) => {
     const { id } = req.params
 
@@ -291,7 +309,7 @@ routes.get("/users/:id/followers/count", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-//sign up
+//SIGN UP
 routes.post("/register", (req, res, next) => {
     let { user_name, email, password, password2 } = req.body;
     let errors = []
@@ -345,7 +363,7 @@ routes.post("/register", (req, res, next) => {
 
 
 
-//log in
+//LOG IN
 routes.post("/login", function (req, res, next) {
     const { user_name, password } = req.body
 
@@ -368,7 +386,7 @@ routes.post("/login", function (req, res, next) {
 })
 
 
-//protected endpoint
+//PROTECTED ENDPOINT
 routes.get("/profile", userShouldBeLoggedIn, function (req, res, next) {
     
     res.send({ message: `Here is the private data for user ${req.userId}!`, id: req.userId })
