@@ -1,6 +1,6 @@
 .background-form {
-  background-color:  rgba(247, 71, 100, 0.562);
-  width: 90%;
+  background: linear-gradient(-70deg, rgb(223, 116, 250) , rgb(119, 153, 248) 30%, rgb(240, 68, 211) );
+  width: 98%;
   display: inline-flex;
   justify-content: center;
 }
@@ -23,19 +23,28 @@
 }
 
 #textarea {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  
-  border: 0;
-  color: #f2f2f273;
+  text-align: left;
+  border: 0px !important;
   font-size: 20px;
   height: 40px;
-  line-height: 20px;
-  outline: none !important;
-  width: 100%;
   padding: 8px;
-  outline: none;
   resize: none;
+  border-bottom: 1px solid rgba(75, 74, 74, 0.959) !important;
+  background-color: rgba(119, 154, 248, 0);
+  border-radius: 0% !important;
+  font-weight: bold;
+}
+
+.post {
+  color: white;
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px !important;
+  background-color: rgb(240, 68, 211) !important;
+  margin-top: 0px;
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  width: 100px;
 }
 
 .container-fluid {

@@ -79,7 +79,7 @@ class Feed extends React.Component {
                 type="textarea"
               />
             </FormGroup>
-            <Button className="submit">Post</Button>
+            <Button className="post">Post</Button>
           </Form>
           </div>
           <div style={{display: 'inline-flex',  justifyContent:'center', alignItems:'center', width: "80%"}} id="underline"></div>
