@@ -42,8 +42,8 @@
   width: 70% !important;
   display: inline-block !important;
   border: 0px !important;
+  border-radius: 0% !important;
   border-bottom: 1px solid rgba(167, 164, 164, 0.842) !important;
-
 }
 
 .submit {
