@@ -111,6 +111,21 @@ class Editprofile extends React.Component {
     })
   }
 
+  deleteAccount = (e) => {
+    e.preventDefault();
+    const userId = this.props.user[0].id
+
+    axios.delete(`http://localhost:7001/api/profile/${userId}/edit/delete`)
+    .then((res) => {
+      if(res.data != null) {
+        alert("user deleted");
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
 
   render() {
     //Modal to image
@@ -151,6 +166,9 @@ class Editprofile extends React.Component {
             <Input type="text" name="password2" placeholder="Repeat Password" onChange={this.onUserChange} />
             <Button type="submit">Save</Button>
           </FormGroup>
+        </Form>
+        <Form onSubmit={this.deleteAccount}>
+          <Button type="submit">Delete Account</Button>
         </Form>
       </div>
     )
