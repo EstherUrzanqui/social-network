@@ -115,10 +115,8 @@ routes.post("/profile/:id/edit/password", (req, res) => {
 routes.delete("/profile/:id/edit/delete", (req, res) => {
     let { id } = req.params
     
-    db(`DELETE user, follow, following 
+    db(`DELETE user, following 
         FROM user 
-        INNER JOIN relationships as follow 
-        ON follow.followerId = user.id
         INNER JOIN relationships as following
         ON following.followedId = user.id
         WHERE user.id = ${id}
