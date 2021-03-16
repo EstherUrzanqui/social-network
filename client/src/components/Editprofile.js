@@ -13,7 +13,8 @@ class Editprofile extends React.Component {
       user_name: "", 
       email: "",
       password: "",
-      password2: ""
+      password2: "",
+      redirect: false
     }
   }
 
@@ -118,12 +119,17 @@ class Editprofile extends React.Component {
     axios.delete(`http://localhost:7001/api/profile/${userId}/edit/delete`)
     .then((res) => {
       if(res.data != null) {
-        alert("user deleted");
+        this.setState({ redirect: true });
       }
+      this.homeRedirect()
     })
     .catch(error => {
       console.log(error)
     })
+  }
+
+  homeRedirect = () => {
+    this.props.history.push("/")
   }
 
 
