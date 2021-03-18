@@ -23,6 +23,9 @@ const TheNavbar = (props) => {
                                 <NavLink href="/feed">Feed</NavLink>
                             </NavItem>
                             <NavItem>
+                                <NavLink href="/edit">Account</NavLink>
+                            </NavItem>
+                            <NavItem>
                             <NavLink href="/" onClick={props.logout()}>Logout</NavLink>
                             </NavItem>   
                         </Nav>
