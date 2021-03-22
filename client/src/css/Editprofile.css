@@ -1,0 +1,102 @@
+.account{
+  background-color: white;
+  height: calc(100% - 40px);
+  position: absolute;
+  place-content: center;
+  width: calc(100%);
+  color: rgb(240, 68, 211)
+}
+
+h1 {
+  font-family: 'Amatic SC', cursive;
+  color: rgb(240, 68, 211) !important;
+  font-size: 70px !important;
+  text-align: center;
+  justify-content: center;
+  margin-top: 20px !important;
+}
+
+h2 {
+  float: left;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 25% !important;
+  margin-left: 25% !important;
+  margin-top: 100px;
+}
+
+.col-md-12 {
+  margin-bottom: 30px;
+}
+
+.mainimage{
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+.backgroundimage{
+  width: 400px;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 10%;
+}
+.updateimage {
+  max-width: 500px;
+  display: inline-flex;
+  margin-left: -100px;
+}
+
+#editusername h4 {
+  display: inline;
+  vertical-align: top;
+}
+#editusername p {
+  display: inline;
+  vertical-align: top;
+  margin-left: 226px;
+}
+
+#editemail h4 {
+  display: inline;
+  vertical-align: top;
+}
+#editemail p {
+  display: inline;
+  vertical-align: top;
+  margin-left: 100px;
+}
+
+#editpassword p {
+  display: inline;
+  vertical-align: top;
+  margin-left: 280px;
+}
+
+.editdetails {
+  font-family: 'Amatic SC', cursive;
+  font-size: 60px;
+  color: rgb(240, 68, 211);
+  font-weight: 900;
+  max-width: 500px;
+  
+}
+
+#editprofile {
+  margin-left: 10%;
+  margin-bottom: -10%;
+}
+
+.updatepass {
+  font-family: 'Amatic SC', cursive;
+  font-size: 60px;
+  color: rgb(240, 68, 211);
+  font-weight: 900;
+  max-width: 500px;
+  
+}
+
