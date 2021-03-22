@@ -3,6 +3,7 @@ import axios from "axios";
 import Withuser from "./Withuser"
 import { Button, Form, Input, FormGroup, Label } from "reactstrap"
 import withUser from "./Withuser";
+import "../css/Editprofilepic.css"
 
 class Editprofilepic extends React.Component {
   constructor(props) {
@@ -42,10 +43,9 @@ class Editprofilepic extends React.Component {
     return(
       <div className="user-edit">
         <Form onSubmit={this.uploadImage}>
-          <FormGroup>
-            <Label>Edit your profile picture</Label>
+          <FormGroup className="editpic">
             <Input type="file" name="upload_file" onChange={this.onChange} />
-            <Button type="submit">Save</Button>
+            <Button type="submit" id="editpicbtn">Save</Button>
           </FormGroup>
         </Form>
       </div>
