@@ -45,7 +45,7 @@ class Editbackimage extends React.Component {
         <Form onSubmit={this.uploadBackgroundImage}>
           <FormGroup>
             <Input type="file" name="upload_background" onChange={this.onChange} />
-            <Button type="submit">Save</Button>
+            <Button type="submit" id="editpicbtn">Save</Button>
           </FormGroup>
         </Form>
       </div>
