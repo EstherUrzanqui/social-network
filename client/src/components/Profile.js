@@ -158,18 +158,16 @@ class Profile extends React.Component {
     return(
     <div className="user">
       <div className="file">
-        <img className="backgroundpic" alt="background" src={this.props.user[0].background_image} />
-        <FontAwesomeIcon onClick={this.toggle} className="editicon" icon={ faEdit } size="2x" color="grey" />
+        <img className="backgroundpic" onClick={this.toggle} alt="background" src={this.props.user[0].background_image} />
         <Modal isOpen={isOpen} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Background Picture</ModalHeader>
           <ModalBody>
             <Editbackimage />
           </ModalBody>
         </Modal>
-        <img className="profilepic" alt="profile" src={this.props.user[0].image} />
-        <FontAwesomeIcon onClick={this.togglePic} className="editprofilepic" icon={ faEdit } size="1x" color="grey" />
+        <img className="profilepic" onClick={this.togglePic} alt="profile" src={this.props.user[0].image} />
         <Modal isOpen={isOpenPic} toggle={this.togglePic}>
-          <ModalHeader toggle={this.togglePic}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.togglePic}>Profile Picture</ModalHeader>
           <ModalBody>
             <Editprofilepic />
           </ModalBody>
