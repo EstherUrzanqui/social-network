@@ -209,7 +209,8 @@ routes.get("/users/:id/suggestions", (req, res) => {
                 relationships.followerId = ${id}
             AND
                 relationships.followedId = user.id
-            )`
+            )
+        ORDER BY RAND()`
     )
     .then(results => {
         res.send(results.data)
@@ -258,7 +259,8 @@ routes.get("/users/:id/following", (req, res) => {
         INNER JOIN 
             relationships ON user.id = relationships.followedId 
         AND 
-            relationships.followerId = ${id}`)
+            relationships.followerId = ${id}
+        ORDER BY RAND()`)
     .then(results => {
         res.send(results.data)
     })
@@ -287,7 +289,8 @@ routes.get("/users/:id/followers", (req, res) => {
         INNER JOIN 
             relationships ON user.id = relationships.followerId
         AND 
-            relationships.followedId = ${id}`)
+            relationships.followedId = ${id}
+        ORDER BY RAND()`)
     .then(results => {
         res.send(results.data)
     })
