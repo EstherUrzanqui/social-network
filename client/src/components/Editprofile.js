@@ -1,67 +1,28 @@
 import React from "react";
 import axios from "axios";
 import Withuser from "./Withuser"
-import { Button, Form, Input, FormGroup } from "reactstrap"
+import { Button, Form, Input, FormGroup, Modal, ModalBody, ModalHeader } from "reactstrap"
 import Label from "reactstrap/lib/Label";
+import "../css/Editprofile.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Editprofilepic from "./Editprofilepic";
+import Editbackimage from "./Editbackimage";
 
 class Editprofile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      image: null,
-      background_image: null,
       user_name: "", 
       email: "",
       password: "",
       password2: "",
-      redirect: false
+      redirect: false,
+      isOpen: false,
+      isOpenPic: false,
+      isOpenName: false,
+      isOpenEmail: false,
+      isOpenPassword: false
     }
-  }
-
-  onChange = e => {
-    console.log(e.target.files[0])
-    this.setState({
-      image: e.target.files[0],
-      background_image: e.target.files[0]
-    })
-  }
-  
-  uploadImage = () => {
-    const formData = new FormData()
-    const userId = this.props.user[0].id
-
-    formData.append("image", this.state.image)
-
-    axios.post(`http://localhost:7001/api/profile/${userId}/upload`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    })
-    .then(response => {
-      console.log(response.data)
-    })
-    .catch(error => {
-        console.log(error)
-    })
-  }
-
-  uploadBackgroundImage = () => {
-    const formData = new FormData()
-    const userId = this.props.user[0].id
-
-    formData.append("background_image", this.state.background_image)
-
-    axios.post(`http://localhost:7001/api/profile/${userId}/uploadbackground`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    })
-    .then(response => {
-      console.log(response.data)
-    })
-    .catch(error => {
-        console.log(error)
-    })
   }
 
   onUserChange = e => {
@@ -132,47 +93,136 @@ class Editprofile extends React.Component {
     this.props.history.push("/")
   }
 
+  toggle = () => {
+    const { isOpen } = this.state
+    this.setState({
+      isOpen: !isOpen
+    })
+  }
+
+  togglePic = () => {
+    const { isOpenPic } = this.state
+    this.setState({
+      isOpenPic: !isOpenPic
+    })
+  }
+
+  toggleName = () => {
+    const { isOpenName } = this.state
+    this.setState({
+      isOpenName: !isOpenName
+    })
+  }
+
+  toggleEmail = () => {
+    const { isOpenEmail } = this.state
+    this.setState({
+      isOpenEmail: !isOpenEmail
+    })
+  }
+
+  togglePassword = () => {
+    const { isOpenPassword } = this.state
+    this.setState({
+      isOpenPassword: !isOpenPassword
+    })
+  }
+
 
   render() {
-    //Modal to image
+    const { isOpen, isOpenPic, isOpenName, isOpenEmail, isOpenPassword } = this.state;
+    
     return(
-      <div className="user-edit">
-        <Form onSubmit={this.uploadImage}>
-          <FormGroup>
-            <Label>Edit your profile picture</Label>
-            <Input type="file" name="upload_file" onChange={this.onChange} />
-            <Button type="submit">Save</Button>
-          </FormGroup>
-        </Form>
-        <Form onSubmit={this.uploadBackgroundImage}>
-          <FormGroup>
-            <Label>Edit your background picture</Label>
-            <Input type="file" name="upload_background" onChange={this.onChange} />
-            <Button type="submit">Save</Button>
-          </FormGroup>
-        </Form>
-        <Form onSubmit={this.handleUserName}>
-          <FormGroup>
-            <Label>Edit your Username</Label>
-            <Input type="text" name="user_name" placeholder="Edit Username" onChange={this.onUserChange}/>
-            <Button type="submit">Save</Button>
-          </FormGroup>
-        </Form>
-        <Form onSubmit={this.handleUserEmail}>
-          <FormGroup>
-            <Label>Email</Label>
-            <Input type="text" name="email" placeholder="Edit Email" onChange={this.onUserChange} />
-            <Button type="submit">Save</Button>
-          </FormGroup>
-        </Form>
-        <Form onSubmit={this.handleUserPassword}>
-          <FormGroup>
-            <Label>Password</Label>
-            <Input type="text" name="password" placeholder="Enter your new Password" onChange={this.onUserChange} />
-            <Input type="text" name="password2" placeholder="Repeat Password" onChange={this.onUserChange} />
-            <Button type="submit">Save</Button>
-          </FormGroup>
-        </Form>
+      <div className="account">
+        <h1>My Account</h1>
+        <div className="row g-3">
+          <div className="col-md-12">
+            <h2>Profile Picture</h2>
+            <img onClick={this.togglePic} className="mainimage" alt="profile" src={this.props.user[0].image} />
+            <Modal isOpen={isOpenPic} toggle={this.togglePic}>
+              <ModalHeader toggle={this.togglePic}>Edit your profile picture</ModalHeader>
+              <ModalBody>
+                <Editprofilepic />
+              </ModalBody>
+            </Modal>
+          </div>
+          <div className="col-md-12">
+            <h2>Background Picture</h2>
+            <img onClick={this.toggle} className="backgroundimage" alt="background" src={this.props.user[0].background_image} />
+            <Modal isOpen={isOpen} toggle={this.toggle}>
+              <ModalHeader toggle={this.toggle}>Edit your background picture</ModalHeader>
+              <ModalBody>
+                <Editbackimage />
+              </ModalBody>
+            </Modal>
+          </div>
+          <div className="col-md-12">
+            <h2>Username</h2> 
+            <h4>{this.props.user[0].user_name}</h4>
+            <p onClick={this.toggleName}>Edit</p>
+          </div>
+          <div className="col-md-12">
+            <Modal isOpen={isOpenName} toggle={this.toggleName}>
+              <ModalHeader toggle={this.toggleName}>Edit your Username</ModalHeader>
+                <ModalBody>
+                  <Form onSubmit={this.handleUserName}>
+                    <FormGroup className="editdetails">
+                      <Input type="text" name="user_name" placeholder="Edit Username" onChange={this.onUserChange}/>
+                      <Button type="submit">Update</Button>
+                    </FormGroup>
+                  </Form>
+                </ModalBody>
+            </Modal>
+          </div>
+          <div className="col-md-12">
+            <h2>Email</h2>
+            <h4>{this.props.user[0].email}</h4>
+            <p onClick={this.toggleEmail}>Edit</p>
+          </div>
+          <div className="col-md-12">
+            <Modal isOpen={isOpenEmail} toggle={this.toggleEmail}>
+              <ModalHeader toggle={this.toggleEmail}>Edit your Email</ModalHeader>
+                <ModalBody>
+                  <Form onSubmit={this.handleUserEmail}>
+                    <FormGroup className="editdetails">
+                      <Input type="text" name="email" placeholder="Edit Email" onChange={this.onUserChange} />
+                      <Button type="submit">Update</Button>
+                    </FormGroup>
+                  </Form>
+                </ModalBody>
+            </Modal>
+          </div>
+          <div className="col-md-12">
+            <h2>Password</h2>
+            <p onClick= {this.togglePassword}>Edit</p>
+          </div>
+          <div className="col-md-12">
+            <Modal isOpen={isOpenPassword} toggle={this.togglePassword}>
+              <ModalHeader toggle={this.togglePassword}>Edit your Password</ModalHeader>
+                <ModalBody>
+                  <Form onSubmit={this.handleUserPassword} className="updatepass">
+                    <FormGroup >
+                      <Input 
+                        type="text" 
+                        name="password" 
+                        placeholder="Enter your new Password" 
+                        onChange={this.onUserChange}
+                      >
+                      </Input>
+                      <Input 
+                        type="text" 
+                        name="password2" 
+                        placeholder="Repeat Password" 
+                        onChange={this.onUserChange} 
+                      >
+                      </Input>
+                      <Button type="submit">Update</Button>
+                    </FormGroup>
+                  </Form>
+                </ModalBody>
+            </Modal>
+          </div>
+        </div>
         <Form onSubmit={this.deleteAccount}>
           <Button type="submit">Delete Account</Button>
         </Form>
