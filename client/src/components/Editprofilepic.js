@@ -3,7 +3,7 @@ import axios from "axios";
 import Withuser from "./Withuser"
 import { Button, Form, Input, FormGroup, Label } from "reactstrap"
 import withUser from "./Withuser";
-import "../css/Editprofilepic.css"
+
 
 class Editprofilepic extends React.Component {
   constructor(props) {
