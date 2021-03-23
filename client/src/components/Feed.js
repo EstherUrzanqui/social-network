@@ -29,7 +29,8 @@ class Feed extends React.Component {
   }
 
     getFeed = () => {
-      axios("http://localhost:7001/api/profile/shares")
+      const userId = this.props.user[0].id
+      axios(`http://localhost:7001/api/profile/shares/${userId}`)
         .then(response => {
           this.setState({ feed: response.data})
         })
