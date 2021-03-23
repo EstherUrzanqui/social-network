@@ -4,10 +4,6 @@ html, body {
   padding:0;
 }
 
-h1 {
-  color: black;
-}
-
 .user {
   display:flex;
   flex-direction: column;
@@ -32,12 +28,6 @@ h1 {
   left: 0;
 }
 
-.editicon {
-  position: absolute;
-  right: 10px;
-  bottom: 120px;
-}
-
 .profilepic {
   width: 230px;
   height: 230px;
@@ -46,12 +36,6 @@ h1 {
   bottom: 130px;
   left: 620px;
   border: 8px solid rgb(52, 51, 60);
-}
-
-.editprofilepic {
-  position: absolute;
-  left: 800px;
-  bottom: 170px;
 }
 
 #underline {
@@ -69,6 +53,11 @@ h1 {
   padding-top: 200px;
 }
 
+.row {
+  margin-left: 15px !important;
+  margin-right: 1% !important;
+}
+
 .card {
   height: fit-content;
   width: fit-content;
@@ -80,6 +69,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 5vw);
   grid-template-rows: repeat(2, 5vw);
+  
 }
 
 .activity {
@@ -88,6 +78,10 @@ h1 {
   font-size: 50px;
   font-weight: 900;
   margin: 50px 40px 40px;
+}
+
+ul {
+  margin-left: 10px;
 }
 
 .posted {
