@@ -142,23 +142,26 @@ routes.post("/profile/share", (req, res) => {
 })
 
 //GET ALL MESSAGES
-routes.get("/profile/shares", (req, res) => {
+routes.get("/profile/shares/:id", (req, res) => {
+    const { id } = req.params
 
-    db(`SELECT shares.body, 
-        shares.createdAt, 
-        user.user_name,
-        user.image 
+    db(`SELECT 
+            relationships.followedId,
+            shares.body,
+            shares.createdAt,
+            user.user_name,
+            user.image
         FROM shares 
-        INNER JOIN user 
-        ON user.id = shares.user_id
-        ORDER BY createdAt DESC`)
+        INNER JOIN relationships
+        ON relationships.followerId = '${id}'
+        AND relationships.followedId = shares.user_id
+        INNER JOIN user
+        ON user.id = shares.user_id`
+        )
         .then(results => {
-            if (results.error) {
-                res.status(400).send({ message: "There was an error" });
-            }
-    
             res.send(results.data);
-        });
+        })
+        .catch(err => res.status(500).send(err))
 })
 
 //GET POST BY USER ID
