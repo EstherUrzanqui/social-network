@@ -165,7 +165,7 @@ routes.get("/profile/shares/:id", (req, res) => {
 })
 
 //GET POST BY USER ID
-routes.get("/profile/shares/:user_id", (req, res) => {
+routes.get("/profile/:user_id", (req, res) => {
     const {user_id} = req.params
     db(`SELECT * FROM shares WHERE user_id='${user_id}' ORDER BY createdAt DESC`)
     .then(results => {

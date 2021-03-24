@@ -46,7 +46,7 @@ class Profile extends React.Component {
     const userId= this.props.user[0].id
 
     try {
-      const response = await axios(`http://localhost:7001/api/profile/shares/${userId}`)
+      const response = await axios(`http://localhost:7001/api/profile/${userId}`)
       this.setState((state) => ({
         thoughts: response.data,
         loggedIn: !state.loggedIn
@@ -154,6 +154,7 @@ class Profile extends React.Component {
   render() {
     const { thoughts, following, followers, myFollowers, myFollowing, body, isOpen, isOpenPic } = this.state
     const  userName  = this.props.user[0].user_name
+    console.log(userName)
 
     return(
     <div className="user">
@@ -242,6 +243,7 @@ class Profile extends React.Component {
           </div>
           <div class="col-2">
             <div className="usersinplat">
+              <h2 id="sugtitle">Suggestions</h2>
               <Followers />
             </div>
           </div>
