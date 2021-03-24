@@ -68,7 +68,7 @@
   margin-right: 85%;
   width: 19% !important;
   height: 5vw !important;
-  max-height: 10%;
+  border-radius: 50% !important;
 }
 
 .userdetails {
