@@ -156,7 +156,8 @@ routes.get("/profile/shares/:id", (req, res) => {
         ON relationships.followerId = '${id}'
         AND relationships.followedId = shares.user_id
         INNER JOIN user
-        ON user.id = shares.user_id`
+        ON user.id = shares.user_id
+        ORDER BY createdAt DESC`
         )
         .then(results => {
             res.send(results.data);
@@ -187,6 +188,29 @@ routes.get("/users", (req, res) => {
 routes.get("/users/:id", (req, res) => {
     const { id } = req.params
     db(`SELECT * FROM user WHERE id='${id}'`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
+//SEARCH BY KEYWORDS
+routes.get("/search/:query", (req, res) => {
+    const query = req.params.query
+    db(`SELECT 
+            user_id, 
+            body, 
+            createdAt 
+        FROM shares 
+        WHERE body 
+        LIKE '%${query}%'
+        UNION SELECT 
+            user_name, 
+            image, 
+            background_image  
+        FROM user 
+        WHERE user_name 
+        LIKE '%${query}%'`)
     .then(results => {
         res.send(results.data)
     })
