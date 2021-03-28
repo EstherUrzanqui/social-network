@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, Ca
 import Withuser from "./Withuser"
 import moment from "moment"
 import Followers from "./Followers";
-
+import Search from "./Search";
 
 
 class Feed extends React.Component {
@@ -13,7 +13,10 @@ class Feed extends React.Component {
       super(props)
       this.state = {
         feed: [],
-        body: ""
+        body: "",
+        results: [],
+        message: false,
+        error: false
       }
     }
         
@@ -60,9 +63,31 @@ class Feed extends React.Component {
       })
     }
 
+    fetchSearchResults = (query = " ") => {
+      if(!query) {
+        this.getFeed()
+        return
+      }
+      fetch(`http://localhost:7001/api/search/${query}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          if(data.length === 0) {
+            this.setState({ message: true })
+          } else {
+            this.setState({
+              results: data,
+              message: false
+            })
+          }
+        })
+    }
+        
+   
+
     render() {
-      const { body, feed } = this.state
-      console.log(feed)
+      const { body, feed, message, results } = this.state
       
       return (
         <div className="feedform">
@@ -87,7 +112,7 @@ class Feed extends React.Component {
           <div class="container-fluid">
             <div class="row">
               <div class="col-2">
-
+                <Search onSearch={this.fetchSearchResults}/>
               </div>
               <div class="col-8">
                 <div className="login">Your Feed</div>
