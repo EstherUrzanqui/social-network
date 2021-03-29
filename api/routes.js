@@ -198,19 +198,15 @@ routes.get("/users/:id", (req, res) => {
 routes.get("/search/:query", (req, res) => {
     const query = req.params.query
     db(`SELECT 
-            user_id, 
-            body, 
-            createdAt 
-        FROM shares 
-        WHERE body 
-        LIKE '%${query}%'
-        UNION SELECT 
-            user_name, 
-            image, 
-            background_image  
-        FROM user 
-        WHERE user_name 
-        LIKE '%${query}%'`)
+            shares.body,
+            shares.createdAt,
+            user.user_name,
+            user.image 
+        FROM user
+        INNER JOIN shares
+        ON shares.body LIKE '%${query}%'
+        OR user.user_name LIKE '%${query}%'
+        `)
     .then(results => {
         res.send(results.data)
     })
