@@ -114,6 +114,24 @@ class Feed extends React.Component {
               <div class="col-2">
                 <Search onSearch={this.fetchSearchResults}/>
               </div>
+              <div>
+                {message ? (
+                  <h5>There are no results with your search</h5>
+                ) : (
+                  results.map((result, index) => {
+                    return (
+                      <Card key={index}>
+                        <CardBody>
+                          <CardImg className="pic" top width="15%" src={result.image} alt="profile pic" />
+                          <CardTitle className="userdetails">{result.user_name} on {moment(result.createdAt).format("MMM Do YYYY")}</CardTitle>
+                          <CardText style={{width:"80%"}} className="userpost">{result.body}</CardText>
+                        </CardBody>
+                      </Card>
+
+                    )
+                  })
+                )}
+              </div>
               <div class="col-8">
                 <div className="login">Your Feed</div>
                   <ul>
