@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Withuser from "./Withuser"
 import { Button, Form, Input, FormGroup, Modal, ModalBody, ModalHeader } from "reactstrap"
-import Label from "reactstrap/lib/Label";
 import "../css/Editprofile.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Editprofilepic from "./Editprofilepic";

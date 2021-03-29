@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Withuser from "./Withuser"
-import { Button, Form, Input, FormGroup, Label } from "reactstrap"
+import { Button, Form, Input, FormGroup } from "reactstrap"
 import withUser from "./Withuser";
 
 
