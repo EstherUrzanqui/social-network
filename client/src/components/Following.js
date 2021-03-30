@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 import withUser from "./Withuser"
-import { Card, CardBody, CardTitle } from 'reactstrap'
+import { Card, CardBody, CardTitle, Button } from 'reactstrap'
+import CardImg from "reactstrap/lib/CardImg";
 
 class Following extends React.Component{
   constructor(props) {
@@ -30,6 +31,11 @@ class Following extends React.Component{
     }
   }
 
+  handleClick = (id) => {
+    this.props.history.push(`/allprofiles/${id}`)
+    
+  }
+
   render() {
     const { following } = this.state
 
@@ -41,8 +47,10 @@ class Following extends React.Component{
                 return (
                   <Card key= {index}>
                     <CardBody>
+                      <CardImg className="picfollowers" top width="9%" src={follow.image} />
                       <CardTitle>{follow.user_name}</CardTitle>
                     </CardBody>
+                    <Button onClick={() => this.handleClick(follow.id)}>Profile</Button>
                   </Card>)
               })}
             </ul>

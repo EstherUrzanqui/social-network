@@ -10,6 +10,7 @@ import Followers from "./components/Followers";
 import Following from "./components/Following";
 import Editprofile from "./components/Editprofile";
 import EditBackImage from "./components/Editbackimage"
+import Allprofiles from "./components/Allprofiles";
 
 
 const App = () => {
@@ -50,7 +51,8 @@ const App = () => {
           <Route exact path="/followers" component={Followers}></Route> 
           <Route exact path="/following" component={Following}></Route>  
           <Route exact path="/edit" component={Editprofile}></Route> 
-          <Route exact path="/editback" component={EditBackImage}></Route>    
+          <Route exact path="/editback" component={EditBackImage}></Route> 
+          <Route exact path="/allprofiles/:id" component={Allprofiles}></Route>  
         </Switch>
       </Router>
     </div>
