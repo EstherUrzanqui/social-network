@@ -23,7 +23,6 @@ class Allprofiles extends React.Component {
       userName: "",
       backgroundPic: null,
       profilePic: null
-      
     }
   }
 
