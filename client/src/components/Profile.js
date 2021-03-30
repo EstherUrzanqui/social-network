@@ -2,13 +2,10 @@ import React from "react";
 import axios from "axios";
 import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button, Modal, ModalBody} from "reactstrap";
 import Withuser from "./Withuser"
-import Editprofile from "./Editprofile"
 import moment from "moment"
 import "../css/Profile.css" 
 import { Link } from "react-router-dom"
 import Followers from "./Followers";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import Editbackimage from "./Editbackimage";
 import ModalHeader from "reactstrap/lib/ModalHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -154,7 +151,6 @@ class Profile extends React.Component {
   render() {
     const { thoughts, following, followers, myFollowers, myFollowing, body, isOpen, isOpenPic } = this.state
     const  userName  = this.props.user[0].user_name
-    console.log(userName)
 
     return(
     <div className="user">
@@ -231,7 +227,7 @@ class Profile extends React.Component {
                   return (
                 <Card className='thoughts' key={index}>
                   <CardBody>
-                    <CardImg className="pic" top width="15%" src={this.props.user[0].image} alt="profile pic" />
+                    <CardImg className="pic" top width="100%" src={this.props.user[0].image} alt="profile pic" />
                     <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
                     <CardText className="userpost">{thought.body}</CardText>
                   </CardBody>
