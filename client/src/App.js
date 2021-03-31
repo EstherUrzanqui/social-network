@@ -11,6 +11,7 @@ import Following from "./components/Following";
 import Editprofile from "./components/Editprofile";
 import EditBackImage from "./components/Editbackimage"
 import Allprofiles from "./components/Allprofiles";
+import Suggestions from "./components/Suggestions";
 
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
           <Route exact path="/edit" component={Editprofile}></Route> 
           <Route exact path="/editback" component={EditBackImage}></Route> 
           <Route exact path="/allprofiles/:id" component={Allprofiles}></Route>  
+          <Route exact path="/suggestions" component={Suggestions}></Route>  
         </Switch>
       </Router>
     </div>
