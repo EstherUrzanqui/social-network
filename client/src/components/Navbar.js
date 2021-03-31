@@ -17,7 +17,7 @@ const TheNavbar = (props) => {
                         {props.isLoggedIn ? (
                         <Nav navbar className="ml-auto">
                             <NavItem>
-                                <NavLink href="./Profile">Profile</NavLink>
+                                <NavLink href="/profile">Profile</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/feed">Feed</NavLink>
