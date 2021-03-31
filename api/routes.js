@@ -306,7 +306,7 @@ routes.get("/users/:id/followers", (req, res) => {
     const { id } = req.params
 
     db(`SELECT 
-            user_name, image 
+            user_name, image, user.id 
         FROM 
             user 
         INNER JOIN 
