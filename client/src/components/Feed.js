@@ -36,6 +36,7 @@ class Feed extends React.Component {
       axios(`http://localhost:7001/api/profile/shares/${userId}`)
         .then(response => {
           this.setState({ feed: response.data})
+          console.log(response.data)
         })
         .catch(error => {
           this.setState({ error: true })
@@ -83,6 +84,10 @@ class Feed extends React.Component {
           }
         })
     }
+
+    handleClick = (id) => {
+      this.props.history.push(`/allprofiles/${id}`)
+    }
         
    
 
@@ -111,10 +116,10 @@ class Feed extends React.Component {
           <div style={{display: 'inline-flex',  justifyContent:'center', alignItems:'center', width: "80%"}} id="underline"></div>
           <div class="container-fluid">
             <div class="row">
-              <div class="col-2">
+              <div class="col-3">
                 <Search onSearch={this.fetchSearchResults}/>
               </div>
-              <div>
+              <div class="col-9">
                 {message ? (
                   <h5>There are no results with your search</h5>
                 ) : (
@@ -140,7 +145,7 @@ class Feed extends React.Component {
                         <Card className='thoughts' key={index}>
                           <CardBody>
                             <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
-                            <CardTitle className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
+                            <CardTitle onClick={() => this.handleClick(feeds.followedId)} className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                           </CardBody>
                         </Card>
