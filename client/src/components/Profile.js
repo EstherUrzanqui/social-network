@@ -10,6 +10,7 @@ import Editbackimage from "./Editbackimage";
 import ModalHeader from "reactstrap/lib/ModalHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Editprofilepic from "./Editprofilepic";
+import Suggestions from "./Suggestions";
 
 
 
@@ -147,6 +148,9 @@ class Profile extends React.Component {
     })
   }
 
+  handleClick = (id) => {
+    this.props.history.push(`/allprofiles/${id}`)
+  }
 
   render() {
     const { thoughts, following, followers, myFollowers, myFollowing, body, isOpen, isOpenPic } = this.state
@@ -199,7 +203,7 @@ class Profile extends React.Component {
               {myFollowers.map((fol, index) => {
                 return (
                 <Card>
-                  <CardImg className="picfollowers" src={fol.image} />
+                  <CardImg onClick={() => this.handleClick(fol.id)} className="picfollowers" src={fol.image} />
                 </Card>
                 )
               })}
@@ -211,7 +215,7 @@ class Profile extends React.Component {
               {myFollowing.map((fol, index) => {
                 return (
                   <Card>
-                    <CardImg className="picfollowers" src={fol.image} />
+                    <CardImg onClick={() => this.handleClick(fol.id)} className="picfollowers" src={fol.image} />
                   </Card>
                 )
               })}
@@ -240,7 +244,7 @@ class Profile extends React.Component {
           <div class="col-2">
             <div className="usersinplat">
               <h2 id="sugtitle">Suggestions</h2>
-              <Followers />
+              <Suggestions />
             </div>
           </div>
         </div>

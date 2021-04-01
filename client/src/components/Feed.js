@@ -6,6 +6,7 @@ import Withuser from "./Withuser"
 import moment from "moment"
 import Followers from "./Followers";
 import Search from "./Search";
+import Suggestions from "./Suggestions"
 
 
 class Feed extends React.Component {
@@ -29,7 +30,7 @@ class Feed extends React.Component {
       this.setState({
         [e.target.name]: e.target.value,
       })
-  }
+    }
 
     getFeed = () => {
       const userId = this.props.user[0].id
@@ -155,7 +156,7 @@ class Feed extends React.Component {
               </div>
               <div className="col-2">
                 <div className="suggestions">
-                  <Followers />
+                  <Suggestions />
                 </div>
               </div>
             </div>
