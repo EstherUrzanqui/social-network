@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 import Withuser from "./Withuser";
-import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button, Modal, ModalBody} from "reactstrap";
+import { Card, CardBody, CardTitle, CardText, CardImg, Button} from "reactstrap";
 import moment from "moment"
 import "../css/Profile.css" 
 import { Link } from "react-router-dom"
 import Followers from "./Followers";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Suggestions from "./Suggestions";
 
 
 class Allprofiles extends React.Component {
@@ -108,31 +109,10 @@ class Allprofiles extends React.Component {
     })
 }
 
-  handleSubmit = () => {
-    const user_id  = this.props.match.params.id
-    const { body } = this.state
-
-    axios.post("http://localhost:7001/api/profile/share", {
-        user_id,
-        body,
-        createdAt: new Date().toISOString().slice(0,10),
-        updatedAt: new Date().toISOString().slice(0,10)
-    }) 
-    .then(response => {
-      console.log(response.data)
-      this.setState(state => ({
-        loggedIn: !state.loggedIn,
-      }))
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
-
 
   getUserInfo = () => {
     const { id } = this.props.match.params
-    console.log(id)
+
     axios(`http://localhost:7001/api/users/${id}`)
       .then(response => {
         console.log(response.data)
@@ -150,6 +130,7 @@ class Allprofiles extends React.Component {
 
   render() {
     const { thoughts, following, followers, myFollowers, myFollowing, userName, backgroundPic, profilePic } = this.state
+    console.log(followers)
     
     return(
     <div className="user">
@@ -157,14 +138,13 @@ class Allprofiles extends React.Component {
         <img className="backgroundpic" alt="background" src={backgroundPic} />
         <img className="profilepic"  alt="profile" src={profilePic} />
         <h1 id="underline">{userName}</h1>
+        <Button>Following</Button>
           <br/>
       </div>
       <div className="container-fluid">
         <div class="row">
           <div class="col-2">
-            <Link className="link" id="firstlink" to="/followers">
-              Followers: {followers}
-            </Link>
+            <p>Followers:{followers[0]}</p>
             <div className="grid">
               {myFollowers.map((fol, index) => {
                 return (
@@ -174,9 +154,7 @@ class Allprofiles extends React.Component {
                 )
               })}
             </div>
-            <Link className="link" to="/following">
-              Following: {following}
-            </Link>
+            <p>Following:{following}</p>
             <div className="grid">
               {myFollowing.map((fol, index) => {
                 return (
@@ -210,7 +188,7 @@ class Allprofiles extends React.Component {
           <div class="col-2">
             <div className="usersinplat">
               <h2 id="sugtitle">Suggestions</h2>
-              <Followers />
+              <Suggestions />
             </div>
           </div>
         </div>
