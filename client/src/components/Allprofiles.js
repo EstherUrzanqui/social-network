@@ -23,7 +23,9 @@ class Allprofiles extends React.Component {
       myFollowing: [],
       userName: "",
       backgroundPic: null,
-      profilePic: null
+      profilePic: null,
+      currentFollow: [],
+      followingUsers: []
     }
   }
 
@@ -34,6 +36,7 @@ class Allprofiles extends React.Component {
     this.getFollowersCount()
     this.getFollowers()
     this.getFollowing()
+    this.getCurrentFollow()
   }
 
   getShares = async () => {
@@ -127,10 +130,92 @@ class Allprofiles extends React.Component {
       })
   }
 
+  getCurrentFollow = async () => {
+    const userId = this.props.user[0].id
+
+    try {
+      const response = await axios(`http://localhost:7001/api/users/${userId}/following`)
+
+      const tempFollowing = response.data.map((follow, index) => {
+        return follow.user_name
+      })
+      this.setState({ 
+        currentFollow: response.data,
+        followingUsers: tempFollowing
+      })
+    } catch (error) {
+      this.setState({ error: true})
+    }
+  }
+
+  followUser = async (e) => {
+    const userId = this.props.user[0].id
+    const followedId = e.target.value
+    
+    try {
+      const response = await axios.post(`http://localhost:7001/api/users/${userId}/follow/${followedId}`, {
+        userId,
+        followedId,
+        createdAt: new Date().toISOString().slice(0, 10),
+        updatedAt: new Date().toISOString().slice(0, 10)
+      })
+      
+      console.log(response.data)
+      this.setState(state => ({
+        loggedIn: !state.loggedIn,
+      })) 
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  unfollowUser = async (e) => {
+    //e.preventDefault();
+    const userId = this.props.user[0].id;
+    const followedId = e.target.value;
+ 
+    try {
+      const response = await axios.delete(
+        `http://localhost:7001/api/users/${userId}/unfollow/${followedId}`
+      );
+      console.log(response);
+      let array = [...this.state.currentFollow];
+      let index = array.indexOf(followedId);
+      if (index !== -1) {
+        array.splice(index, 1);
+ 
+        const tempFollowing = array.map((follow, index) => {
+          return follow.followedId;
+        });
+ 
+        this.setState({
+          currentFollow: array,
+          followingUsers: tempFollowing,
+        });
+ 
+      }
+    } catch (error) {
+      this.setState({ error: true });
+    }
+  };
+
+  onFollow = (e) => {    
+    this.getCurrentFollow();
+    this.followUser(e);
+    window.location.reload();
+  }
+
+  onUnfollow = (e) => {
+    this.getCurrentFollow()
+    this.unfollowUser(e)
+    window.location.reload();
+  }
+
 
   render() {
-    const { thoughts, following, followers, myFollowers, myFollowing, userName, backgroundPic, profilePic } = this.state
-    console.log(followers)
+    const { thoughts, following, followers, myFollowers, myFollowing, userName, backgroundPic, profilePic, currentFollow, followingUsers } = this.state
+    const followedId = this.props.match.params.id
+    console.log(followingUsers)
     
     return(
     <div className="user">
@@ -138,7 +223,11 @@ class Allprofiles extends React.Component {
         <img className="backgroundpic" alt="background" src={backgroundPic} />
         <img className="profilepic"  alt="profile" src={profilePic} />
         <h1 id="underline">{userName}</h1>
-        <Button>Following</Button>
+        {followingUsers.includes(userName) ? (
+          <Button value={followedId} onClick={this.onUnfollow}>Unfollow</Button>
+        ) : (
+          <Button value={followedId} onClick={this.onFollow}>Follow</Button>
+        )} 
           <br/>
       </div>
       <div className="container-fluid">
