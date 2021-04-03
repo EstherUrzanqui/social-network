@@ -94,6 +94,7 @@ class Feed extends React.Component {
 
     render() {
       const { body, feed, message, results } = this.state
+      console.log(feed)
       
       return (
         <div className="feedform">
@@ -148,6 +149,7 @@ class Feed extends React.Component {
                             <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
                             <CardTitle onClick={() => this.handleClick(feeds.followedId)} className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
+                            <CardImg clasName="messagepic" top width= "100%" src={feeds.pictures} />
                           </CardBody>
                         </Card>
                       )
