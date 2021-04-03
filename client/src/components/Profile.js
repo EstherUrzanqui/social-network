@@ -234,6 +234,7 @@ class Profile extends React.Component {
                     <CardImg className="pic" top width="100%" src={this.props.user[0].image} alt="profile pic" />
                     <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
                     <CardText className="userpost">{thought.body}</CardText>
+                    <CardImg className="messagepic" top width="90%" src={thought.pictures} />
                   </CardBody>
                 </Card>
                 )
