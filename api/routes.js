@@ -56,6 +56,21 @@ routes.post("/profile/:id/uploadbackground", upload.single("background_image"), 
     .catch(err => res.status(500).send(err))
 })
 
+//UPLOAD PICTURES IN MESSAGES
+routes.post("/user/:id/uploadpicture", upload.single("pictures"), (req, res, next) => {
+    let { id } = req.params
+
+    db(`UPDATE shares SET pictures = '/img/${req.file.filename}' WHERE id = '${id}'`)
+    .then(results => {
+        if(!results.error) {
+            res.status(201).send({ message: 'file uploaded'})
+            return
+        }
+        res.send(results)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //EDIT USER DETAILS
 routes.post("/profile/:id/edit/user_name", (req, res) => {
     let { id } = req.params
@@ -141,14 +156,16 @@ routes.post("/profile/share", (req, res) => {
         .catch(err => res.status(500).send(err))
 })
 
-//GET ALL MESSAGES
+//GET ALL FOLLOWING USERS' MESSAGES
 routes.get("/profile/shares/:id", (req, res) => {
     const { id } = req.params
 
     db(`SELECT 
             relationships.followedId,
+            shares.id,
             shares.body,
             shares.createdAt,
+            shares.pictures,
             user.user_name,
             user.image
         FROM shares 
@@ -165,10 +182,45 @@ routes.get("/profile/shares/:id", (req, res) => {
         .catch(err => res.status(500).send(err))
 })
 
-//GET POST BY USER ID
+//GET MESSAGES BY USER ID
 routes.get("/profile/:user_id", (req, res) => {
     const {user_id} = req.params
     db(`SELECT * FROM shares WHERE user_id='${user_id}' ORDER BY createdAt DESC`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
+//REPLY MESSAGES
+routes.post("/profile/share/:shares_id/reply", (req, res) => {
+    const { shares_id } = req.params
+    const { user_id, body, createdAt } = req.body
+    db(`INSERT INTO messages (user_id, body, createdAt, shares_id)
+        VALUES ('${user_id}', '${body}', '${createdAt}', ${shares_id})`)
+    .then(results => {
+        if(!results.error) {
+            res.status(201).send({})
+        }
+        res.send(results)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
+//GET REPLIES
+routes.get("/profile/share/:shares_id/comments", (req, res) => {
+    const { shares_id } = req.params
+
+    db(`SELECT 
+            user.user_name,
+            user.image,
+            messages.body,
+            messages.createdAt
+        FROM user
+        INNER JOIN messages
+        ON user.id = messages.user_id
+        AND messages.shares_id = ${shares_id}
+        `)
     .then(results => {
         res.send(results.data)
     })
