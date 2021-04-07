@@ -219,7 +219,7 @@ routes.get("/profile/share/:shares_id/comments", (req, res) => {
         FROM user
         INNER JOIN messages
         ON user.id = messages.user_id
-        AND messages.shares_id = ${shares_id}
+        AND messages.shares_id = '${shares_id}'
         `)
     .then(results => {
         res.send(results.data)

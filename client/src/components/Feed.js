@@ -1,12 +1,12 @@
 import React from "react"
 import axios from "axios"
 import "../css/Feed.css"
-import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, CardImg } from 'reactstrap'
+import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, CardImg, UncontrolledCollapse } from 'reactstrap'
 import Withuser from "./Withuser"
 import moment from "moment"
-import Followers from "./Followers";
 import Search from "./Search";
 import Suggestions from "./Suggestions"
+
 
 
 class Feed extends React.Component {
@@ -17,13 +17,16 @@ class Feed extends React.Component {
         body: "",
         results: [],
         message: false,
-        error: false
+        error: false, 
+        reply: "", 
+        comments: []
       }
     }
         
 
     componentDidMount = () => {
       this.getFeed()
+      this.getComments()
     } 
 
     handleChange = e => {
@@ -34,6 +37,7 @@ class Feed extends React.Component {
 
     getFeed = () => {
       const userId = this.props.user[0].id
+      
       axios(`http://localhost:7001/api/profile/shares/${userId}`)
         .then(response => {
           this.setState({ feed: response.data})
@@ -86,6 +90,40 @@ class Feed extends React.Component {
         })
     }
 
+    handleReplies = (id) => {
+      const user_id = this.props.user[0].id
+      const { reply } = this.state
+  
+      axios.post(`http://localhost:7001/api/profile/share/${id}/reply`, {
+        user_id,
+        body: reply,
+        createdAt: new Date().toISOString().slice(0,10),
+        shares_id: id
+      })
+      .then(response => {
+        console.log(response.data)
+        this.setState(state => ({
+          loggedIn: !state.loggedIn,
+        }))
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      
+    }
+
+    getComments = (id) => {
+      axios(`http://localhost:7001/api/profile/share/${id}/comments`)
+        .then(response => {
+          this.setState({ comments: response.data})
+          console.log(response.data)
+          console.log(id)
+        })
+        .catch(error => {
+          this.setState({ error: true })
+        })
+    }
+
     handleClick = (id) => {
       this.props.history.push(`/allprofiles/${id}`)
     }
@@ -93,8 +131,7 @@ class Feed extends React.Component {
    
 
     render() {
-      const { body, feed, message, results } = this.state
-      console.log(feed)
+      const { body, feed, message, results, reply, comments } = this.state
       
       return (
         <div className="feedform">
@@ -151,6 +188,27 @@ class Feed extends React.Component {
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                             <CardImg clasName="messagepic" top width= "100%" src={feeds.pictures} />
                           </CardBody>
+                          <Form onSubmit={() => this.handleReplies(feeds.id)}>
+                            <FormGroup>
+                              <Input
+                                value={reply}
+                                onChange={this.handleChange}
+                                name="reply"
+                              />
+                            </FormGroup>
+                            <Button>Reply</Button>
+                          </Form>
+                          <Button id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments(feeds.id)}>Comments</Button>
+                          <UncontrolledCollapse toggler="#toggler">
+                            {comments.map((comment, index) => {
+                              return (
+                              <CardBody key={index}>
+                                <CardImg className="pic" top width="15%" src={comment.image} />
+                                <CardTitle clasName="userdetails">{comment.user_name} on {moment(comment.createdAt).format("MMM Do YYYY")}</CardTitle>
+                                <CardText style={{width:"80%"}}>{comment.body}</CardText>
+                              </CardBody>
+                            )})}
+                          </UncontrolledCollapse>
                         </Card>
                       )
                     })}
