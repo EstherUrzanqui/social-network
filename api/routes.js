@@ -211,11 +211,12 @@ routes.post("/profile/share/:shares_id/reply", (req, res) => {
 routes.get("/profile/share/:shares_id/comments", (req, res) => {
     const { shares_id } = req.params
 
-    db(`SELECT 
+    db(`SELECT
             user.user_name,
             user.image,
             messages.body,
-            messages.createdAt
+            messages.createdAt,
+            messages.shares_id
         FROM user
         INNER JOIN messages
         ON user.id = messages.user_id
@@ -249,7 +250,7 @@ routes.get("/users/:id", (req, res) => {
 //SEARCH BY KEYWORDS
 routes.get("/search/:query", (req, res) => {
     const query = req.params.query
-    db(`SELECT 
+    db(`SELECT
             shares.body,
             shares.createdAt,
             user.user_name,
