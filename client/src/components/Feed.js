@@ -95,6 +95,7 @@ class Feed extends React.Component {
     }
 
     getComments = (id) => {
+      
       axios(`http://localhost:7001/api/profile/share/${id}/comments`)
         .then(response => {
           this.setState({ comments: response.data})
@@ -134,6 +135,13 @@ class Feed extends React.Component {
       })
     }
 
+    toggleCom = (id) => {
+      this.setState({
+        open: !this.state.open,
+        showComments: id
+      })
+    }
+
     handleClick = (id) => {
       this.props.history.push(`/allprofiles/${id}`)
     }
@@ -141,7 +149,7 @@ class Feed extends React.Component {
    
 
     render() {
-      const { body, feed, message, results, isOpen, togId, reply } = this.state
+      const { body, feed, message, results, isOpen, reply, comments } = this.state
       
       return (
         <div className="feedform">
@@ -199,6 +207,20 @@ class Feed extends React.Component {
                             <CardImg clasName="messagepic" top width= "100%" src={feeds.pictures} />
                           </CardBody>
                           <Button onClick={() => this.toggle(feeds.id)}>Reply</Button>
+                          <Button id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments(feeds.id)}>
+                            Comments 
+                          </Button>
+                          <UncontrolledCollapse toggler="#toggler">
+                            {comments.map((comment, index) => {
+                              if(comment.shares_id === feeds.id) {
+                              return (
+                                <CardBody key={index}>
+                                  <CardImg className="pic" top width="15%" src={comment.image} />
+                                  <CardTitle clasName="userdetails">{comment.user_name} on {moment(comment.createdAt).format("MMM Do YYYY")}</CardTitle>
+                                  <CardText style={{width:"80%"}}>{comment.body}</CardText>
+                                </CardBody>
+                              )}})}
+                          </UncontrolledCollapse>
                         </Card>
                       )
                     })}
@@ -217,6 +239,7 @@ class Feed extends React.Component {
                       </Form>
                     </ModalBody>
                   </Modal>
+                  
               </div>
               <div className="col-2">
                 <div className="suggestions">
