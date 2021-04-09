@@ -1,11 +1,12 @@
 import React from "react"
 import axios from "axios"
 import "../css/Feed.css"
-import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, CardImg, UncontrolledCollapse } from 'reactstrap'
+import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, CardImg, UncontrolledCollapse, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import Withuser from "./Withuser"
 import moment from "moment"
 import Search from "./Search";
 import Suggestions from "./Suggestions"
+import Replies from "./Replies"
 
 
 
@@ -19,7 +20,9 @@ class Feed extends React.Component {
         message: false,
         error: false, 
         reply: "", 
-        comments: []
+        comments: [],
+        isOpen: false,
+        togId: null
       }
     }
         
@@ -27,6 +30,7 @@ class Feed extends React.Component {
     componentDidMount = () => {
       this.getFeed()
       this.getComments()
+      
     } 
 
     handleChange = e => {
@@ -90,15 +94,26 @@ class Feed extends React.Component {
         })
     }
 
-    handleReplies = (id) => {
+    getComments = (id) => {
+      axios(`http://localhost:7001/api/profile/share/${id}/comments`)
+        .then(response => {
+          this.setState({ comments: response.data})
+          console.log(response.data)
+        })
+        .catch(error => {
+          this.setState({ error: true })
+        })
+    }
+
+    handleReplies = () => {
       const user_id = this.props.user[0].id
-      const { reply } = this.state
+      const { reply, togId } = this.state
   
-      axios.post(`http://localhost:7001/api/profile/share/${id}/reply`, {
+      axios.post(`http://localhost:7001/api/profile/share/${togId}/reply`, {
         user_id,
         body: reply,
         createdAt: new Date().toISOString().slice(0,10),
-        shares_id: id
+        shares_id: togId
       })
       .then(response => {
         console.log(response.data)
@@ -109,19 +124,14 @@ class Feed extends React.Component {
       .catch(error => {
         console.log(error)
       })
-      
     }
 
-    getComments = (id) => {
-      axios(`http://localhost:7001/api/profile/share/${id}/comments`)
-        .then(response => {
-          this.setState({ comments: response.data})
-          console.log(response.data)
-          console.log(id)
-        })
-        .catch(error => {
-          this.setState({ error: true })
-        })
+    toggle = (id) => {
+      const { isOpen } = this.state
+      this.setState({
+        isOpen: !isOpen,
+        togId: id
+      })
     }
 
     handleClick = (id) => {
@@ -131,7 +141,7 @@ class Feed extends React.Component {
    
 
     render() {
-      const { body, feed, message, results, reply, comments } = this.state
+      const { body, feed, message, results, isOpen, togId, reply } = this.state
       
       return (
         <div className="feedform">
@@ -188,31 +198,25 @@ class Feed extends React.Component {
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                             <CardImg clasName="messagepic" top width= "100%" src={feeds.pictures} />
                           </CardBody>
-                          <Form onSubmit={() => this.handleReplies(feeds.id)}>
-                            <FormGroup>
-                              <Input
-                                value={reply}
-                                onChange={this.handleChange}
-                                name="reply"
-                              />
-                            </FormGroup>
-                            <Button>Reply</Button>
-                          </Form>
-                          <Button id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments(feeds.id)}>Comments</Button>
-                          <UncontrolledCollapse toggler="#toggler">
-                            {comments.map((comment, index) => {
-                              return (
-                              <CardBody key={index}>
-                                <CardImg className="pic" top width="15%" src={comment.image} />
-                                <CardTitle clasName="userdetails">{comment.user_name} on {moment(comment.createdAt).format("MMM Do YYYY")}</CardTitle>
-                                <CardText style={{width:"80%"}}>{comment.body}</CardText>
-                              </CardBody>
-                            )})}
-                          </UncontrolledCollapse>
+                          <Button onClick={() => this.toggle(feeds.id)}>Reply</Button>
                         </Card>
                       )
                     })}
                   </ul>
+                  <Modal isOpen={isOpen} toggle={this.toggle}>
+                    <ModalBody>
+                      <Form onSubmit={this.handleReplies}>
+                        <FormGroup>
+                          <Input
+                            value={reply}
+                            onChange={this.handleChange}
+                            name="reply"
+                          />
+                          <Button>Send</Button>
+                        </FormGroup>
+                      </Form>
+                    </ModalBody>
+                  </Modal>
               </div>
               <div className="col-2">
                 <div className="suggestions">
