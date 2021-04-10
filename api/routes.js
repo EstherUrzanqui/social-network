@@ -228,6 +228,17 @@ routes.get("/profile/share/:shares_id/comments", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+//COUNT REPLIES 
+routes.get("/profile/share/count/:shares_id", (req, res) => {
+    const { shares_id } = req.params
+
+    db(`SELECT COUNT(*) FROM messages where shares_id = ${shares_id} `)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //GET ALL USERS
 routes.get("/users", (req, res) => {
     db(`SELECT * FROM user`)
