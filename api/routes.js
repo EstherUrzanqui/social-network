@@ -239,6 +239,39 @@ routes.get("/profile/share/count/:shares_id", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+//LIKES
+routes.post("/profile/share/:shares_id/likes", (req, res) => {
+    const { shares_id } = req.params
+    
+    db(`UPDATE shares SET likes = likes + 1 WHERE id = ${shares_id}`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
+//COUNT LIKES
+routes.get("/profile/share/:shares_id/countlikes", (req, res) => {
+    const { shares_id } = req.params
+
+    db(`SELECT likes FROM shares WHERE id = ${shares_id}`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
+//UNLIKE
+routes.post("/profile/share/:shares_id/unlike", (req, res) => {
+    const { shares_id } = req.params
+    
+    db(`UPDATE shares SET likes = likes - 1 WHERE id = ${shares_id}`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //GET ALL USERS
 routes.get("/users", (req, res) => {
     db(`SELECT * FROM user`)
