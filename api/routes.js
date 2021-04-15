@@ -252,6 +252,16 @@ routes.post("/profile/share/:shares_id/likes", (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+//GET LIKES
+routes.get("/profile/share/likes/:user_id", (req, res) => {
+    const { user_id } = req.params
+    db(`SELECT * FROM likes_users WHERE user_id = ${user_id}`)
+    .then(results => {
+        res.send(results.data)
+    })
+    .catch(err => res.status(500).send(err))
+})
+
 //COUNT LIKES
 routes.get("/profile/share/:shares_id/countlikes", (req, res) => {
     const { shares_id } = req.params
