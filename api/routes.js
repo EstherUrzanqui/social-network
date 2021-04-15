@@ -242,8 +242,10 @@ routes.get("/profile/share/count/:shares_id", (req, res) => {
 //LIKES
 routes.post("/profile/share/:shares_id/likes", (req, res) => {
     const { shares_id } = req.params
+    const { user_id } = req.body
     
-    db(`UPDATE shares SET likes = likes + 1 WHERE id = ${shares_id}`)
+    db(`INSERT INTO likes_users (shares_id, user_id, likes) 
+        VALUES (${shares_id}, ${user_id}, 1)`)
     .then(results => {
         res.send(results.data)
     })
@@ -262,10 +264,10 @@ routes.get("/profile/share/:shares_id/countlikes", (req, res) => {
 })
 
 //UNLIKE
-routes.post("/profile/share/:shares_id/unlike", (req, res) => {
-    const { shares_id } = req.params
+routes.delete("/profile/share/:shares_id/:user_id/unlike", (req, res) => {
+    const { shares_id, user_id } = req.params
     
-    db(`UPDATE shares SET likes = likes - 1 WHERE id = ${shares_id}`)
+    db(`DELETE FROM likes_users WHERE shares_id = ${shares_id} AND user_id = ${user_id}`)
     .then(results => {
         res.send(results.data)
     })
