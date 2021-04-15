@@ -21,7 +21,10 @@ class Feed extends React.Component {
         reply: "", 
         comments: [],
         isOpen: false,
-        togId: null
+        togId: null,
+        count: 0,
+        likes: [],
+        likesId: []
       }
     }
         
@@ -29,7 +32,7 @@ class Feed extends React.Component {
     componentDidMount = () => {
       this.getFeed()
       this.getComments()
-      
+      this.getLikes()
     } 
 
     handleChange = e => {
@@ -44,7 +47,6 @@ class Feed extends React.Component {
       axios(`http://localhost:7001/api/profile/shares/${userId}`)
         .then(response => {
           this.setState({ feed: response.data})
-          console.log(response.data)
         })
         .catch(error => {
           this.setState({ error: true })
@@ -62,7 +64,6 @@ class Feed extends React.Component {
           updatedAt: new Date().toISOString().slice(0,10)
       }) 
       .then(response => {
-        console.log(response.data)
         this.setState(state => ({
           loggedIn: !state.loggedIn,
         }))
@@ -94,11 +95,9 @@ class Feed extends React.Component {
     }
 
     getComments = (id) => {
-      
       axios(`http://localhost:7001/api/profile/share/${id}/comments`)
         .then(response => {
           this.setState({ comments: response.data})
-          console.log(response.data)
         })
         .catch(error => {
           this.setState({ error: true })
@@ -116,7 +115,7 @@ class Feed extends React.Component {
         shares_id: togId
       })
       .then(response => {
-        console.log(response.data)
+        
         this.setState(state => ({
           loggedIn: !state.loggedIn,
         }))
@@ -132,23 +131,102 @@ class Feed extends React.Component {
         isOpen: !isOpen,
         togId: id
       })
+      this.getCountReplies()
     }
 
-    toggleCom = (id) => {
-      this.setState({
-        open: !this.state.open,
-        showComments: id
+    getCountReplies = () => {
+      const { togId } = this.state
+      axios(`http://localhost:7001/api/profile/share/count/${togId}`)
+      .then(response => {
+        this.setState({ count: Object.values(response.data[0])})
+        console.log(response.data)
+        
       })
+      .catch(error => {
+        this.setState({ error: true })
+      })
+    }
+
+    getLikes = async () => {
+      const userId = this.props.user[0].id
+
+      try {
+        const response = await axios(`http://localhost:7001/api/profile/share/likes/${userId}`)
+
+        const tempLikes = response.data.map((liked, index) => {
+          return liked.shares_id
+        })
+        this.setState({
+          likes: response.data,
+          likesId: tempLikes
+        })
+      } catch(error) {
+        this.setState({ error: true })
+      }
+    }
+    
+    handleLikes = (id) => {
+      const userId = this.props.user[0].id
+      
+      axios.post(`http://localhost:7001/api/profile/share/${id}/likes`, {
+        user_id: userId
+      })
+      .then(response => {
+        console.log(response.data)
+        
+      })
+      .catch(error => {
+        this.setState({ error: true })
+      })
+    }
+
+    handleUnlikes = async (id) => {
+      const userId = this.props.user[0].id
+
+      try {
+        const response = await axios.delete(
+          `http://localhost:7001/api/profile/share/${id}/${userId}/unlike`
+        );
+        console.log(response);
+        let array = [...this.state.likes];
+        let index = array.indexOf(userId);
+        if(index !== -1) {
+          array.splice(index, 1);
+
+          const tempLiked = array.map((click, index) => {
+            return click.userId;
+          })
+
+          this.setState({
+            likes: array,
+            clickedId: tempLiked
+          })
+        }
+      } catch (error) {
+        this.setState({ error: true })
+      }
+      
+    }
+
+    onLiked = (id) => {
+      this.getLikes()
+      this.handleLikes(id)
+      window.location.reload()
+    }
+
+    onUnliked = (id) => {
+      this.getLikes()
+      this.handleUnlikes(id)
+      window.location.reload()
     }
 
     handleClick = (id) => {
       this.props.history.push(`/allprofiles/${id}`)
     }
-        
-   
 
     render() {
-      const { body, feed, message, results, isOpen, reply, comments } = this.state
+      const { body, feed, message, results, isOpen, reply, comments, likesId } = this.state
+      console.log(likesId)
       
       return (
         <div className="feedform">
@@ -205,9 +283,12 @@ class Feed extends React.Component {
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                             <CardImg clasName="messagepic" top width= "100%" src={feeds.pictures} />
                           </CardBody>
+                          {likesId.includes(feeds.id) ? (<Button onClick={() => this.onUnliked(feeds.id)}>Unlike</Button>) : (
+                            <Button onClick={() => this.onLiked(feeds.id)}>Like</Button>
+                          )}
                           <Button onClick={() => this.toggle(feeds.id)}>Reply</Button>
                           <Button id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments(feeds.id)}>
-                            Comments 
+                            Comments
                           </Button>
                           <UncontrolledCollapse toggler="#toggler">
                             {comments.map((comment, index) => {
