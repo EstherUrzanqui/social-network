@@ -93,8 +93,8 @@ class Feed extends React.Component {
         })
     }
 
-    getComments = (id) => {
-      axios(`http://localhost:7001/api/profile/share/${id}/comments`)
+    getComments = () => {
+      axios(`http://localhost:7001/api/profile/share/comments`)
         .then(response => {
           this.setState({ comments: response.data})
         })
@@ -225,7 +225,7 @@ class Feed extends React.Component {
     render() {
       const { body, feed, message, results, isOpen, reply, comments, likesId, likes } = this.state
       const userLiked = likes.filter(e => e.user_id === this.props.user[0].id).map(ele => ele.shares_id)
-      console.log(userLiked)
+      console.log(comments)
       
       return (
         <div className="feedform">
@@ -286,8 +286,8 @@ class Feed extends React.Component {
                             <Button onClick={() => this.onLiked(feeds.id)}> Like {likesId.filter(x => x === feeds.id).length} </Button>
                           }
                           <Button onClick={() => this.toggle(feeds.id)}>Reply</Button>
-                          <Button id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments(feeds.id)}>
-                            Comments
+                          <Button id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments()}>
+                            Comments {comments.filter(x => x.shares_id === feeds.id).length}
                           </Button>
                           <UncontrolledCollapse toggler="#toggler">
                             {comments.map((comment, index) => {
