@@ -253,9 +253,9 @@ routes.post("/profile/share/:shares_id/likes", (req, res) => {
 })
 
 //GET LIKES
-routes.get("/profile/share/likes/:user_id", (req, res) => {
-    const { user_id } = req.params
-    db(`SELECT * FROM likes_users WHERE user_id = ${user_id}`)
+routes.get("/profile/share/likes/", (req, res) => {
+    //const { user_id } = req.params
+    db(`SELECT * FROM likes_users`)
     .then(results => {
         res.send(results.data)
     })
@@ -266,7 +266,7 @@ routes.get("/profile/share/likes/:user_id", (req, res) => {
 routes.get("/profile/share/:shares_id/countlikes", (req, res) => {
     const { shares_id } = req.params
 
-    db(`SELECT likes FROM shares WHERE id = ${shares_id}`)
+    db(`SELECT COUNT(*) FROM likes_users where shares_id = ${shares_id}`)
     .then(results => {
         res.send(results.data)
     })
