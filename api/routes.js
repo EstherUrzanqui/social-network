@@ -208,8 +208,7 @@ routes.post("/profile/share/:shares_id/reply", (req, res) => {
 })
 
 //GET REPLIES
-routes.get("/profile/share/:shares_id/comments", (req, res) => {
-    const { shares_id } = req.params
+routes.get("/profile/share/comments", (req, res) => {
 
     db(`SELECT
             user.user_name,
@@ -220,7 +219,6 @@ routes.get("/profile/share/:shares_id/comments", (req, res) => {
         FROM user
         INNER JOIN messages
         ON user.id = messages.user_id
-        AND messages.shares_id = '${shares_id}'
         `)
     .then(results => {
         res.send(results.data)
