@@ -22,7 +22,6 @@ class Feed extends React.Component {
         comments: [],
         isOpen: false,
         togId: null,
-        count: 0,
         likes: [],
         likesId: []
       }
@@ -148,10 +147,9 @@ class Feed extends React.Component {
     }
 
     getLikes = async () => {
-      const userId = this.props.user[0].id
-
+      
       try {
-        const response = await axios(`http://localhost:7001/api/profile/share/likes/${userId}`)
+        const response = await axios(`http://localhost:7001/api/profile/share/likes`)
 
         const tempLikes = response.data.map((liked, index) => {
           return liked.shares_id
@@ -209,24 +207,25 @@ class Feed extends React.Component {
     }
 
     onLiked = (id) => {
-      this.getLikes()
       this.handleLikes(id)
       window.location.reload()
     }
 
     onUnliked = (id) => {
-      this.getLikes()
       this.handleUnlikes(id)
       window.location.reload()
     }
+
+    
 
     handleClick = (id) => {
       this.props.history.push(`/allprofiles/${id}`)
     }
 
     render() {
-      const { body, feed, message, results, isOpen, reply, comments, likesId } = this.state
-      console.log(likesId)
+      const { body, feed, message, results, isOpen, reply, comments, likesId, likes } = this.state
+      const userLiked = likes.filter(e => e.user_id === this.props.user[0].id).map(ele => ele.shares_id)
+      console.log(userLiked)
       
       return (
         <div className="feedform">
@@ -283,9 +282,9 @@ class Feed extends React.Component {
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                             <CardImg clasName="messagepic" top width= "100%" src={feeds.pictures} />
                           </CardBody>
-                          {likesId.includes(feeds.id) ? (<Button onClick={() => this.onUnliked(feeds.id)}>Unlike</Button>) : (
-                            <Button onClick={() => this.onLiked(feeds.id)}>Like</Button>
-                          )}
+                          {userLiked.includes(feeds.id) ? <Button onClick={() => this.onUnliked(feeds.id)}> Unlike {likesId.filter(x => x === feeds.id).length} </Button> : 
+                            <Button onClick={() => this.onLiked(feeds.id)}> Like {likesId.filter(x => x === feeds.id).length} </Button>
+                          }
                           <Button onClick={() => this.toggle(feeds.id)}>Reply</Button>
                           <Button id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments(feeds.id)}>
                             Comments
