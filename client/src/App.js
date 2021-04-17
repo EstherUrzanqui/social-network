@@ -13,6 +13,7 @@ import EditBackImage from "./components/Editbackimage"
 import Allprofiles from "./components/Allprofiles";
 import Suggestions from "./components/Suggestions";
 import Unfollowfollow from "./components/Unfollowfollow";
+import Othersfollowers from "./components/Othersfollowers";
 
 
 
@@ -58,6 +59,7 @@ const App = () => {
           <Route exact path="/allprofiles/:id" component={Allprofiles}></Route>  
           <Route exact path="/suggestions" component={Suggestions}></Route>  
           <Route exact path="/unfollowfollow" component={Unfollowfollow}></Route> 
+          <Route exact path= "/othersfollowers/:id" component={Othersfollowers}></Route>
           
         </Switch>
       </Router>
