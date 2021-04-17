@@ -3,7 +3,7 @@ import axios from "axios";
 import withUser from "./Withuser"
 import { Button, Card, CardBody, CardTitle, CardImg } from 'reactstrap'
 import "../css/Followers.css"
-import Unfollowfollow from "./Unfollowfollow";
+import { withRouter } from "react-router";
 
 
 class Suggestions extends React.Component {
@@ -80,7 +80,7 @@ class Suggestions extends React.Component {
 
   handleClick = (id) => {
     this.props.history.push(`/allprofiles/${id}`)
-    
+    window.location.reload()
   }
 
   render() {
@@ -109,4 +109,4 @@ class Suggestions extends React.Component {
 }
 
 
-export default withUser(Suggestions);
+export default withRouter(withUser(Suggestions));
