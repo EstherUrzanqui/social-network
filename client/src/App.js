@@ -14,6 +14,7 @@ import Allprofiles from "./components/Allprofiles";
 import Suggestions from "./components/Suggestions";
 import Unfollowfollow from "./components/Unfollowfollow";
 import Othersfollowers from "./components/Othersfollowers";
+import Othersfollowing from "./components/Othersfollowing";
 
 
 
@@ -60,6 +61,7 @@ const App = () => {
           <Route exact path="/suggestions" component={Suggestions}></Route>  
           <Route exact path="/unfollowfollow" component={Unfollowfollow}></Route> 
           <Route exact path= "/othersfollowers/:id" component={Othersfollowers}></Route>
+          <Route exact path= "/othersfollowing/:id" component={Othersfollowing}></Route>
           
         </Switch>
       </Router>

@@ -211,11 +211,19 @@ class Allprofiles extends React.Component {
     window.location.reload();
   }
 
+  getProfileFollowers = (id) => {
+    this.props.history.push(`/othersfollowers/${id}`)
+  }
+
+  getProfileFollowing = (id) => {
+    this.props.history.push(`/othersfollowing/${id}`)
+  }
+
 
   render() {
     const { thoughts, following, followers, myFollowers, myFollowing, userName, backgroundPic, profilePic, currentFollow, followingUsers } = this.state
     const followedId = this.props.match.params.id
-    console.log(followingUsers)
+    console.log(myFollowers)
     
     return(
     <div className="user">
@@ -233,7 +241,9 @@ class Allprofiles extends React.Component {
       <div className="container-fluid">
         <div class="row">
           <div class="col-2">
-            <p>Followers:{followers[0]}</p>
+            <Link className="link" onClick={() => this.getProfileFollowers(followedId)}>
+              Followers:{followers[0]}
+            </Link>
             <div className="grid">
               {myFollowers.map((fol, index) => {
                 return (
@@ -243,7 +253,9 @@ class Allprofiles extends React.Component {
                 )
               })}
             </div>
-            <p>Following:{following}</p>
+            <Link className="link" onClick={() => this.getProfileFollowing(followedId)}>
+              Following:{following}
+            </Link>
             <div className="grid">
               {myFollowing.map((fol, index) => {
                 return (
@@ -264,7 +276,7 @@ class Allprofiles extends React.Component {
                   return (
                 <Card className='thoughts' key={index}>
                   <CardBody>
-                    <CardImg className="pic" top width="100%" src={this.props.user[0].image} alt="profile pic" />
+                    <CardImg className="pic" top width="100%" src={profilePic} alt="profile pic" />
                     <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
                     <CardText className="userpost">{thought.body}</CardText>
                   </CardBody>
