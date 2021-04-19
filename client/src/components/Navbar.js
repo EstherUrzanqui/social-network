@@ -8,7 +8,7 @@ const TheNavbar = (props) => {
     const toggleNavbar = () => setCollapsed(!collapsed)
 
     return (
-        <div>
+        <div className="col">
             <Navbar color="faded" light>
                 <NavbarBrand href="/" className="mr-auto" id="logo">Unax</NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />

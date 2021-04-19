@@ -1,6 +1,6 @@
 
 .page {
-  background: linear-gradient(-70deg, rgb(223, 116, 250) , rgb(119, 153, 248) 30%, rgb(240, 68, 211) );
+  background: white;
   margin-top: -20px;
   display: flex;
   flex-direction: column;
@@ -15,9 +15,8 @@
   height: 500px;
   margin-top: -240px;
   margin: 50px;
-  background: white;
-  box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
-  color: #F1F1F2;
+  background: rgb(231, 218, 230);
+  box-shadow: 5px 5px 15px 4px rgb(66, 54, 65);
   max-width: 380px !important;
   display: inline !important;
   border-radius: 4%;
@@ -25,7 +24,7 @@
 
 .login {
   font-family: 'Amatic SC', cursive;
-  color: rgb(223, 116, 250);
+  color: rgb(240, 68, 211);
   font-size: 60px;
   height: 80px;
   text-align: center;
@@ -43,19 +42,46 @@
   display: inline-block !important;
   border: 0px !important;
   border-radius: 0% !important;
+  background-color: rgb(231, 218, 230) !important;
   border-bottom: 1px solid rgba(167, 164, 164, 0.842) !important;
+  
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
 }
 
 .submit {
-  color: white;
+  color: rgb(240, 68, 211) !important;
   font-family: 'Amatic SC', cursive;
   font-size: 20px !important;
-  background-color: rgb(240, 68, 211) !important;
+  background-color: transparent !important;
+  border-color: rgb(240, 68, 211) !important;
   margin-top: 60px;
   position: relative;
-  overflow: hidden;
   height: 40px;
   width: 100px;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  color: white;
+  font-family: 'Amatic SC', cursive;
+  background-color: transparent !important;
 }
 
 .link-div{
