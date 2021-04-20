@@ -1,8 +1,5 @@
-.background-form {
-  background: linear-gradient(-70deg, rgb(223, 116, 250) , rgb(119, 153, 248) 30%, rgb(240, 68, 211) );
-  width: 98%;
-  display: inline-flex;
-  justify-content: center;
+.feedform {
+  background: white;
 }
 
 .feed-container {
@@ -10,14 +7,9 @@
   align-items: flex-end;
   flex-direction: column;
   text-align: center;
-  padding: 20px;
-  padding-left: 10px;
-  padding-bottom: 0.7em;
   border-radius: 8px;
-  height: auto;
-  min-height: 40vh;
-  width: 40%;
-  font-weight: 600;
+  width: 30%;
+  font-weight: 100;
   opacity: .85;
   display: inline-flex;
 }
@@ -30,27 +22,38 @@
   padding: 8px;
   resize: none;
   border-bottom: 1px solid rgba(75, 74, 74, 0.959) !important;
-  background-color: rgba(119, 154, 248, 0);
+  background-color: rgba(119, 154, 248, 0) !important;
   border-radius: 0% !important;
-  font-weight: bold;
+  
 }
 
-.post {
-  color: white;
+.post-share {
+  color: rgb(240, 68, 211) !important;
   font-family: 'Amatic SC', cursive;
   font-size: 20px !important;
-  background-color: rgb(240, 68, 211) !important;
-  margin-top: 0px;
+  background-color: transparent !important;
+  border-color: rgb(240, 68, 211) !important;
   position: relative;
-  overflow: hidden;
   height: 40px;
   width: 100px;
 }
 
 .container-fluid {
-  margin-top: -120px;
+  margin-top: -200px;
+  width: 100%;
 }
 
+.col-3 {
+  margin-left: -45%;
+}
+
+.col-7 {
+  margin-left: 30%;
+}
+
+.col-2 {
+  margin-left: 15%;
+}
 .thoughts{
   font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
   font-size: 15px;
@@ -83,4 +86,24 @@
   text-align: left;
   line-height: 20px;
   padding-left: 90px;
+}
+
+.socialbar {
+  display: flex;
+}
+
+.likes {
+  align-items: center;
+}
+.likescount {
+  align-items: center;
+  margin-left: 2%;
+}
+.comments {
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 2%;
+}
+.commentcount {
+  align-items: center;
 }

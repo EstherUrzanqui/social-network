@@ -6,6 +6,10 @@ import Withuser from "./Withuser"
 import moment from "moment"
 import Search from "./Search";
 import Suggestions from "./Suggestions"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from "@fortawesome/free-solid-svg-icons"
+import { faHeart as farHeart, faComment } from "@fortawesome/free-regular-svg-icons"
+
 
 
 
@@ -225,12 +229,11 @@ class Feed extends React.Component {
     render() {
       const { body, feed, message, results, isOpen, reply, comments, likesId, likes } = this.state
       const userLiked = likes.filter(e => e.user_id === this.props.user[0].id).map(ele => ele.shares_id)
-      console.log(comments)
       
       return (
         <div className="feedform">
-          <div className="background-form">
-          <Form className="feed-container" onSubmit={this.handleSubmit}>
+          <div className="feed-container">
+          <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Input 
                 id= "textarea"
@@ -239,20 +242,20 @@ class Feed extends React.Component {
                 value={body}
                 onChange={this.handleChange}
                 name="body"
-                placeholder="What are you thinking?"
+                placeholder="Express Yourself"
                 type="textarea"
               />
             </FormGroup>
-            <Button className="post">Post</Button>
+            <Button className="post-share">Post</Button>
           </Form>
           </div>
-          <div style={{display: 'inline-flex',  justifyContent:'center', alignItems:'center', width: "80%"}} id="underline"></div>
+          
           <div class="container-fluid">
-            <div class="row">
+            <div class="row justify-content-start">
               <div class="col-3">
                 <Search onSearch={this.fetchSearchResults}/>
               </div>
-              <div class="col-9">
+              <div>
                 {message ? (
                   <h5>There are no results with your search</h5>
                 ) : (
@@ -270,8 +273,7 @@ class Feed extends React.Component {
                   })
                 )}
               </div>
-              <div class="col-8">
-                <div className="login">Your Feed</div>
+              <div class="col-7">
                   <ul>
                     {feed.map((feeds, index) => {
                       return (
@@ -282,13 +284,24 @@ class Feed extends React.Component {
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                             <CardImg clasName="messagepic" top width= "100%" src={feeds.pictures} />
                           </CardBody>
-                          {userLiked.includes(feeds.id) ? <Button onClick={() => this.onUnliked(feeds.id)}> Unlike {likesId.filter(x => x === feeds.id).length} </Button> : 
-                            <Button onClick={() => this.onLiked(feeds.id)}> Like {likesId.filter(x => x === feeds.id).length} </Button>
-                          }
-                          <Button onClick={() => this.toggle(feeds.id)}>Reply</Button>
-                          <Button id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments()}>
-                            Comments {comments.filter(x => x.shares_id === feeds.id).length}
-                          </Button>
+                          <div className="socialbar">
+                            <div className="likes">
+                              {userLiked.includes(feeds.id) ? <FontAwesomeIcon icon={faHeart}  onClick={() => this.onUnliked(feeds.id)} />   : 
+                                <FontAwesomeIcon icon={farHeart} onClick={() => this.onLiked(feeds.id)} />   
+                              }
+                            </div>
+                            <div className="likescount">
+                              {likesId.filter(x => x === feeds.id).length}
+                            </div>
+                            <div className="comments">
+                              <FontAwesomeIcon icon={faComment} onClick={() => this.toggle(feeds.id)} />
+                            </div>
+                            <div className="commentscount">
+                              <p id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments()}>
+                                {comments.filter(x => x.shares_id === feeds.id).length}
+                              </p>
+                            </div>
+                          </div>
                           <UncontrolledCollapse toggler="#toggler">
                             {comments.map((comment, index) => {
                               if(comment.shares_id === feeds.id) {
