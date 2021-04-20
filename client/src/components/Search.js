@@ -1,5 +1,6 @@
 import React from "react"
 import { Button, Form, FormGroup, Input } from 'reactstrap'
+import "../css/Search.css"
 
 class Search extends React.Component {
   constructor(props) {
@@ -28,8 +29,8 @@ class Search extends React.Component {
     const { query } = this.state
     
     return (
-      <div>
-        <Form className="search" onSubmit={this.handleSubmit}>
+      <div class="search">
+        <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Input 
               id= "searchinput"

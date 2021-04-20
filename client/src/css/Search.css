@@ -1,0 +1,28 @@
+.search {
+  display: inline-block;
+  
+}
+
+.post {
+  color: rgb(240, 68, 211) !important;
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px !important;
+  background-color: transparent !important;
+  border-color: rgb(240, 68, 211) !important;
+  position: relative;
+  height: 40px;
+  width: 100px;
+}
+
+#searchinput {
+  text-align: left;
+  border: 0px !important;
+  font-size: 18px;
+  height: 40px;
+  width: 200px !important;
+  padding: 8px;
+  resize: none;
+  border-bottom: 1px solid rgba(75, 74, 74, 0.959) !important;
+  background-color: rgba(119, 154, 248, 0) !important;
+  border-radius: 0% !important;
+}
