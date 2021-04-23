@@ -12,6 +12,10 @@ html, body {
   padding:0;
 }
 
+p {
+  color:rgb(80, 79, 79);
+}
+
 .user {
   display:flex;
   flex-direction: column;
@@ -55,15 +59,27 @@ html, body {
   height: 1px;
   margin-left: auto;
   margin-right: auto;
+  display: inline-flex;
 }
 
-.container-fluid {
-  padding-top: 200px;
+.post-profile {
+  color: rgb(240, 68, 211) !important;
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px !important;
+  background-color: transparent !important;
+  border-color: rgb(240, 68, 211) !important;
+  position: relative;
+  height: 40px;
+  width: 100px;
 }
 
-.row {
-  margin-left: 15px !important;
-  margin-right: 1% !important;
+.profilecolumns {
+  display: inline-flex;
+  padding-top: 3%;
+}
+
+.icons {
+  padding-left: 2%;
 }
 
 .card {
@@ -85,11 +101,7 @@ html, body {
   color: rgb(247, 71, 100);
   font-size: 50px;
   font-weight: 900;
-  margin: 50px 40px 40px;
-}
-
-ul {
-  margin-left: 10px;
+  
 }
 
 .posted {

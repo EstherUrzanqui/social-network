@@ -192,9 +192,10 @@ class Profile extends React.Component {
           </Form>
       </div>
       <div className="profilecolumns">
-          <div class="col-2">
+        <div className="icons">
+          <div class="col-3">
             <Link className="link" id="firstlink" to="/followers">
-              Followers: {followers}
+              Followers:{followers}
             </Link>
             <div className="grid">
               {myFollowers.map((fol, index) => {
@@ -206,7 +207,7 @@ class Profile extends React.Component {
               })}
             </div>
             <Link className="link" to="/following">
-              Following: {following}
+              Following:{following}
             </Link>
             <div className="grid">
               {myFollowing.map((fol, index) => {
@@ -218,7 +219,8 @@ class Profile extends React.Component {
               })}
             </div>
           </div>
-          <div class="col-8">
+          </div>
+          <div class="col-7">
             <div>
               <div className ="activity">
                 Latest Posts
