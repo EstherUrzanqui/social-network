@@ -14,6 +14,10 @@
   display: inline-flex;
 }
 
+.express {
+  display: inherit;
+}
+
 #textarea {
   text-align: left;
   border: 0px !important;
@@ -43,28 +47,22 @@
   width: 100%;
 }
 
-.col-3 {
-  margin-left: -45%;
+.columns {
+  display: inline-flex;
 }
 
-.col-7 {
-  margin-left: 30%;
-}
-
-.col-2 {
-  margin-left: 15%;
-}
 .thoughts{
   font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
   font-size: 15px;
   font-weight: bold;
   line-height: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 15px 4px rgb(66, 54, 65);
   margin: 10px 10px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 16px 16px 16px;
-  max-width: 468px;
+  max-width: 70%;
+  border-radius: 2% !important;
 }
 
 .pic {
@@ -85,7 +83,11 @@
   font-size: 15px;
   text-align: left;
   line-height: 20px;
-  padding-left: 90px;
+  padding-left: 30%;
+}
+
+img.card-img-top {
+  margin-top: 5%;
 }
 
 .socialbar {
@@ -94,6 +96,7 @@
 
 .likes {
   align-items: center;
+  margin-left: 10%;
 }
 .likescount {
   align-items: center;

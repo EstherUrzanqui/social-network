@@ -233,7 +233,7 @@ class Feed extends React.Component {
       return (
         <div className="feedform">
           <div className="feed-container">
-          <Form onSubmit={this.handleSubmit}>
+          <Form className="express" onSubmit={this.handleSubmit}>
             <FormGroup>
               <Input 
                 id= "textarea"
@@ -251,7 +251,7 @@ class Feed extends React.Component {
           </div>
           
           <div class="container-fluid">
-            <div class="row justify-content-start">
+            <div class="columns">
               <div class="col-3">
                 <Search onSearch={this.fetchSearchResults}/>
               </div>
@@ -298,7 +298,7 @@ class Feed extends React.Component {
                             </div>
                             <div className="commentscount">
                               <p id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments()}>
-                                {comments.filter(x => x.shares_id === feeds.id).length}
+                                {comments.filter(x => x.shares_id === feeds.id).length} Comments
                               </p>
                             </div>
                           </div>

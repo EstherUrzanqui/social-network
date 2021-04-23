@@ -30,7 +30,7 @@ class Search extends React.Component {
     
     return (
       <div class="search">
-        <Form onSubmit={this.handleSubmit}>
+        <Form className="look" onSubmit={this.handleSubmit}>
           <FormGroup>
             <Input 
               id= "searchinput"
