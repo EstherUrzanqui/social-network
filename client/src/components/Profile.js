@@ -86,7 +86,6 @@ class Profile extends React.Component {
 
     axios(`http://localhost:7001/api/users/${userId}/followers`)
       .then(response => {
-        console.log(response.data)
         this.setState({ myFollowers: response.data })
       })
       .catch(error => {
@@ -99,7 +98,6 @@ class Profile extends React.Component {
 
     axios(`http://localhost:7001/api/users/${userId}/following`)
       .then(response => {
-        console.log(response.data)
         this.setState({ myFollowing: response.data })
       })
       .catch(error => {
@@ -186,15 +184,14 @@ class Profile extends React.Component {
                 value={body}
                 onChange={this.handleChange}
                 name="body"
-                placeholder="What are you thinking?"
+                placeholder="Express Yourself"
                 type="textarea"
               />
             </FormGroup>
-            <Button className="submit">Post</Button>
+            <Button className="post-profile">Post</Button>
           </Form>
       </div>
-      <div className="container-fluid">
-        <div class="row">
+      <div className="profilecolumns">
           <div class="col-2">
             <Link className="link" id="firstlink" to="/followers">
               Followers: {followers}
@@ -248,7 +245,6 @@ class Profile extends React.Component {
               <Suggestions />
             </div>
           </div>
-        </div>
       </div>
       
     </div>
