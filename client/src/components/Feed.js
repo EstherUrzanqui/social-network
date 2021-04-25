@@ -251,6 +251,9 @@ class Feed extends React.Component {
           </div>
           
           <div class="container-fluid">
+            <div class="greeting">
+              Hello {this.props.user[0].user_name}!
+            </div>
             <div class="columns">
               <div class="col-3">
                 <Search onSearch={this.fetchSearchResults}/>
