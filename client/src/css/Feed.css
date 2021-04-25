@@ -58,10 +58,6 @@
   width: 100%;
 }
 
-.col-7 {
-  max-width: 10000px !important;
-}
-
 .thoughts{
   font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
   font-size: 15px;
@@ -72,7 +68,7 @@
   margin-left: auto;
   margin-right: auto;
   padding: 20px 16px 16px 16px;
-  width: 800px !important;
+  width: 600px !important;
   border-radius: 2% !important;
 }
 
