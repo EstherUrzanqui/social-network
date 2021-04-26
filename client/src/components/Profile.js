@@ -243,7 +243,6 @@ class Profile extends React.Component {
           </div>
           <div class="col-2">
             <div className="usersinplat">
-              <h2 id="sugtitle">Suggestions</h2>
               <Suggestions />
             </div>
           </div>
