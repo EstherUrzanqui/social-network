@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import withUser from "./Withuser"
 import { Button, Card, CardBody, CardTitle, CardImg } from 'reactstrap'
-import "../css/Followers.css"
+import "../css/Suggestions.css"
 import { withRouter } from "react-router";
 
 
@@ -88,7 +88,8 @@ class Suggestions extends React.Component {
     const userId = this.props.user[0].id
     
     return (
-      <div>
+      <div class="col-2">
+        <h2 id="titlesuggestions">Suggestions</h2>
         <ul>
           {users.map((user, index) => {
            if(user.id !== userId) {
@@ -97,7 +98,7 @@ class Suggestions extends React.Component {
                 <CardBody>
                   <CardImg className="picfollowers" top width="9%" src={user.image} />
                   <CardTitle onClick={() => this.handleClick(user.id)}>{user.user_name}</CardTitle>
-                  <Button value={user.id} onClick={this.onFollow}>Follow</Button>
+                  <Button className="buttonsuggestions" value={user.id} onClick={this.onFollow}>Follow</Button>
                 </CardBody>
               </Card>
              )}  
