@@ -8,8 +8,8 @@ const TheNavbar = (props) => {
     const toggleNavbar = () => setCollapsed(!collapsed)
 
     return (
-        <div className="col">
-            <Navbar color="faded" light>
+        <div className="col" >
+            <Navbar color="white" light fixed="top">
                 <NavbarBrand href="/" className="mr-auto" id="logo">Unax</NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar>
@@ -30,7 +30,7 @@ const TheNavbar = (props) => {
                             </NavItem>   
                         </Nav>
                         ) : (
-                        <Nav navbar className="ml-auto" >
+                        <Nav navbar className="ml-auto">
                             <NavItem>
                                 <NavLink className="link-pink" href="/">Login</NavLink>
                             </NavItem>
