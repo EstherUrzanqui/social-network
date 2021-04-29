@@ -1,21 +1,21 @@
 .feedform {
   background: whitesmoke;
+  padding-top: 4%;
 }
 
 .feed-container {
-  justify-content: center;
-  align-items: flex-end;
-  flex-direction: column;
-  text-align: center;
-  border-radius: 8px;
-  width: 30%;
-  font-weight: 100;
-  opacity: .85;
   display: inline-flex;
+  position: fixed;
+  left: 23%;
+  z-index: 10;
+  background: inherit;
+  width: 60%;
+  
 }
 
 .express {
   display: inherit;
+  padding-top: 10%;
 }
 
 #textarea {
@@ -28,7 +28,7 @@
   border-bottom: 1px solid rgba(75, 74, 74, 0.959) !important;
   background-color: rgba(119, 154, 248, 0) !important;
   border-radius: 0% !important;
-  
+  width: 50% !important;
 }
 
 .post-share {
@@ -37,25 +37,48 @@
   font-size: 20px !important;
   background-color: transparent !important;
   border-color: rgb(240, 68, 211) !important;
-  position: relative;
   height: 40px;
   width: 100px;
 }
 
 .container-fluid {
-  margin-top: -200px;
-  padding-top: 200px;
+  padding-top: 8%;
   width: 100%;
+
 }
 
 .greeting {
   float: left;
+  z-index: 10;
+  position: fixed;
+  background: inherit;
 }
 
 .columns {
   display: inline-flex;
   padding-top: 5%;
   width: 100%;
+}
+
+.wrapper {
+  width:100%;
+  position:relative;
+  z-index:10;
+  background:inherit;
+}
+
+.wrapper2 {
+  width:100%;
+  position:relative;
+  z-index:10;
+  background:inherit;
+}
+
+.col-7 {
+  width:100%;
+    padding-top:92px;
+    z-index:5;
+    overflow:auto;
 }
 
 .thoughts{

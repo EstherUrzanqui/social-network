@@ -250,13 +250,15 @@ class Feed extends React.Component {
           </Form>
           </div>
           
-          <div class="container-fluid">
-            <div class="greeting">
+          <div className="container-fluid">
+            <div className="greeting">
               Hello {this.props.user[0].user_name}!
             </div>
             <div class="columns">
+              <div className="wrapper">
               <div class="col-3">
                 <Search onSearch={this.fetchSearchResults}/>
+              </div>
               </div>
               <div>
                 {message ? (
@@ -336,9 +338,11 @@ class Feed extends React.Component {
                   </Modal>
                   
               </div>
+              <div className="wrapper2">
               <div className="col-2">
                 <div className="suggestions">
                   <Suggestions />
+                </div>
                 </div>
               </div>
             </div>
