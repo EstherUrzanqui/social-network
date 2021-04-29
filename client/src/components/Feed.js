@@ -255,10 +255,8 @@ class Feed extends React.Component {
               Hello {this.props.user[0].user_name}!
             </div>
             <div class="columns">
-              <div className="wrapper">
-              <div class="col-3">
+              <div class="col-3" id="search">
                 <Search onSearch={this.fetchSearchResults}/>
-              </div>
               </div>
               <div>
                 {message ? (
@@ -278,7 +276,7 @@ class Feed extends React.Component {
                   })
                 )}
               </div>
-              <div class="col-7">
+              <div class="col-7" id="posts">
                   <ul>
                     {feed.map((feeds, index) => {
                       return (
@@ -336,13 +334,10 @@ class Feed extends React.Component {
                       </Form>
                     </ModalBody>
                   </Modal>
-                  
               </div>
-              <div className="wrapper2">
-              <div className="col-2">
+              <div className="col-2" id="feedsugg">
                 <div className="suggestions">
                   <Suggestions />
-                </div>
                 </div>
               </div>
             </div>
