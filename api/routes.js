@@ -56,21 +56,6 @@ routes.post("/profile/:id/uploadbackground", upload.single("background_image"), 
     .catch(err => res.status(500).send(err))
 })
 
-//UPLOAD PICTURES IN MESSAGES
-routes.post("/user/:id/uploadpicture", upload.single("pictures"), (req, res, next) => {
-    let { id } = req.params
-
-    db(`UPDATE shares SET pictures = '/img/${req.file.filename}' WHERE id = '${id}'`)
-    .then(results => {
-        if(!results.error) {
-            res.status(201).send({ message: 'file uploaded'})
-            return
-        }
-        res.send(results)
-    })
-    .catch(err => res.status(500).send(err))
-})
-
 //EDIT USER DETAILS
 routes.post("/profile/:id/edit/user_name", (req, res) => {
     let { id } = req.params
@@ -141,19 +126,36 @@ routes.delete("/profile/:id/edit/delete", (req, res) => {
 })
 
 //POST A MESSAGE
-routes.post("/profile/share", (req, res) => {
-    let { user_id, body, createdAt, updatedAt } = req.body;
-    
-    db(`INSERT INTO shares (user_id, body, createdAt, updatedAt) 
-        VALUES ('${user_id}', '${body}', '${createdAt}', '${updatedAt}'); 
-        `)
-        .then(results => {
-            if(!results.error) {
-                res.status(201).send({})
-            }
-            res.send(results)
-        })
-        .catch(err => res.status(500).send(err))
+routes.post("/profile/share", upload.single("pictures"), (req, res, next) => {
+    let { user_id, body, createdAt, updatedAt} = req.body;
+    let pictures = req.file ? `/img/${req.file.filename}`: 'NULL';
+
+    db(`INSERT INTO shares (user_id, body, createdAt, updatedAt, pictures) 
+    VALUES ('${user_id}', '${body}', '${createdAt}', '${updatedAt}', '${pictures}'); 
+    `)
+    .then(results => {
+        if(!results.error) {
+            res.status(201).send({})
+        }
+        res.send(results)
+    })
+    .catch(err => res.status(500).send(err))
+     
+})
+
+//UPLOAD PICTURES IN MESSAGES
+routes.post("/user/:id/uploadpicture", upload.single("pictures"), (req, res, next) => {
+    let { id } = req.params
+
+    db(`UPDATE shares SET pictures = '/img/${req.file.filename}' WHERE id = '${id}'`)
+    .then(results => {
+        if(!results.error) {
+            res.status(201).send({ message: 'file uploaded'})
+            return
+        }
+        res.send(results)
+    })
+    .catch(err => res.status(500).send(err))
 })
 
 //GET ALL FOLLOWING USERS' MESSAGES
