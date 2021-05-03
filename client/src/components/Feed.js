@@ -1,14 +1,14 @@
 import React from "react"
 import axios from "axios"
 import "../css/Feed.css"
-import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, CardImg, UncontrolledCollapse, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Button, Form, FormGroup, Input, Card, CardBody, CardTitle, CardText, CardImg, UncontrolledCollapse, Modal, ModalHeader, ModalBody, Label } from 'reactstrap'
 import Withuser from "./Withuser"
 import moment from "moment"
 import Search from "./Search";
 import Suggestions from "./Suggestions"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from "@fortawesome/free-solid-svg-icons"
-import { faHeart as farHeart, faComment } from "@fortawesome/free-regular-svg-icons"
+import { faHeart as farHeart, faComment, faImages, faSmileBeam } from "@fortawesome/free-regular-svg-icons"
 
 
 
@@ -27,7 +27,8 @@ class Feed extends React.Component {
         isOpen: false,
         togId: null,
         likes: [],
-        likesId: []
+        likesId: [],
+        pictures: null
       }
     }
         
@@ -44,6 +45,13 @@ class Feed extends React.Component {
       })
     }
 
+    onImageChange = e => {
+      console.log(e.target.files[0])
+      this.setState({
+        pictures: e.target.files[0]
+      })
+    }
+
     getFeed = () => {
       const userId = this.props.user[0].id
       
@@ -56,20 +64,25 @@ class Feed extends React.Component {
         })
     }
 
-    handleSubmit = () => {
-      const user_id  = this.props.user[0].id
-      const { body } = this.state
+    handleSubmit = (event) => {
+      event.preventDefault()
+      
+      const formData = new FormData()
 
-      axios.post("http://localhost:7001/api/profile/share", {
-          user_id,
-          body,
-          createdAt: new Date().toISOString().slice(0,10),
-          updatedAt: new Date().toISOString().slice(0,10)
+      formData.append("user_id", this.props.user[0].id)
+      formData.append("body", this.state.body) 
+      formData.append("createdAt", new Date().toISOString().slice(0,10)) 
+      formData.append("updatedAt", new Date().toISOString().slice(0,10))
+      formData.append("pictures", this.state.pictures)
+
+      axios.post("http://localhost:7001/api/profile/share", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+        
       }) 
       .then(response => {
-        this.setState(state => ({
-          loggedIn: !state.loggedIn,
-        }))
+        console.log(response)
       })
       .catch(error => {
         console.log(error)
@@ -245,9 +258,17 @@ class Feed extends React.Component {
                 placeholder="Express Yourself"
                 type="textarea"
               />
+              <Label>
+                <Input id="file" type="file" onChange={this.onImageChange} style={{display:"none"}} /> 
+                <FontAwesomeIcon icon={faImages} size="lg"/>
+              </Label>
             </FormGroup>
             <Button className="post-share">Post</Button>
+            <div className="postimage">
+              <FontAwesomeIcon icon={faSmileBeam} size="lg"/>
+            </div>
           </Form>
+            
           </div>
           
           <div className="container-fluid">
@@ -285,7 +306,7 @@ class Feed extends React.Component {
                             <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
                             <CardTitle onClick={() => this.handleClick(feeds.followedId)} className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
-                            <CardImg clasName="messagepic" top width= "100%" src={feeds.pictures} />
+                            <CardImg className="messagepic" top width= "100%" src={feeds.pictures} />
                           </CardBody>
                           <div className="socialbar">
                             <div className="likes">
@@ -311,7 +332,7 @@ class Feed extends React.Component {
                               return (
                                 <CardBody key={index}>
                                   <CardImg className="pic" top width="15%" src={comment.image} />
-                                  <CardTitle clasName="userdetails">{comment.user_name} on {moment(comment.createdAt).format("MMM Do YYYY")}</CardTitle>
+                                  <CardTitle className="userdetails">{comment.user_name} on {moment(comment.createdAt).format("MMM Do YYYY")}</CardTitle>
                                   <CardText style={{width:"80%"}}>{comment.body}</CardText>
                                 </CardBody>
                               )}})}
