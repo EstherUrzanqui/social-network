@@ -128,7 +128,7 @@ routes.delete("/profile/:id/edit/delete", (req, res) => {
 //POST A MESSAGE
 routes.post("/profile/share", upload.single("pictures"), (req, res, next) => {
     let { user_id, body, createdAt, updatedAt} = req.body;
-    let pictures = req.file ? `/img/${req.file.filename}`: 'NULL';
+    let pictures = req.file ? `/img/${req.file.filename}`: 'NULL' ;
 
     db(`INSERT INTO shares (user_id, body, createdAt, updatedAt, pictures) 
     VALUES ('${user_id}', '${body}', '${createdAt}', '${updatedAt}', '${pictures}'); 

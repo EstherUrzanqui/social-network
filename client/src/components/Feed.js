@@ -64,9 +64,7 @@ class Feed extends React.Component {
         })
     }
 
-    handleSubmit = (event) => {
-      event.preventDefault()
-      
+    handleSubmit = () => {
       const formData = new FormData()
 
       formData.append("user_id", this.props.user[0].id)
@@ -242,6 +240,7 @@ class Feed extends React.Component {
     render() {
       const { body, feed, message, results, isOpen, reply, comments, likesId, likes } = this.state
       const userLiked = likes.filter(e => e.user_id === this.props.user[0].id).map(ele => ele.shares_id)
+      console.log(feed)
       
       return (
         <div className="feedform">
@@ -259,7 +258,7 @@ class Feed extends React.Component {
                 type="textarea"
               />
               <Label>
-                <Input id="file" type="file" onChange={this.onImageChange} style={{display:"none"}} /> 
+                <Input id="file" type="file" onChange={this.onImageChange} style={{display:"none"}} required={false} /> 
                 <FontAwesomeIcon icon={faImages} size="lg"/>
               </Label>
             </FormGroup>
@@ -306,7 +305,7 @@ class Feed extends React.Component {
                             <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
                             <CardTitle onClick={() => this.handleClick(feeds.followedId)} className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
-                            <CardImg className="messagepic" top width= "100%" src={feeds.pictures} />
+                            {feeds.pictures === "NULL" ? null : <CardImg className="messagepic" top width= "100%" src={feeds.pictures} />}
                           </CardBody>
                           <div className="socialbar">
                             <div className="likes">
