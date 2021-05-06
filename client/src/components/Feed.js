@@ -257,15 +257,12 @@ class Feed extends React.Component {
                 placeholder="Express Yourself"
                 type="textarea"
               />
-              <Label>
+              <Label className="files">
                 <Input id="file" type="file" onChange={this.onImageChange} style={{display:"none"}} required={false} /> 
                 <FontAwesomeIcon icon={faImages} size="lg"/>
               </Label>
             </FormGroup>
             <Button className="post-share">Post</Button>
-            <div className="postimage">
-              <FontAwesomeIcon icon={faSmileBeam} size="lg"/>
-            </div>
           </Form>
             
           </div>

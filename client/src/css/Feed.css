@@ -31,6 +31,12 @@
   width: 50% !important;
 }
 
+.files {
+  display: block !important;
+  width: 56%;
+  padding-top: 3%;
+}
+
 .post-share {
   color: rgb(240, 68, 211) !important;
   font-family: 'Amatic SC', cursive;
