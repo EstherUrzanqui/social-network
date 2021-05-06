@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button, Modal, ModalBody} from "reactstrap";
+import { Card, CardBody, CardTitle, CardText, CardImg, FormGroup, Form, Input, Button, Modal, ModalBody, Label } from "reactstrap";
 import Withuser from "./Withuser"
 import moment from "moment"
 import "../css/Profile.css" 
@@ -11,6 +11,8 @@ import ModalHeader from "reactstrap/lib/ModalHeader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Editprofilepic from "./Editprofilepic";
 import Suggestions from "./Suggestions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImages } from "@fortawesome/free-regular-svg-icons";
 
 
 
@@ -27,7 +29,8 @@ class Profile extends React.Component {
       myFollowing: [],
       body: "",
       isOpen: false,
-      isOpenPic: false
+      isOpenPic: false,
+      pictures: null
       
     }
   }
@@ -109,23 +112,32 @@ class Profile extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     })
-}
+  }
+
+  onImageChange = e => {
+    console.log(e.target.files[0])
+    this.setState({
+      pictures: e.target.files[0]
+    })
+  }
 
   handleSubmit = () => {
-    const user_id  = this.props.user[0].id
-    const { body } = this.state
+    const formData = new FormData()
 
-    axios.post("http://localhost:7001/api/profile/share", {
-        user_id,
-        body,
-        createdAt: new Date().toISOString().slice(0,10),
-        updatedAt: new Date().toISOString().slice(0,10)
+    formData.append("user_id", this.props.user[0].id)
+    formData.append("body", this.state.body) 
+    formData.append("createdAt", new Date().toISOString().slice(0,10)) 
+    formData.append("updatedAt", new Date().toISOString().slice(0,10))
+    formData.append("pictures", this.state.pictures)
+
+    axios.post("http://localhost:7001/api/profile/share", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    
     }) 
     .then(response => {
-      console.log(response.data)
-      this.setState(state => ({
-        loggedIn: !state.loggedIn,
-      }))
+      console.log(response)
     })
     .catch(error => {
       console.log(error)
@@ -187,6 +199,10 @@ class Profile extends React.Component {
                 placeholder="Express Yourself"
                 type="textarea"
               />
+              <Label className="profilefile">
+                <Input type="file" onChange={this.onImageChange} style={{display:"none"}} required={false} /> 
+                <FontAwesomeIcon icon={faImages} size="lg"/>
+              </Label>
             </FormGroup>
             <Button className="post-profile">Post</Button>
           </Form>
@@ -233,7 +249,7 @@ class Profile extends React.Component {
                     <CardImg className="pic" top width="100%" src={this.props.user[0].image} alt="profile pic" />
                     <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
                     <CardText className="userpost">{thought.body}</CardText>
-                    <CardImg className="messagepic" top width="90%" src={thought.pictures} />
+                    {thought.pictures === "NULL" ? null : <CardImg className="messagepic" top width="90%" src={thought.pictures} />}
                   </CardBody>
                 </Card>
                 )

@@ -62,6 +62,12 @@ p {
   display: inline-flex;
 }
 
+.profilefile {
+  display: block !important;
+  width: 56%;
+  padding-top: 1%;
+}
+
 .post-profile {
   color: rgb(240, 68, 211) !important;
   font-family: 'Amatic SC', cursive;
@@ -75,7 +81,8 @@ p {
 
 .profilecolumns {
   display: inline-flex;
-  padding-top: 3%;
+  padding-top: 5%;
+  margin-top: 2%;
 }
 
 .icons {
@@ -112,4 +119,3 @@ p {
 .usersinplat {
   display: contents !important;
 }
-
