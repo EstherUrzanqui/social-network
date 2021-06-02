@@ -2,7 +2,10 @@
   "name": "social-network",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/EstherUrzanqui/Social-network.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EstherUrzanqui/Social-network.git"
+  },
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -35,6 +38,15 @@
   "scripts": {
     "dev:server": "nodemon ./api/app.js",
     "dev:client": "cd ./client && yarn start",
-    "start": "npm-run-all -l -p dev:server dev:client"
-  }
+    "dev": "npm-run-all -l -p dev:server dev:client",
+    "start:server": "node ./api/app.js",
+    "start": "yarn start:server",
+    "build": "yarn && cd ./client && yarn && yarn build"
+  },
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/EstherUrzanqui/Social-network/issues"
+  },
+  "homepage": "https://github.com/EstherUrzanqui/Social-network#readme",
+  "author": ""
 }

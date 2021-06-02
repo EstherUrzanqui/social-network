@@ -29,7 +29,7 @@ class Search extends React.Component {
     const { query } = this.state
     
     return (
-      <div class="search">
+      <div className="search">
         <Form className="look" onSubmit={this.handleSubmit}>
           <FormGroup>
             <Input 

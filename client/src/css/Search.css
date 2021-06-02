@@ -1,6 +1,5 @@
-.search {
-  display: inline-block;
-  
+.look {
+  display: inline-flex;
 }
 
 .post {
@@ -12,6 +11,7 @@
   position: relative;
   height: 40px;
   width: 100px;
+  margin-left: 4%;
 }
 
 #searchinput {

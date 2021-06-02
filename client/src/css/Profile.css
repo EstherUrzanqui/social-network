@@ -60,6 +60,10 @@ p {
   margin-left: auto;
   margin-right: auto;
   display: inline-flex;
+  position: sticky;
+  
+  right: 25%;
+  z-index: 10;
 }
 
 .profilefile {
@@ -87,6 +91,8 @@ p {
 
 .icons {
   padding-left: 2%;
+  position: fixed;
+  z-index: 10;
 }
 
 .card {
