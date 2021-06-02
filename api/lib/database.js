@@ -80,6 +80,12 @@ con.connect(function(err) {
 
     let createMessagesQuery = 
     "DROP TABLE if exists messages; CREATE TABLE messages(id int NOT NULL AUTO_INCREMENT, user_id int DEFAULT NULL, body varchar(255) DEFAULT NULL, createdAt timestamp NULL DEFAULT NULL, shares_id int NOT NULL, PRIMARY KEY(id));"
+    con.query(createMessagesQuery, function (err, result) {
+      if(err) throw err;
+      console.log("Table creating `messages` was successful!");
+
+      console.log("Closing...")
+    })
 
     con.end();
 
