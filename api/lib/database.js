@@ -34,7 +34,7 @@ con.connect(function(err) {
     });
     
     let createUserQuery =
-		"DROP TABLE if exists user; CREATE TABLE user(id int NOT NULL AUTO_INCREMENT, user_name varchar(155) NOT NULL, email varchar(100) NOT NULL, password varchar(155) NOT NULL, image text NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id));";
+		"DROP TABLE if exists user; CREATE TABLE user(id int NOT NULL AUTO_INCREMENT, user_name varchar(155) NOT NULL, email varchar(155) NOT NULL, password varchar(155) NOT NULL, password2 varchar(155), image text NULL, background_image text NULL, PRIMARY KEY (id));";
 	con.query(createUserQuery, function (err, result) {
 		if (err) throw err;
 		console.log("Table creation `companies` was successful!");
@@ -43,7 +43,7 @@ con.connect(function(err) {
     });
     
     let createSharesQuery =
-		"DROP TABLE if exists shares; CREATE TABLE shares(id int NOT NULL AUTO_INCREMENT, user_id INT NOT NULL, body varchar(255) NOT NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id));";
+		"DROP TABLE if exists shares; CREATE TABLE shares(id int NOT NULL AUTO_INCREMENT, user_id INT NOT NULL, body text NOT NULL, createdAt timestamp NULL DEFAULT CURRENT_TIMESTAMP, updatedAt timestamp NULL DEFAULT NULL, pictures text, likes int DEFAULT 0, PRIMARY KEY (id));";
 	con.query(createSharesQuery, function (err, result) {
 		if (err) throw err;
 		console.log("Table creation `shares` was successful!");
@@ -61,13 +61,25 @@ con.connect(function(err) {
     });
     
     let addForeignKeysQuery =
-        "ALTER TABLE shares ADD CONSTRAINT shares_fk0 FOREIGN KEY (user_id) REFERENCES user(id);  ALTER TABLE relationships ADD CONSTRAINT relationships_fk0 FOREIGN KEY (followerId) REFERENCES user(id); ALTER TABLE relationships ADD CONSTRAINT relationships_fk1 FOREIGN KEY (followedId) REFERENCES user(id);"
+        "ALTER TABLE shares ADD CONSTRAINT shares_fk0 FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE;  ALTER TABLE relationships ADD CONSTRAINT relationships_fk1 FOREIGN KEY (followerId) REFERENCES user(id) ON DELETE CASCADE; ALTER TABLE relationships ADD CONSTRAINT relationships_fk2 FOREIGN KEY (followedId) REFERENCES user(id) ON DELETE CASCADE;"
     con.query(addForeignKeysQuery, function (err, result) {
         if (err) throw err;
         console.log("Added foreign keys successfuly!");
     
         console.log("Closing...");
     });
+
+    let createLikesUsersQuery =
+    "DROP TABLE if exists likes_users; CREATE TABLE likes_users(id int NOT NULL AUTO_INCREMENT, shares_id int NOT NULL, user_id int NOT NULL, likes int NOT NULL DEFAULT '0', PRIMARY KEY (id), KEY shares_id (shares_id), KEY messages_id (user_id));"
+    con.query(createLikesUsersQuery, function (err, result) {
+      if(err) throw err;
+      console.log("Table creating `likes_users` was successful!");
+
+      console.log("Closing...")
+    })
+
+    let createMessagesQuery = 
+    "DROP TABLE if exists messages; CREATE TABLE messages(id int NOT NULL AUTO_INCREMENT, user_id int DEFAULT NULL, body varchar(255) DEFAULT NULL, createdAt timestamp NULL DEFAULT NULL, shares_id int NOT NULL, PRIMARY KEY(id));"
 
     con.end();
 
