@@ -52,7 +52,7 @@ con.connect(function(err) {
     });
     
     let createRelationshipsQuery =
-		"DROP TABLE if exists relationships; CREATE TABLE relationships(id int NOT NULL AUTO_INCREMENT, followerId INT NOT NULL, followedId INT NOT NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id)) CREATE UNIQUE INDEX idx_follower_followed ON relationships (followerId, followedId);";
+		"DROP TABLE if exists relationships; CREATE TABLE relationships(id int NOT NULL AUTO_INCREMENT, followerId INT NOT NULL, followedId INT NOT NULL, createdAt datetime NOT NULL, updatedAt datetime NOT NULL, PRIMARY KEY (id), UNIQUE KEY idx_follower_followed (followerId, followedId));";
 	con.query(createRelationshipsQuery, function (err, result) {
 		if (err) throw err;
 		console.log("Table creation `relationships` was successful!");
