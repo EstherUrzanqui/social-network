@@ -41,7 +41,8 @@
     "dev": "npm-run-all -l -p dev:server dev:client",
     "start:server": "node ./api/app.js",
     "start": "yarn start:server",
-    "build": "yarn && cd ./client && yarn && yarn build"
+    "build": "yarn && cd ./client && yarn && yarn build",
+    "migrate": "node ./api/lib/database.js"
   },
   "description": "",
   "bugs": {
