@@ -37,7 +37,8 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "start": "serve -s build",
+    "start:server": "node ./api/app.js",
+    "start": "yarn start:server",
     "build": "yarn && cd ./client && yarn && yarn build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
