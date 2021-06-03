@@ -36,12 +36,12 @@
     "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "dev:server": "nodemon ./api/app.js",
-    "dev:client": "cd ./client && yarn start",
-    "dev": "npm-run-all -l -p dev:server dev:client",
-    "start:server": "node ./api/app.js",
-    "start": "yarn start:server",
-    "build": "yarn && cd ./client && yarn && yarn build",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build",
     "migrate": "node ./api/lib/database.js"
   },
   "description": "",
