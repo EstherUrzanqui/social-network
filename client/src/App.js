@@ -17,7 +17,6 @@ import Othersfollowers from "./components/Othersfollowers";
 import Othersfollowing from "./components/Othersfollowing";
 
 
-
 const App = () => {
     const [isLoggedIn, setLoggedIn] = useState(false)
     console.log(isLoggedIn)
@@ -39,7 +38,7 @@ const App = () => {
       setLoggedIn(false)
       localStorage.clear()
     }
-  
+
   return (
     <div className="App">
       <Router>
