@@ -9,7 +9,7 @@ const TheNavbar = (props) => {
 
     return (
         <div className="col" >
-            <Navbar color="white" light fixed="top">
+            <Navbar light fixed="top">
                 <NavbarBrand href="/" className="mr-auto" id="logo">Unax</NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar>

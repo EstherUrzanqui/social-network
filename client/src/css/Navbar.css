@@ -4,5 +4,9 @@
   font-size: 50px;
 }
 
+.bg-white {
+  background-color: transparent !important;
+}
+
 
 
