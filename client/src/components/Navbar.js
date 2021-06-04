@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Collapse, Navbar, NavbarToggler, Nav, NavLink, NavbarBrand, NavItem } from "reactstrap";
 import "../css/Navbar.css"
+import Logo from "../images/logo_transparent.png"
 
 const TheNavbar = (props) => {
     const [collapsed, setCollapsed] = useState(true)
@@ -10,7 +11,9 @@ const TheNavbar = (props) => {
     return (
         <div className="col" >
             <Navbar light fixed="top">
-                <NavbarBrand href="/" className="mr-auto" id="logo">Unax</NavbarBrand>
+                <NavbarBrand href="/" className="mr-auto" id="logo">
+                    <img src={Logo} style={{ width: "90%", height: "13%" }}/>
+                </NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar>
                     <Nav>
