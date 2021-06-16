@@ -244,28 +244,26 @@ class Feed extends React.Component {
       return (
         <div className="feedform">
           <div className="feed-container">
-          <Form className="express" onSubmit={this.handleSubmit}>
-            <FormGroup>
-              <Input 
-                id= "textarea"
-                cols="60"
-                rows="4"
-                value={body}
-                onChange={this.handleChange}
-                name="body"
-                placeholder="Express Yourself"
-                type="textarea"
-              />
-              <Label className="files">
-                <Input id="file" type="file" onChange={this.onImageChange} style={{display:"none"}} required={false} /> 
-                <FontAwesomeIcon icon={faImages} size="lg"/>
-              </Label>
-            </FormGroup>
-            <Button className="post-share">Post</Button>
-          </Form>
-            
+            <Form className="express" onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <Input 
+                  id= "textarea"
+                  cols="60"
+                  rows="4"
+                  value={body}
+                  onChange={this.handleChange}
+                  name="body"
+                  placeholder="Express Yourself"
+                  type="textarea"
+                />
+                <Label className="files">
+                  <Input id="file" type="file" onChange={this.onImageChange} style={{display:"none"}} required={false} /> 
+                  <FontAwesomeIcon icon={faImages} size="lg"/>
+                </Label>
+              </FormGroup>
+              <Button className="post-share">Post</Button>
+            </Form>
           </div>
-          
           <div className="container-fluid">
             <div className="greeting">
               Hello {this.props.user[0].user_name}!
