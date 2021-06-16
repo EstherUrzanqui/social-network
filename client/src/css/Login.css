@@ -21,7 +21,7 @@
 
 .login {
   font-family: 'Amatic SC', cursive;
-  color: rgb(240, 68, 211);
+  color: rgb(244,140,180);
   font-size: 60px;
   height: 80px;
   text-align: center;
@@ -62,11 +62,11 @@ label:focus,
 }
 
 .submit {
-  color: rgb(247, 28, 210) !important;
+  color: rgb(244,140,180) !important;
   font-family: 'Amatic SC', cursive;
   font-size: 22px !important;
   background-color: transparent !important;
-  border-color: rgb(240, 68, 211) !important;
+  border-color: rgb(244,140,180) !important;
   margin-top: 60px;
   position: relative;
   height: 40px;
