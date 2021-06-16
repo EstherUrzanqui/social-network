@@ -3,12 +3,16 @@ ul {
   padding-left: 0px !important;
 }
 .buttonsuggestions {
-  color: rgb(240, 68, 211) !important;
+  color: rgb(244,140,180) !important;
   font-family: 'Amatic SC', cursive;
   font-size: 20px !important;
   background-color: transparent !important;
-  border-color: rgb(240, 68, 211) !important;
+  border-color: rgb(244,140,180) !important;
   position: relative;
   height: 40px;
   width: 100px;
+}
+
+#titlesuggestions {
+  color: rgb(244,140,180);
 }
