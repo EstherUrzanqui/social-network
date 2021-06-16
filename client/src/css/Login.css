@@ -1,13 +1,13 @@
 
 .page {
   background: transparent;
-  margin-top: 4%;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 40px);
+  height: calc(100% - 0px);
   position: absolute;
   place-content: center;
   width: calc(100%);
+  background-image: url("../images/backcolor.jpg");
 }
 
 .container {

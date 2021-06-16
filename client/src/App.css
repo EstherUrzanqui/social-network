@@ -9,11 +9,10 @@ html, body {
   background-position: center center;
   background-attachment: fixed;
   color: #151617;
-  background-image: url("./images/backcolor.jpg");
+  
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 
