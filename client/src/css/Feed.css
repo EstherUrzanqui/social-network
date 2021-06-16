@@ -41,11 +41,11 @@
 }
 
 .post-share {
-  color: rgb(240, 68, 211) !important;
+  color: rgb(244,140,180) !important;
   font-family: 'Amatic SC', cursive;
   font-size: 20px !important;
   background-color: transparent !important;
-  border-color: rgb(240, 68, 211) !important;
+  border-color: rgb(244,140,180) !important;
   height: 40px;
   width: 100px;
 }
@@ -61,6 +61,11 @@
   z-index: 10;
   position: fixed;
   background: inherit;
+  font-family: 'Amatic SC', cursive;
+  color: rgb(244,140,180);
+  font-size: 3rem;
+  padding-top: 3%;
+  padding-left: 2%;
 }
 
 .columns {
@@ -108,8 +113,11 @@
   border-radius: 50% !important;
 }
 
+.userName {
+
+}
+
 .userdetails {
-  margin-top: -80px;
   text-align: right;
   color: black;
 }
@@ -128,6 +136,7 @@ img.card-img-top {
 
 .socialbar {
   display: flex;
+  padding-top: 4%;
 }
 
 .likes {

@@ -258,7 +258,7 @@ class Feed extends React.Component {
                 />
                 <Label className="files">
                   <Input id="file" type="file" onChange={this.onImageChange} style={{display:"none"}} required={false} /> 
-                  <FontAwesomeIcon icon={faImages} size="lg"/>
+                  <FontAwesomeIcon icon={faImages} size="lg" style={{color: "white"}}/>
                 </Label>
               </FormGroup>
               <Button className="post-share">Post</Button>
@@ -281,7 +281,8 @@ class Feed extends React.Component {
                       <Card key={index}>
                         <CardBody>
                           <CardImg className="pic" top width="15%" src={result.image} alt="profile pic" />
-                          <CardTitle className="userdetails">{result.user_name} on {moment(result.createdAt).format("MMM Do YYYY")}</CardTitle>
+                          <CardTitle className="userName">{result.user_name}</CardTitle>
+                          <CardTitle className="userdetails">{moment(result.createdAt).format("MMM Do YYYY")}</CardTitle>
                           <CardText style={{width:"80%"}} className="userpost">{result.body}</CardText>
                         </CardBody>
                       </Card>
@@ -296,8 +297,9 @@ class Feed extends React.Component {
                       return (
                         <Card className='thoughts' key={index}>
                           <CardBody>
+                            <CardTitle className="userName">{feeds.user_name}</CardTitle>
+                            <CardTitle onClick={() => this.handleClick(feeds.followedId)} className="userdetails">{moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                             <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
-                            <CardTitle onClick={() => this.handleClick(feeds.followedId)} className="userdetails">{feeds.user_name} on {moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
                             <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                             {feeds.pictures === "NULL" ? null : <CardImg className="messagepic" top width= "100%" src={feeds.pictures} />}
                           </CardBody>
