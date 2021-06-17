@@ -101,7 +101,7 @@ class Feed extends React.Component {
             this.setState({ message: true })
           } else {
             this.setState({
-              results: data,
+              feed: data,
               message: false
             })
           }
@@ -272,55 +272,39 @@ class Feed extends React.Component {
               <div class="col-3" id="search">
                 <Search onSearch={this.fetchSearchResults}/>
               </div>
-              <div>
-                {message ? (
-                  <h5>There are no results with your search</h5>
-                ) : (
-                  results.map((result, index) => {
-                    return (
-                      <Card key={index}>
-                        <CardBody>
-                          <CardImg className="pic" top width="15%" src={result.image} alt="profile pic" />
-                          <CardTitle className="userName">{result.user_name}</CardTitle>
-                          <CardTitle className="userdetails">{moment(result.createdAt).format("MMM Do YYYY")}</CardTitle>
-                          <CardText style={{width:"80%"}} className="userpost">{result.body}</CardText>
-                        </CardBody>
-                      </Card>
-
-                    )
-                  })
-                )}
-              </div>
+             
               <div class="col-7" id="posts">
-                  <ul>
-                    {feed.map((feeds, index) => {
-                      return (
-                        <Card className='thoughts' key={index}>
-                          <CardBody>
-                            <CardTitle className="userName">{feeds.user_name}</CardTitle>
-                            <CardTitle onClick={() => this.handleClick(feeds.followedId)} className="userdetails">{moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
-                            <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
-                            <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
+                {message ? (
+                  <h5>There are no results for your search</h5>
+                ) : (
+                  feed.map((feeds, index) => {
+                    return (
+                      <Card className='thoughts' key={index}>
+                        <CardBody>
+                          <CardTitle className="userName">{feeds.user_name}</CardTitle>
+                          <CardTitle onClick={() => this.handleClick(feeds.followedId)} className="userdetails">{moment(feeds.createdAt).format("MMM Do YYYY")}</CardTitle>
+                          <CardImg className="pic" top width="15%" src={feeds.image} alt="profile pic" />
+                          <CardText style={{width:"80%"}} className="userpost">{feeds.body}</CardText>
                             {feeds.pictures === "NULL" ? null : <CardImg className="messagepic" top width= "100%" src={feeds.pictures} />}
-                          </CardBody>
-                          <div className="socialbar">
-                            <div className="likes">
-                              {userLiked.includes(feeds.id) ? <FontAwesomeIcon icon={faHeart}  onClick={() => this.onUnliked(feeds.id)} />   : 
-                                <FontAwesomeIcon icon={farHeart} onClick={() => this.onLiked(feeds.id)} />   
-                              }
-                            </div>
-                            <div className="likescount">
-                              {likesId.filter(x => x === feeds.id).length}
-                            </div>
-                            <div className="comments">
-                              <FontAwesomeIcon icon={faComment} onClick={() => this.toggle(feeds.id)} />
-                            </div>
-                            <div className="commentscount">
-                              <p id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments()}>
-                                {comments.filter(x => x.shares_id === feeds.id).length} Comments
-                              </p>
-                            </div>
+                        </CardBody>
+                        <div className="socialbar">
+                          <div className="likes">
+                            {userLiked.includes(feeds.id) ? <FontAwesomeIcon icon={faHeart}  onClick={() => this.onUnliked(feeds.id)} />   : 
+                              <FontAwesomeIcon icon={farHeart} onClick={() => this.onLiked(feeds.id)} />   
+                            }
                           </div>
+                          <div className="likescount">
+                            {likesId.filter(x => x === feeds.id).length}
+                          </div>
+                          <div className="comments">
+                            <FontAwesomeIcon icon={faComment} onClick={() => this.toggle(feeds.id)} />
+                          </div>
+                          <div className="commentscount">
+                            <p id="toggler" style={{ marginBottom: '1rem'}} onClick={() => this.getComments()}>
+                              {comments.filter(x => x.shares_id === feeds.id).length} Comments
+                            </p>
+                          </div>
+                        </div>
                           <UncontrolledCollapse toggler="#toggler">
                             {comments.map((comment, index) => {
                               if(comment.shares_id === feeds.id) {
@@ -334,8 +318,7 @@ class Feed extends React.Component {
                           </UncontrolledCollapse>
                         </Card>
                       )
-                    })}
-                  </ul>
+                    }))}
                   <Modal isOpen={isOpen} toggle={this.toggle}>
                     <ModalBody>
                       <Form onSubmit={this.handleReplies}>
@@ -350,7 +333,7 @@ class Feed extends React.Component {
                       </Form>
                     </ModalBody>
                   </Modal>
-              </div>
+                </div>  
               <div className="col-2" id="feedsugg">
                 <div className="suggestions">
                   <Suggestions />
