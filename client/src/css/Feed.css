@@ -114,7 +114,7 @@
 }
 
 .userName {
-
+  width: 20%;
 }
 
 .userdetails {
@@ -131,7 +131,8 @@
 }
 
 img.card-img-top {
-  margin-top: 5%;
+  margin: 0;
+  float: left;
 }
 
 .socialbar {
