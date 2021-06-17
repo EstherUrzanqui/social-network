@@ -19,7 +19,6 @@ class Feed extends React.Component {
       this.state = {
         feed: [],
         body: "",
-        results: [],
         message: false,
         error: false, 
         reply: "", 
@@ -238,7 +237,7 @@ class Feed extends React.Component {
     }
 
     render() {
-      const { body, feed, message, results, isOpen, reply, comments, likesId, likes } = this.state
+      const { body, feed, message, isOpen, reply, comments, likesId, likes } = this.state
       const userLiked = likes.filter(e => e.user_id === this.props.user[0].id).map(ele => ele.shares_id)
       
       return (
