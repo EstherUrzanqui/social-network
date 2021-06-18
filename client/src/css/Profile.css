@@ -2,7 +2,7 @@
 
 h2 {
   font-family: 'Amatic SC', cursive;
-  color: rgb(247, 71, 100);
+  color: rgb(244,140,180) !important;
   float: left;
 }
 
@@ -21,14 +21,16 @@ p {
   flex-direction: column;
   min-height:100%;
   position: relative;
-  width: calc(100% - 40px);
+  width: calc(100% - 0px);
+  background-color: rgb(9,62,121);
 }
 
 .file {
   margin: auto;
   position: relative;
   top: 0;
-  left:0
+  left:0;
+  padding-top: 10%;
 }
 
 .backgroundpic {
@@ -47,7 +49,7 @@ p {
   position: absolute;
   bottom: 130px;
   left: 620px;
-  border: 8px solid rgb(52, 51, 60);
+  border: 8px solid rgb(9,62,121);
 }
 
 #underline {
@@ -73,11 +75,11 @@ p {
 }
 
 .post-profile {
-  color: rgb(240, 68, 211) !important;
+  color: rgb(244,140,180) !important;
   font-family: 'Amatic SC', cursive;
   font-size: 20px !important;
   background-color: transparent !important;
-  border-color: rgb(240, 68, 211) !important;
+  border-color: rgb(244,140,180) !important;
   position: relative;
   height: 40px;
   width: 100px;
@@ -91,7 +93,6 @@ p {
 
 .icons {
   padding-left: 2%;
-  position: fixed;
   z-index: 10;
 }
 
@@ -111,7 +112,7 @@ p {
 
 .activity {
   font-family: 'Amatic SC', cursive;
-  color: rgb(247, 71, 100);
+  color: rgb(244,140,180);
   font-size: 50px;
   font-weight: 900;
   
