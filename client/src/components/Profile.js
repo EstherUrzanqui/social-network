@@ -201,7 +201,7 @@ class Profile extends React.Component {
               />
               <Label className="profilefile">
                 <Input type="file" onChange={this.onImageChange} style={{display:"none"}} required={false} /> 
-                <FontAwesomeIcon icon={faImages} size="lg"/>
+                <FontAwesomeIcon icon={faImages} size="lg" style={{color: "white"}}/>
               </Label>
             </FormGroup>
             <Button className="post-profile">Post</Button>
@@ -247,7 +247,7 @@ class Profile extends React.Component {
                 <Card className='thoughts' key={index}>
                   <CardBody>
                     <CardImg className="pic" top width="100%" src={this.props.user[0].image} alt="profile pic" />
-                    <CardTitle className="posted" >{thought.user_name} posted at {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
+                    <CardTitle className="userdetails" >{thought.user_name} {moment(thought.createdAt).format("MMM Do YYYY")}</CardTitle>
                     <CardText className="userpost">{thought.body}</CardText>
                     {thought.pictures === "NULL" ? null : <CardImg className="messagepic" top width="90%" src={thought.pictures} />}
                   </CardBody>
