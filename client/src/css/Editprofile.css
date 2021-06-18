@@ -4,12 +4,12 @@
   position: absolute;
   place-content: center;
   width: calc(100%);
-  color: rgb(240, 68, 211)
+  color: rgb(244,140,180)
 }
 
 h1 {
   font-family: 'Amatic SC', cursive;
-  color: rgb(240, 68, 211) !important;
+  color: rgb(244,140,180) !important;
   font-size: 70px !important;
   text-align: center;
   justify-content: center;
