@@ -1,8 +1,10 @@
 .feedform {
-  background: transparent;
-  padding-top: 4%;
   background-color: rgb(9,62,121);
-  height: inherit;
+  display:flex;
+  flex-direction: column;
+  min-height:100%;
+  position: relative;
+  width: calc(100% - 0px);
 }
 
 .feed-container {
