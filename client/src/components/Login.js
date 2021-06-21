@@ -87,7 +87,7 @@ class Login extends React.Component {
                         <br></br>
                         <div className="link-div">
                             <Link className="link" to="/signin">
-                                Don't you have an account? Sing up
+                                Don't you have an account? Sign up
                             </Link>
                         </div>
                     </Form>   
