@@ -288,7 +288,7 @@ class Feed extends React.Component {
                         </CardBody>
                         <div className="socialbar">
                           <div className="likes">
-                            {userLiked.includes(feeds.id) ? <FontAwesomeIcon icon={faHeart}  onClick={() => this.onUnliked(feeds.id)} />   : 
+                            {userLiked.includes(feeds.id) ? <FontAwesomeIcon icon={faHeart} onClick={() => this.onUnliked(feeds.id)} />   : 
                               <FontAwesomeIcon icon={farHeart} onClick={() => this.onLiked(feeds.id)} />   
                             }
                           </div>
