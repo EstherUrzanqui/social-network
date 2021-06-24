@@ -1,5 +1,5 @@
 .account{
-  background-color: white;
+  background-color: rgb(9,62,121);
   height: calc(100% - 40px);
   position: absolute;
   place-content: center;
