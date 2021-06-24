@@ -163,12 +163,28 @@ img.card-img-top {
   align-items: center;
   margin-left: 10%;
   margin-right: 2%;
+  color: white;
 }
 .commentcount {
   align-items: center;
 }
 
 .modal-body {
-  background-color: black;
-  
+  background-color: white;
+}
+
+#comments {
+  margin-left: 5%;
+  background-color: white;
+  color: rgb(244,140,180);
+  border-color: rgb(244,140,180);
+}
+
+#toggler {
+  color: white;
+}
+
+.usersname {
+  float: left;
+  color: rgb(244,140,180) !important;
 }
