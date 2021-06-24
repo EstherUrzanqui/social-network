@@ -1,5 +1,5 @@
 .feedform {
-  background-color: rgb(9,62,121);
+  background-color: rgb(60, 61, 61);
   display:flex;
   flex-direction: column;
   min-height:100%;
@@ -101,14 +101,11 @@
   font-size: 15px;
   font-weight: bold;
   line-height: 20px;
-  box-shadow: 5px 5px 15px 4px rgb(66, 54, 65);
-  margin: 10px 10px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 16px 16px 16px;
   width: 600px !important;
-  border-radius: 2% !important;
-  background-color: rgb(103, 139, 182) !important;
+  background-color: rgb(60, 61, 61) !important;
 }
 
 .pic {
@@ -128,12 +125,12 @@
 
 .userdetails {
   text-align: right;
-  color: black;
+  color: white !important;
   margin: 0;
 }
 
 .userpost {
-  color: rgb(5, 5, 5);
+  color: white;
   font-size: 15px;
   text-align: left;
   line-height: 20px;
@@ -143,6 +140,10 @@
 img.card-img-top {
   margin: 0;
   float: left;
+}
+
+.messagepic {
+  padding-top: 3%;
 }
 
 .socialbar {
@@ -165,4 +166,9 @@ img.card-img-top {
 }
 .commentcount {
   align-items: center;
+}
+
+.modal-body {
+  background-color: black;
+  
 }
