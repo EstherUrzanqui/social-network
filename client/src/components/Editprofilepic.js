@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Button, Form, Input, FormGroup } from "reactstrap"
 import withUser from "./Withuser";
+import "../css/Editprofilepic.css"
 
 
 class Editprofilepic extends React.Component {
