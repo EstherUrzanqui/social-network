@@ -310,8 +310,9 @@ class Feed extends React.Component {
                               return (
                                 <CardBody key={index}>
                                   <CardImg className="pic" top width="15%" src={comment.image} />
-                                  <CardTitle className="userdetails">{comment.user_name} on {moment(comment.createdAt).format("MMM Do YYYY")}</CardTitle>
-                                  <CardText style={{width:"80%"}}>{comment.body}</CardText>
+                                  <CardTitle className="usersname">{comment.user_name}</CardTitle>
+                                  <CardTitle className="userdetails"> {moment(comment.createdAt).format("MMM Do YYYY")}</CardTitle>
+                                  <CardText style={{width:"80%", color:"white"}}>{comment.body}</CardText>
                                 </CardBody>
                               )}})}
                           </UncontrolledCollapse>
@@ -327,7 +328,7 @@ class Feed extends React.Component {
                             onChange={this.handleChange}
                             name="reply"
                           />
-                          <Button>Send</Button>
+                          <Button id="comments">Comment</Button>
                         </FormGroup>
                       </Form>
                     </ModalBody>
