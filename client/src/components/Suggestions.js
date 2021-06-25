@@ -95,9 +95,9 @@ class Suggestions extends React.Component {
            if(user.id !== userId) {
              return (
               <Card className="users" key= {index}>
-                <CardBody>
-                  <CardImg className="picfollowers" top width="9%" src={user.image} />
-                  <CardTitle onClick={() => this.handleClick(user.id)}>{user.user_name}</CardTitle>
+                <CardBody onClick={() => this.handleClick(user.id)}>
+                  <CardTitle id="suggname">{user.user_name}</CardTitle>
+                  <CardImg className="picfollowers"  src={user.image} />
                   <Button className="buttonsuggestions" value={user.id} onClick={this.onFollow}>Follow</Button>
                 </CardBody>
               </Card>
