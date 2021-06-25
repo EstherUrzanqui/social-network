@@ -2,6 +2,15 @@ ul {
   margin-left: 0px !important;
   padding-left: 0px !important;
 }
+
+.card {
+  border-color: rgb(48, 47, 47) !important;
+}
+
+.card-body {
+  background-color: rgb(60, 61, 61);
+}
+
 .buttonsuggestions {
   color: rgb(244,140,180) !important;
   font-family: 'Amatic SC', cursive;
@@ -9,10 +18,21 @@ ul {
   background-color: transparent !important;
   border-color: rgb(244,140,180) !important;
   position: relative;
-  height: 40px;
-  width: 100px;
+  height: 2%;
+  width: 90%;
 }
 
 #titlesuggestions {
   color: rgb(244,140,180);
+}
+
+.picfollowers {
+  border-radius: 50% !important;
+  margin-bottom: 15%;
+}
+
+#suggname {
+  width: 60%;
+  color: white;
+  text-align: center;
 }
