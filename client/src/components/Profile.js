@@ -235,7 +235,7 @@ class Profile extends React.Component {
               })}
             </div>
           </div>
-          </div>
+        </div>
           <div class="col-7">
             <div>
               <div className ="activity">
@@ -262,8 +262,7 @@ class Profile extends React.Component {
               <Suggestions />
             </div>
           </div>
-      </div>
-      
+      </div> 
     </div>
     ) 
   }

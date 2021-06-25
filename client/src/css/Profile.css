@@ -22,7 +22,7 @@ p {
   min-height:100%;
   position: relative;
   width: calc(100% - 0px);
-  background-color: rgb(9,62,121);
+  background-color: rgb(60, 61, 61);
 }
 
 .file {
@@ -49,7 +49,7 @@ p {
   position: absolute;
   bottom: 130px;
   left: 620px;
-  border: 8px solid rgb(9,62,121);
+  border: 8px solid rgb(60, 61, 61);
 }
 
 #underline {
