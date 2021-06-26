@@ -1,0 +1,50 @@
+.allprofilecolumns {
+  padding-top: 5%;
+  margin-top: 2%;
+}
+
+.allicons {
+  padding-left: 2%;
+  z-index: 10;
+}
+
+#allfollows {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+.card {
+  height: fit-content;
+  width: fit-content;
+}
+
+.grid {
+  width: 350px;
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(3, 5vw);
+  grid-template-rows: repeat(2, 5vw);
+}
+
+#allprofpost {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.col-7 {
+  flex: 0 0 58.333333%;
+  max-width: 100% !important;
+}
+
+.allactivity {
+  font-family: 'Amatic SC', cursive;
+  color: rgb(244,140,180);
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.allusersinplat {
+  display: contents !important;
+}
