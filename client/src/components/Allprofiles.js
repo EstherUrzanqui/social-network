@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import Followers from "./Followers";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Suggestions from "./Suggestions";
+import "../css/Allprofiles.css"
 
 
 class Allprofiles extends React.Component {
@@ -238,9 +239,9 @@ class Allprofiles extends React.Component {
         )} 
           <br/>
       </div>
-      <div className="container-fluid">
-        <div class="row">
-          <div class="col-2">
+      <div className="allprofilecolumns">
+        <div class="allicons">
+          <div class="col-3" id="allfollows">
             <Link className="link" onClick={() => this.getProfileFollowers(followedId)}>
               Followers:{followers[0]}
             </Link>
@@ -266,9 +267,10 @@ class Allprofiles extends React.Component {
               })}
             </div>
           </div>
-          <div class="col-8">
+        </div>
+          <div class="col-7" id="allprofpost">
             <div>
-              <div className ="activity">
+              <div className ="allactivity">
                 Latest Posts
               </div>
               <ul>
@@ -287,14 +289,11 @@ class Allprofiles extends React.Component {
             </div>
           </div>
           <div class="col-2">
-            <div className="usersinplat">
-              <h2 id="sugtitle">Suggestions</h2>
+            <div className="allusersinplat">
               <Suggestions />
             </div>
-          </div>
         </div>
       </div>
-      
     </div>
     ) 
   }
