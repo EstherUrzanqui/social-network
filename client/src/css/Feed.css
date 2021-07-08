@@ -1,5 +1,5 @@
 .feedform {
-  background-color: rgb(60, 61, 61);
+  background-color: darkslategray;
   display:flex;
   flex-direction: column;
   min-height:100%;

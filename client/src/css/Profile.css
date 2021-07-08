@@ -22,7 +22,7 @@ p {
   min-height:100%;
   position: relative;
   width: calc(100% - 0px);
-  background-color: rgb(60, 61, 61);
+  background-color: darkslategray;
 }
 
 .file {
