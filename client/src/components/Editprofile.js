@@ -157,7 +157,7 @@ class Editprofile extends React.Component {
           </div>
           <div className="col-md-12" id="editusername">
             <h2>Username</h2> 
-            <h4>{this.props.user[0].user_name}</h4>
+            <h4 id="myaccount">{this.props.user[0].user_name}</h4>
             <p onClick={this.toggleName}>Edit</p>
           </div>
           <div className="col-md-12">
@@ -175,7 +175,7 @@ class Editprofile extends React.Component {
           </div>
           <div className="col-md-12" id="editemail">
             <h2>Email</h2>
-            <h4>{this.props.user[0].email}</h4>
+            <h4 id="myaccount">{this.props.user[0].email}</h4>
             <p onClick={this.toggleEmail}>Edit</p>
           </div>
           <div className="col-md-12">

@@ -1,7 +1,6 @@
 .account{
-  background-color: rgb(9,62,121);
-  height: calc(100% - 40px);
-  position: absolute;
+  background-color: darkslategray;
+  height: calc(100% - 0px);
   place-content: center;
   width: calc(100%);
   color: rgb(244,140,180)
@@ -76,7 +75,7 @@ h1 {
 .editdetails {
   font-family: 'Amatic SC', cursive;
   font-size: 60px;
-  color: rgb(240, 68, 211);
+  color: rgb(244,140,180);
   font-weight: 900;
   max-width: 500px;
   
@@ -90,9 +89,13 @@ h1 {
 .updatepass {
   font-family: 'Amatic SC', cursive;
   font-size: 60px;
-  color: rgb(240, 68, 211);
+  color: rgb(244,140,180);
   font-weight: 900;
   max-width: 500px;
   
+}
+
+#myaccount {
+  color: white;
 }
 
