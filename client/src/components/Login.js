@@ -1,6 +1,6 @@
 import React from "react"
 import axios from "axios"
-import { Button, Form, FormGroup, Input} from 'reactstrap'
+import { Button, Form, FormGroup, Input, Alert } from 'reactstrap'
 import { Link } from "react-router-dom"
 import "../css/Login.css"
 
@@ -41,6 +41,7 @@ class Login extends React.Component {
             console.log(response.data)
         })
         .catch((error) => {
+            this.setState({ error: true })
             console.log(error)
         })
         this.setState({
@@ -55,9 +56,16 @@ class Login extends React.Component {
     }
 
     render() {
-        const { user_name, password } = this.state
+        const { user_name, password, error } = this.state
         return (
             <div className="page">
+                <div className="errormessage">
+                    {error && (
+                        <Alert color="warning">
+                            Your username or password are incorrect. Please try again, or sign up.
+                        </Alert>
+                    )}
+                </div>
                 <div className="container">
                     <div className="login">Login</div>
                     <Form className="login-container" onSubmit={this.login}>
