@@ -5,10 +5,12 @@ ul {
 
 .card {
   border-color: rgb(48, 47, 47) !important;
+  border-radius: .75rem !important;
 }
 
 .card-body {
-  background-color: rgb(60, 61, 61);
+  background-color: white;
+  border-radius: .75rem !important;
 }
 
 .buttonsuggestions {
@@ -24,6 +26,7 @@ ul {
 
 #titlesuggestions {
   color: rgb(244,140,180);
+  padding-bottom: 100%;
 }
 
 .picfollowers {
