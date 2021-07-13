@@ -4,16 +4,13 @@
   height: 70%;
   margin: auto;
   padding: 10px;
-  background: rgb(231, 218, 230);
-  box-shadow: 5px 5px 15px 4px rgb(66, 54, 65);
+  background: transparent;
   color: #F1F1F2;
   border-radius: 4%;
-  
-  
 }
 .sign-up {
   font-family: 'Amatic SC', cursive;
   font-size: 60px;
-  color: rgb(240, 68, 211);
+  color: rgb(244,140,180);
   font-weight: 900;
 }
