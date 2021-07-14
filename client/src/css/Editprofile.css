@@ -1,9 +1,9 @@
 .account{
   background-color: darkslategray;
-  height: calc(100% - 0px);
   place-content: center;
   width: calc(100%);
-  color: rgb(244,140,180)
+  color: rgb(244,140,180);
+  margin-top: 10%;
 }
 
 h1 {
@@ -12,7 +12,7 @@ h1 {
   font-size: 70px !important;
   text-align: center;
   justify-content: center;
-  margin-top: 20px !important;
+  
 }
 
 .row {
@@ -63,7 +63,7 @@ h1 {
 #editemail p {
   display: inline;
   vertical-align: top;
-  margin-left: 100px;
+  margin-left: 6%;
 }
 
 #editpassword p {
@@ -99,3 +99,16 @@ h1 {
   color: white;
 }
 
+#edit {
+  color: rgba(167, 164, 164, 0.842);
+  
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  margin-bottom: 10%;
+  color: red;
+  border-color: red;
+  width: 30%;
+  font-size: 22px;
+}
