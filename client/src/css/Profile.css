@@ -101,6 +101,12 @@ p {
   width: fit-content;
 }
 
+#gridfollowers {
+  margin-top: 6%;
+  background: transparent;
+  border: none;
+}
+
 .grid {
   width: 350px;
   height: 150px;

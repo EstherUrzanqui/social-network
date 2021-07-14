@@ -216,7 +216,7 @@ class Profile extends React.Component {
             <div className="grid">
               {myFollowers.map((fol, index) => {
                 return (
-                <Card>
+                <Card id="gridfollowers">
                   <CardImg onClick={() => this.handleClick(fol.id)} className="picfollowers" src={fol.image} />
                 </Card>
                 )
@@ -228,7 +228,7 @@ class Profile extends React.Component {
             <div className="grid">
               {myFollowing.map((fol, index) => {
                 return (
-                  <Card>
+                  <Card id="gridfollowers">
                     <CardImg onClick={() => this.handleClick(fol.id)} className="picfollowers" src={fol.image} />
                   </Card>
                 )
