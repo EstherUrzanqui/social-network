@@ -223,7 +223,7 @@ class Editprofile extends React.Component {
           </div>
         </div>
         <Form onSubmit={this.deleteAccount}>
-          <Button type="submit">Delete Account</Button>
+          <Button id="deleteaccount" type="submit">Delete Account</Button>
         </Form>
       </div>
     )
