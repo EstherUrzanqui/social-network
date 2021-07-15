@@ -1,6 +1,9 @@
+
 .allprofilecolumns {
+  display: inline-flex;
   padding-top: 5%;
   margin-top: 2%;
+  justify-content: space-between;
 }
 
 .allicons {
@@ -58,3 +61,4 @@
 .allusersinplat {
   display: contents !important;
 }
+
