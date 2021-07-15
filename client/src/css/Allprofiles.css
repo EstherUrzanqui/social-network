@@ -27,6 +27,12 @@
   grid-template-rows: repeat(2, 5vw);
 }
 
+#allprofilefollowers {
+  background-color: transparent;
+  border: none;
+  margin-top: 6%;
+}
+
 #allprofpost {
   margin: 0;
   padding: 0;

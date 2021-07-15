@@ -242,25 +242,25 @@ class Allprofiles extends React.Component {
       <div className="allprofilecolumns">
         <div class="allicons">
           <div class="col-3" id="allfollows">
-            <Link className="link" onClick={() => this.getProfileFollowers(followedId)}>
+            <Link className="linkallprofiles" onClick={() => this.getProfileFollowers(followedId)}>
               Followers:{followers[0]}
             </Link>
             <div className="grid">
               {myFollowers.map((fol, index) => {
                 return (
-                <Card>
+                <Card id="allprofilefollowers">
                   <CardImg className="picfollowers" src={fol.image} />
                 </Card>
                 )
               })}
             </div>
-            <Link className="link" onClick={() => this.getProfileFollowing(followedId)}>
+            <Link className="linkallprofiles" onClick={() => this.getProfileFollowing(followedId)}>
               Following:{following}
             </Link>
             <div className="grid">
               {myFollowing.map((fol, index) => {
                 return (
-                  <Card>
+                  <Card id="allprofilefollowers">
                     <CardImg className="picfollowers" src={fol.image} />
                   </Card>
                 )
