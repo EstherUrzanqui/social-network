@@ -51,6 +51,10 @@
   font-weight: 900;
 }
 
+.posted {
+  margin-top: .75rem;
+}
+
 .allusersinplat {
   display: contents !important;
 }
