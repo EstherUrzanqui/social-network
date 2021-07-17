@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import withUser from "./Withuser"
 import { Card, CardBody, CardTitle, CardImg, Button } from 'reactstrap'
-import "../css/Followers.css"
+//import "../css/Followers.css"
+import "../css/Othersfollowers.css"
 
 
 class Othersfollowers extends React.Component {
@@ -123,12 +124,16 @@ class Othersfollowers extends React.Component {
     console.log(this.props.match.params)
     
     return (
-      <div>
+      <div className="otherprofilefollowers">
+        <div className="description">
+          <h3>{this.props.user_name} is following</h3>
+        </div>
+        <div className="listfollowersallprofiles">
         <ul>
           {followers.map((follower, index) => {
             if(follower.id !== this.props.user[0].id)
              return (
-              <Card className="users" key= {index}>
+              <Card className="usersotherprofiles" key= {index}>
                 <CardBody>
                   <CardImg className="picfollowers" top width="9%" src={follower.image} />
                   <CardTitle onClick={() => this.handleClick(follower.id)}>{follower.user_name}</CardTitle>
@@ -142,6 +147,7 @@ class Othersfollowers extends React.Component {
              )  
           })}
         </ul>
+        </div>
       </div>
     )
   }
