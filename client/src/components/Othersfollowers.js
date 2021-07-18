@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import withUser from "./Withuser"
 import { Card, CardBody, CardTitle, CardImg, Button } from 'reactstrap'
-//import "../css/Followers.css"
 import "../css/Othersfollowers.css"
 
 
@@ -102,7 +101,6 @@ class Othersfollowers extends React.Component {
 
   render() {
     const { followers, followingUsers } = this.state
-    console.log(followers)
     
     return (
       <div className="otherprofilefollowers">
