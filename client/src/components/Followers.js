@@ -124,24 +124,27 @@ class Followers extends React.Component {
     console.log(followers)
     
     return (
-      <div>
-        <ul>
+      <div className="showfollowers">
+        <div className="titlefollowers">
+          <h3 id="followerstitle">Followers</h3>
+        </div>
+        <div className="gridbackground">
           {followers.map((follower, index) => {
              return (
-              <Card className="users" key= {index}>
-                <CardBody>
-                  <CardImg className="picfollowers" top width="9%" src={follower.image} />
-                  <CardTitle onClick={() => this.handleClick(follower.id)}>{follower.user_name}</CardTitle>
+              <Card id="users" key= {index}>
+                <CardBody id="cardbodyfollowers">
+                  <CardImg id="picfollowers" top width="9%" src={follower.image} />
+                  <CardTitle id="cardtitlefollowers" onClick={() => this.handleClick(follower.id)}>{follower.user_name}</CardTitle>
                   {followingUsers.includes(follower.user_name) ? (
-                    <Button value={follower.id} onClick={this.onUnfollow}>Unfollow</Button>
+                    <Button id="buttonfollowers" value={follower.id} onClick={this.onUnfollow}>Unfollow</Button>
                   ) : (
-                    <Button value={follower.id} onClick={this.onFollow}>Follow</Button>
+                    <Button id="buttonfollowers" value={follower.id} onClick={this.onFollow}>Follow</Button>
                   )}
                 </CardBody>
               </Card>
              )  
           })}
-        </ul>
+        </div>
       </div>
     )
   }

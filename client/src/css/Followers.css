@@ -1,15 +1,53 @@
-.users {
-  padding-left: auto;
+.showfollowers {
+  padding: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  
 }
 
-.picfollowers {
+#followerstitle {
+  color: rgb(244,140,180);
+  font-family: 'Amatic SC', cursive;
+  font-size: 2.5rem;
+}
+
+
+.gridbackground {
+  display: grid;
+  grid-template-columns: repeat(3, 20vw);
+  grid-template-rows: repeat(2, 8vw);
+  background-color: rgb(63, 83, 83);
+}
+
+#users {
+  padding-left: auto;
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+
+#cardbodyfollowers {
+  background: transparent;
+}
+
+#picfollowers {
   width: 5vw !important;
   height: 5vw;
+  border-radius: 50%;
 }
 
 .card-title {
   margin-bottom: .75rem;
-  color: black;
+  color: white;
+}
+
+#cardtitlefollowers {
+  text-align: center;
+  margin: 0;
 }
 
 .btn:not(:disabled):not(.disabled) {
@@ -17,4 +55,8 @@
   color: white;
   font-family: 'Amatic SC', cursive;
   background-color: transparent !important;
+}
+
+#buttonfollowers {
+  margin-top: 5%;
 }
