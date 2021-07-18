@@ -3,6 +3,7 @@ import axios from "axios";
 import withUser from "./Withuser"
 import { Card, CardBody, CardTitle, Button } from 'reactstrap'
 import CardImg from "reactstrap/lib/CardImg";
+import "../css/Othersfollowing.css"
 
 class Othersfollowing extends React.Component{
   constructor(props) {
@@ -104,27 +105,29 @@ class Othersfollowing extends React.Component{
 
   render() {
     const { following, followingUsers } = this.state
-
+    
     return (
-      <div>
-          <h2>Following</h2>
-            <ul>
+      <div className="othersprofilefollowing">
+        <div className="descriptionfollowing">
+          <h3 id="othersfollowingtitle">Following</h3>
+        </div>
+            <div className="listfollowingallprofiles">
               {following.map((follow, index) => {
-                if(follow.id !== this.props.user[0].id)
+                
                 return (
-                  <Card key= {index}>
-                    <CardBody>
-                      <CardImg className="picfollowers" top width="9%" src={follow.image} />
-                      <CardTitle onClick={() => this.handleClick(follow.id)}>{follow.user_name}</CardTitle>
+                  <Card id="usersotherprofilesfollowing" key= {index}>
+                    <CardBody id="cardbodyothersfollowing">
+                      <CardImg id="picothersfollowing" top width="9%" src={follow.image} />
+                      <CardTitle id="cardtitleothersfollowing" onClick={() => this.handleClick(follow.id)}>{follow.user_name}</CardTitle>
                       {followingUsers.includes(follow.user_name) ? (
-                        <Button value={follow.id} onClick={this.onUnfollow}>Unfollow</Button>
+                        <Button id="buttonotherfollowing" value={follow.id} onClick={this.onUnfollow}>Unfollow</Button>
                       ) : (
-                        <Button value={follow.id} onClick={this.onFollow}>Follow</Button>
+                        <Button id="buttonotherfollowing" value={follow.id} onClick={this.onFollow}>Follow</Button>
                       )}
                     </CardBody>
                   </Card>)
               })}
-            </ul>
+            </div>
         </div>
     )
   }
