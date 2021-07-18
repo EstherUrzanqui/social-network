@@ -1,0 +1,48 @@
+.showfollowing {
+  padding: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+#titlefollowing {
+  color: rgb(244,140,180);
+  font-family: 'Amatic SC', cursive;
+  font-size: 2.5rem;
+}
+
+.gridfollowing {
+  display: grid;
+  grid-template-columns: repeat(3, 20vw);
+  grid-template-rows: repeat(2, 8vw);
+  background-color: rgb(63, 83, 83);
+}
+
+#userfollowing {
+  padding-left: auto;
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+
+#cardbodyfollowing {
+  background: transparent;
+}
+
+#picfollowing {
+  width: 5vw !important;
+  height: 5vw;
+  border-radius: 50%;
+}
+
+#cardtitlefollowing {
+  text-align: center;
+  margin: 0;
+}
+
+#buttonfollowing {
+  margin-top: 5%;
+}

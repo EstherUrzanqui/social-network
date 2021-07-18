@@ -3,6 +3,7 @@ import axios from "axios";
 import withUser from "./Withuser"
 import { Card, CardBody, CardTitle, Button } from 'reactstrap'
 import CardImg from "reactstrap/lib/CardImg";
+import "../css/Following.css"
 
 class Following extends React.Component{
   constructor(props) {
@@ -106,24 +107,26 @@ class Following extends React.Component{
     const { following, followingUsers } = this.state
 
     return (
-      <div>
-          <h2>Following</h2>
-            <ul>
+      <div className="showfollowing">
+        <div id="titlefollowing">
+          <h3>Following</h3>
+        </div>
+            <div className="gridfollowing">
               {following.map((follow, index) => {
                 return (
-                  <Card key= {index}>
-                    <CardBody>
-                      <CardImg className="picfollowers" top width="9%" src={follow.image} />
-                      <CardTitle onClick={() => this.handleClick(follow.id)}>{follow.user_name}</CardTitle>
+                  <Card id="userfollowing" key= {index}>
+                    <CardBody id="cardbodyfollowing">
+                      <CardImg id="picfollowing" top width="9%" src={follow.image} />
+                      <CardTitle id="cardtitlefollowing" onClick={() => this.handleClick(follow.id)}>{follow.user_name}</CardTitle>
                       {followingUsers.includes(follow.user_name) ? (
-                        <Button value={follow.id} onClick={this.onUnfollow}>Unfollow</Button>
+                        <Button id="buttonfollowing" value={follow.id} onClick={this.onUnfollow}>Unfollow</Button>
                       ) : (
-                        <Button value={follow.id} onClick={this.onFollow}>Follow</Button>
+                        <Button id="buttonfollowing" value={follow.id} onClick={this.onFollow}>Follow</Button>
                       )}
                     </CardBody>
                   </Card>)
               })}
-            </ul>
+            </div>
         </div>
     )
   }
