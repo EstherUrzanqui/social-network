@@ -11,14 +11,12 @@ class Othersfollowers extends React.Component {
     super(props)
     this.state = {
       followers: [],
-      following: [],
       followingUsers: []
     }
   }
 
   componentDidMount = () => {
     this.getFollowers()
-    this.getFollowing()
   }
 
   getFollowers = async () => {
@@ -33,23 +31,6 @@ class Othersfollowers extends React.Component {
     }
   }
 
-  getFollowing = async () => {
-    const userId = this.props.user[0].id
-
-    try {
-      const response = await axios(`http://localhost:7001/api/users/${userId}/following`)
-
-      const tempFollowing = response.data.map((follow, index) => {
-        return follow.user_name
-      })
-      this.setState({ 
-        following: response.data,
-        followingUsers: tempFollowing
-      })
-    } catch (error) {
-      this.setState({ error: true})
-    }
-  }
 
   followUser = async (e) => {
     const userId = this.props.user[0].id
