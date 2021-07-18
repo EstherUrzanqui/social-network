@@ -121,32 +121,29 @@ class Othersfollowers extends React.Component {
 
   render() {
     const { followers, followingUsers } = this.state
-    console.log(this.props.match.params)
+    console.log(followers)
     
     return (
       <div className="otherprofilefollowers">
         <div className="description">
-          <h3>{this.props.user_name} is following</h3>
+          <h3 id="otherfollowerstitle">{this.props.user_name} followers</h3>
         </div>
         <div className="listfollowersallprofiles">
-        <ul>
           {followers.map((follower, index) => {
-            if(follower.id !== this.props.user[0].id)
              return (
-              <Card className="usersotherprofiles" key= {index}>
-                <CardBody>
-                  <CardImg className="picfollowers" top width="9%" src={follower.image} />
-                  <CardTitle onClick={() => this.handleClick(follower.id)}>{follower.user_name}</CardTitle>
+              <Card id="usersotherprofiles" key= {index}>
+                <CardBody id="cardbodyothersfollowers">
+                  <CardImg id="picotherfollowers" top width="9%" src={follower.image} />
+                  <CardTitle id="cardtitleotherfollowers" onClick={() => this.handleClick(follower.id)}>{follower.user_name}</CardTitle>
                   {followingUsers.includes(follower.user_name) ? (
-                    <Button value={follower.id} onClick={this.onUnfollow}>Unfollow</Button>
+                    <Button id="buttonotherfollowers" value={follower.id} onClick={this.onUnfollow}>Unfollow</Button>
                   ) : (
-                    <Button value={follower.id} onClick={this.onFollow}>Follow</Button>
+                    <Button id="buttonotherfollowers" value={follower.id} onClick={this.onFollow}>Follow</Button>
                   )}
                 </CardBody>
               </Card>
              )  
           })}
-        </ul>
         </div>
       </div>
     )

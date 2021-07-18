@@ -1,21 +1,48 @@
 .otherprofilefollowers {
-  display:flex;
-  flex-direction: column;
-  min-height:100%;
-  position: relative;
-  width: calc(100% - 0px);
-  background-color: darkslategray;
+  padding: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
 }
 
-.description {
-  width: 50%;
-  height: 50%;
-  overflow: auto;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+#otherfollowerstitle {
+  color: rgb(244,140,180);
+  font-family: 'Amatic SC', cursive;
+  font-size: 2.5rem;
 }
 
 .listfollowersallprofiles {
-  margin-top: 200px;
+  display: grid;
+  grid-template-columns: repeat(3, 20vw);
+  grid-template-rows: repeat(2, 8vw);
+  background-color: rgb(63, 83, 83);
+}
+
+#usersotherprofiles {
+  padding-left: auto;
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+
+#cardbodyothersfollowers {
+  background: transparent;
+}
+
+#picotherfollowers {
+  width: 5vw !important;
+  height: 5vw;
+  border-radius: 50%;
+}
+
+#cardtitleotherfollowers {
+  text-align: center;
+  margin: 0;
+}
+
+#buttonotherfollowers {
+  margin-top: 5%;
 }
