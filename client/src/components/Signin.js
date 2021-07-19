@@ -1,6 +1,6 @@
 import React from "react"
 import axios from "axios"
-import { Button, Form, Input, FormGroup } from "reactstrap"
+import { Button, Form, Input, FormGroup, Alert } from "reactstrap"
 import "../css/Signin.css"
 
 
@@ -11,7 +11,8 @@ class Signin extends React.Component {
             user_name: "",
             password: "",
             password2: "",
-            email: ""
+            email: "",
+            error: false
         }
     }
 
@@ -25,7 +26,7 @@ class Signin extends React.Component {
         event.preventDefault()
         const { user_name, password, password2, email } = this.state
         if(password !== password2) {
-            alert("Passwords do not match, please enter again your password")
+            this.setState({ error: true })
         } else {
             axios("http://localhost:7001/api/register", {
                 method: "POST",
@@ -55,10 +56,17 @@ class Signin extends React.Component {
     
 
     render() {
-        const { user_name, email, password, password2 } = this.state
+        const { user_name, email, password, password2, error } = this.state
         
         return (
             <div className="page">
+                <div className="errorsignin">
+                    {error && (
+                        <Alert color="warning">
+                            Passwords do not match, please enter again your passwords
+                        </Alert>
+                    )}
+                </div>
                 <Form className ="signin-form" onSubmit={this.handleSubmit}>
                 <div className="sign-up">Sign up</div>
                     <FormGroup>
