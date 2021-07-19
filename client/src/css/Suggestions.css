@@ -21,7 +21,7 @@ ul {
   border-color: rgb(244,140,180) !important;
   position: relative;
   height: 2%;
-  width: 90%;
+  width: 100%;
 }
 
 #titlesuggestions {
@@ -35,7 +35,7 @@ ul {
 }
 
 #suggname {
-  width: 60%;
+  width: 100%;
   color: rgb(244,140,180);
   text-align: center;
 }
