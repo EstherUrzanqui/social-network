@@ -12,13 +12,41 @@ class Signin extends React.Component {
             password: "",
             password2: "",
             email: "",
-            error: false
+            error: false,
+            passwordStrength: "",
+            textColor: "#FF0000"
         }
+    }
+
+    handleChangePassword = e => {
+        const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+        if(strongRegex.test(e.target.value)) {
+            this.setState({ 
+                passwordStrength: "Strong password", 
+                textColor: "#00FF00"
+            })
+        } else if (mediumRegex.test(e.target.value)) {
+            this.setState({ 
+                passwordStrength: "Medium password",
+                textColor: "#FFA500"
+            })
+        } else {
+            this.setState({ 
+                passwordStrength: "Weak password",
+                textColor: "#FF0000"
+            })
+        }
+
+        this.setState({
+          [e.target.name]: e.target.value,
+        })
     }
 
     handleChange = e => {
         this.setState({
-          [e.target.name]: e.target.value,
+            [e.target.name] : e.target.value
         })
     }
 
@@ -56,7 +84,7 @@ class Signin extends React.Component {
     
 
     render() {
-        const { user_name, email, password, password2, error } = this.state
+        const { user_name, email, password, password2, error, passwordStrength, textColor } = this.state
         
         return (
             <div className="page">
@@ -94,14 +122,16 @@ class Signin extends React.Component {
                     <FormGroup>
                         <Input
                             value={password}
-                            onChange={this.handleChange}
+                            onChange={this.handleChangePassword}
                             name="password"
                             placeholder="Password"
                             type="password"
                             required
                         >   
                         </Input>
+                        <p style={{ color: textColor }}>{ passwordStrength }</p>
                     </FormGroup>
+                    
                     <FormGroup>
                         <Input
                             value={password2}
